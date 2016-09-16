@@ -17,7 +17,7 @@ class EatHaysRouter extends Component {
     return (
       <Router>
         <Scene key="root">
-          <Scene key="Index" component={Index} title="Eat Hays" initial={true} leftTitle={settingsIcon} onLeft={() => console.log("test")}/>
+          <Scene key="Index" component={Index} title="Eat Hays" initial={true} leftTitle={settingsIcon} onLeft={() => console.log("Control Panel")}/>
           <Scene key="Login" component={Login} title="Login" />
         </Scene>
       </Router>
