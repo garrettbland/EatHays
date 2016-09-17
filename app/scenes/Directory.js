@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as ReduxActions from '../actions';
-
+import * as ReduxActions from '../actions/';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 
 import {
@@ -15,19 +15,28 @@ import {
   Alert,
 } from 'react-native';
 
-class TestEat extends Component {
+
+class Directory extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { /* initial state */ };
+  }
+
+  componentWillMount(){
+    Actions.refresh({key: 'drawer', open: value => !value});
+  }
+
   render() {
     return (
       <View style={styles.container}>
+      <Icon name="sitemap" style={{fontSize:50,color:"#8e44ad"}}></Icon>
         <Text style={styles.welcome}>
-          Login Motherfucker
+          Directory
         </Text>
         <Text style={styles.instructions}>
-          Fuckin Anthony and his jokes....
+          The props are {this.props.text}
         </Text>
-        <TouchableOpacity onPress={() => Actions.pop()}>
-        <Text>Go back</Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -62,4 +71,4 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators(ReduxActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TestEat);
+export default connect(mapStateToProps, mapDispatchToProps)(Directory);

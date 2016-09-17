@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {AppRegistry} from 'react-native';
 
-import userReducers from './app/reducers/index.js';
+import userReducers from './app/reducers';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import Router from './app/components/router.js';
+import Router from './app/router.js';
 
 let store = createStore(combineReducers({userReducers}));
 
-class MyApp extends Component {
+class EatHays extends Component {
   render(){
     return (
       <Provider store={store}>
@@ -19,4 +19,4 @@ class MyApp extends Component {
   }
 }
 
-AppRegistry.registerComponent('EatHays', () => MyApp);
+AppRegistry.registerComponent('EatHays', () => EatHays);

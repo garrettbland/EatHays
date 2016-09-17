@@ -3,7 +3,7 @@ import {
   LOGIN_ERROR,
   LOGOUT_SUCCESS,
   SET_LISTITEM,
-} from '../actions/index.js';
+} from '../actions';
 
 
 export default function loginReducer(state,action){

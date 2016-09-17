@@ -2,37 +2,46 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as ReduxActions from './actions';
-import { Actions } from 'react-native-router-flux';
+import * as ReduxActions from '../actions/';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { Actions } from 'react-native-router-flux';
+import {Button} from 'react-native-elements';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
 
-const goToLogin = () => Actions.Login({text: 'Hello World!'});
+const goToContact = () => Actions.Contact();
 
+class About extends Component {
 
-class homeHays extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { /* initial state */ };
+  }
+
+  componentWillMount(){
+    Actions.refresh({key: 'drawer', open: value => !value});
+  }
+
   render() {
     return (
       <View style={styles.container}>
-      <Text style={styles.welcome}>
-      <Icon name="cutlery" style={{fontSize:50}}></Icon>
-      </Text>
+      <Icon name="user-secret" style={{fontSize:50, color:"#2ecc71"}}></Icon>
         <Text style={styles.welcome}>
-          Welcome to Eat Hays
+          About Eat Hays
         </Text>
-        <Text style={styles.instructions}>
-          Coming soon!
-        </Text>
-        <Text>
-        <Icon name="heart" style={{fontSize:40, color:'#e74c3c'}}></Icon>
-        </Text>
-        <Text onPress={goToLogin}>Login Page</Text>
+        <Button
+          raised
+          icon={{name: 'mail'}}
+          title='Contact Us'
+          backgroundColor="#2f99f1"
+          onPress={goToContact}
+        />
       </View>
     );
   }
@@ -67,4 +76,4 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators(ReduxActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(homeHays);
+export default connect(mapStateToProps, mapDispatchToProps)(About);
