@@ -11,7 +11,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
+  Image,
   Alert,
 } from 'react-native';
 
@@ -34,9 +34,15 @@ class Directory extends Component {
         <Text style={styles.welcome}>
           Directory
         </Text>
-        <Text style={styles.instructions}>
-          The props are {this.props.text}
+        <Text>
+          Loading: {this.state.loading}
         </Text>
+        <Image
+          onLoadStart={() => Alert.alert("Loading")}
+          onLoadEnd={() => Alert.alert("Not Loading")}
+          style={{width: 100, height: 100}}
+          source={{uri: 'https://firebasestorage.googleapis.com/v0/b/eat-hays.appspot.com/o/places-to-eat%2Fgellas%2Findex2.jpg?alt=media&token=47384d8d-8268-49ef-b5f9-53e744f2d4cd'}}
+        />
       </View>
     );
   }
