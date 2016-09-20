@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions';
-import { Actions } from 'react-native-router-flux';
+import SideMenuButtons from '../components/sideMenuButtons.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
@@ -13,28 +13,21 @@ import {
   View,
 } from 'react-native';
 
-const goToLogin = () => Actions.Directory();
-const goToIndex = () => Actions.Home();
-const goToAbout = () => Actions.About();
-const goToFavorites = () => Actions.Favorites();
+const cutleryIcon = (<Icon name="cutlery" size={30} color="#FFFFFF" />);
 
 class Index extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text style={styles.welcome}>
-      <Icon name="cutlery" style={{fontSize:50}}></Icon>
+      <Text style={styles.centerText}>
+        {cutleryIcon}
       </Text>
-        <Text style={styles.welcome}>
-          Welcome to Eat Hays
+
+            <SideMenuButtons/>
+
+        <Text style={styles.centerText}>
+          Eat Hays
         </Text>
-        <Text style={styles.instructions}>
-          Coming soon!
-        </Text>
-        <Text onPress={goToIndex}>Home Scene</Text>
-        <Text onPress={goToLogin}>Directory Scene</Text>
-        <Text onPress={goToFavorites}>Favorites Scene</Text>
-        <Text onPress={goToAbout}>About Scene</Text>
       </View>
     );
   }
@@ -43,14 +36,13 @@ class Index extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: 'rgba(191, 58, 43, 0.85)',
   },
-  welcome: {
+  centerText: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    color:"#FFFFFF",
   },
   instructions: {
     textAlign: 'center',

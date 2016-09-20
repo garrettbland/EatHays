@@ -21,6 +21,9 @@ export default class extends Component {
                 negotiatePan={true}
                 acceptPan={true}
                 tweenDuration={200}
+                tweenHandler={(ratio) => ({
+                  mainOverlay:{ backgroundColor:"rgba(71, 71, 71,"+ (ratio)/1.5+")"},
+                })}
             >
                 <DefaultRenderer navigationState={children[0]} onNavigate={this.props.onNavigate} />
             </Drawer>

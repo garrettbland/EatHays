@@ -24,7 +24,7 @@ class Home extends Component {
     return (
       <View style={styles.container}>
       <Text style={styles.welcome}>
-      <Icon name="cutlery" style={{fontSize:50}}></Icon>
+      <Icon name="cutlery" style={{fontSize:50, color:'#000000'}}></Icon>
       </Text>
         <Text style={styles.welcome}>
           Welcome to Eat Hays
