@@ -16,89 +16,22 @@ import {
   Alert,
   ListView,
   Image,
+  Dimensions,
 } from 'react-native';
 
-const firebaseConfig = {
-  databaseURL: "https://eathays-f5100.firebaseio.com/",
-};
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+const screenWidth = Dimensions.get('window').width;
 
 class Favorites extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      })
-    };
-    this.itemsRef = this.getRef().child('placesToEat');
-    console.log(this.itemsRef);
-  }
-
-  getRef() {
-    return firebaseApp.database().ref();
-  }
-
-  listenForItems(itemsRef) {
-    itemsRef.on('value', (snap) => {
-
-      // get children as an array
-      var items = [];
-      snap.forEach((child) => {
-        items.push({
-          title: child.val().title,
-          profile:child.val().profile,
-          _key: child.key,
-        });
-      });
-
-      console.log(items);
-
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
-      });
-
-    });
-  }
-
-  componentDidMount() {
-    this.listenForItems(this.itemsRef);
-  }
-
   componentWillMount(){
     Actions.refresh({key: 'drawer', open: value => !value});
   }
-
-  render() {
-    return (
-      <View style={styles.container}>
-      <Icon name="star" style={{fontSize:50,color:"#f1c40f"}}></Icon>
-        <Text style={styles.welcome}>
-          Favorites
-        </Text>
-        <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderItem.bind(this)}
-            enableEmptySections={true}
-        />
-      </View>
-    );
-  }
-
-  _renderItem(item) {
-
+render() {
   return (
     <View>
-    <Text>{item.title}</Text>
-    <Image
-      onLoadStart={() => this.setState({loading:true})}
-      onLoadEnd={() => this.setState({loading:false})}
-      style={{width: 100, height: 100}}
-      source={{uri: item.profile}}
-    />
+    <Text>Favorites</Text>
     </View>
-  );
+  )
 }
 }
 

@@ -31,6 +31,9 @@
 		9811EEE445CE4F0D90C26BF5 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7A6351FE3C4C02B9A97B5C /* Entypo.ttf */; };
 		A4CE7ECA007C467F97EAED40 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6107693294D45768D4140B6 /* Octicons.ttf */; };
 		D0963F166EAF4E9595AF25CF /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1C5F97E26E4B31B0503299 /* Foundation.ttf */; };
+		DEE69C1D1D939D7700A16FE8 /* oswald-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEE69C1A1D939D7700A16FE8 /* oswald-bold.ttf */; };
+		DEE69C1E1D939D7700A16FE8 /* oswald-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEE69C1B1D939D7700A16FE8 /* oswald-light.ttf */; };
+		DEE69C1F1D939D7700A16FE8 /* oswald-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEE69C1C1D939D7700A16FE8 /* oswald-regular.ttf */; };
 		FAFBFCFFBCCF4520906F1E61 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C6E6DF1FBF4E089326ACA5 /* libRNVectorIcons.a */; };
 /* End PBXBuildFile section */
 
@@ -153,6 +156,9 @@
 		CF1FB4D6AAED490E93DE1737 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		D2B41369D4D04C32BDB1EA39 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		DD1C5F97E26E4B31B0503299 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		DEE69C1A1D939D7700A16FE8 /* oswald-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oswald-bold.ttf"; sourceTree = "<group>"; };
+		DEE69C1B1D939D7700A16FE8 /* oswald-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oswald-light.ttf"; sourceTree = "<group>"; };
+		DEE69C1C1D939D7700A16FE8 /* oswald-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oswald-regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +267,9 @@
 		13B07FAE1A68108700A75B9A /* EatHays */ = {
 			isa = PBXGroup;
 			children = (
+				DEE69C1A1D939D7700A16FE8 /* oswald-bold.ttf */,
+				DEE69C1B1D939D7700A16FE8 /* oswald-light.ttf */,
+				DEE69C1C1D939D7700A16FE8 /* oswald-regular.ttf */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -572,6 +581,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				DEE69C1F1D939D7700A16FE8 /* oswald-regular.ttf in Resources */,
 				9811EEE445CE4F0D90C26BF5 /* Entypo.ttf in Resources */,
 				80D9CC07363D47CCA4B4E5C2 /* EvilIcons.ttf in Resources */,
 				3DF5A4817BDA4F4488B0B91D /* FontAwesome.ttf in Resources */,
@@ -580,6 +590,8 @@
 				1F6A4DEAFD404FB4923D8ECA /* MaterialIcons.ttf in Resources */,
 				A4CE7ECA007C467F97EAED40 /* Octicons.ttf in Resources */,
 				19052ECAAF5F4AFAB10AF486 /* Zocial.ttf in Resources */,
+				DEE69C1D1D939D7700A16FE8 /* oswald-bold.ttf in Resources */,
+				DEE69C1E1D939D7700A16FE8 /* oswald-light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
