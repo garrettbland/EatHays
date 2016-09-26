@@ -9,6 +9,7 @@ import {Actions, Scene, Router} from 'react-native-router-flux';
 
 import Drawer from './components/drawer.js';
 import Home from './scenes/Home.js';
+import SpecialDetail from './scenes/SpecialDetail.js';
 import Directory from './scenes/Directory.js';
 import Favorites from './scenes/Favorites.js';
 import About from './scenes/About.js';
@@ -16,7 +17,7 @@ import Contact from './scenes/Contact.js';
 
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b"};
-const styleTitleStyle = {color:"#FFFFFF"};
+const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular'};
 
 const settingsIcon = (<Icon name="bars" size={30} color="#FFFFFF" />);
 const toggleDrawer = () => Actions.refresh({key: 'drawer', open: value => !value });
@@ -29,6 +30,7 @@ class EatHaysRouter extends Component {
           <Scene key="drawer" component={Drawer} open={false} >
             <Scene key="root">
               <Scene key="Home" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Home} type="replace" initial={true} leftTitle={settingsIcon} onLeft={toggleDrawer} title="Eat Hays"/>
+              <Scene key="SpecialDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={SpecialDetail} type="push" title="Deal of the Day" />
               <Scene key="Directory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Directory} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Directory" />
               <Scene key="Favorites" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Favorites} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Favorites" />
               <Scene key="About" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={About} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="About" />

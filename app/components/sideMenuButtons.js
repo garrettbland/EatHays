@@ -21,6 +21,7 @@ import { Actions } from 'react-native-router-flux';
       icon: 'thumb-up',
       iconColor:'#c0392b',
       buttonAction:goToIndex,
+      fontFamily:"Verdana",
     },
     {
       title: 'Restaurants',
@@ -28,6 +29,7 @@ import { Actions } from 'react-native-router-flux';
       icon: 'map',
       iconColor:'#c0392b',
       buttonAction:goToDirectory,
+      fontFamily:'Times',
     },
     {
       title: 'Favorites',
@@ -35,6 +37,7 @@ import { Actions } from 'react-native-router-flux';
       icon: 'star',
       iconColor:'#c0392b',
       buttonAction:goToFavorites,
+      fontFamily:'oswald-bold',
     },
     {
       title: 'About',
@@ -42,6 +45,7 @@ import { Actions } from 'react-native-router-flux';
       icon: 'group',
       iconColor:'#c0392b',
       buttonAction:goToAbout,
+      fontFamily:'Oswald-bold',
     },
   ]
 
@@ -60,6 +64,7 @@ export default class extends Component {
                 title={item.title}
                 hideChevron={true}
                 icon={{name: item.icon, color:item.iconColor}}
+                fontFamily="oswald-regular"
               />
             ))
           }

@@ -17,18 +17,20 @@ import {
   Alert,
   ListView,
   Image,
-  Dimensions,
   ActivityIndicator,
+  Dimensions,
+  ScrollView,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 const today = moment().isoWeekday();
-var todayFormat = moment(today).format("dddd");
+const todayFormatted = moment().format('dddd');
+
 class Home extends Component {
 
   componentWillMount(){
     Actions.refresh({key: 'drawer', open: false});
-    console.log(todayFormat);
   }
 
   constructor(props) {
@@ -51,18 +53,17 @@ class Home extends Component {
 
     itemsRef.on('value', (snap) => {
 
-      // get children as an array
       var items = [];
       snap.forEach((child) => {
         items.push({
           title: child.val().title,
+          background:child.val().background,
           profile:child.val().profile,
-          test:child.val().test,
-          special:child.val().Wednesday,
+          special:child.val()[today],
+          specialDescription:child.val()[today + 10],
           _key: child.key,
         });
       });
-
 
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items)
@@ -78,9 +79,12 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Icon name="star" style={{fontSize:50,color:"#f1c40f"}}></Icon>
+      <ScrollView>
         <Text style={styles.welcome}>
           Deals of the Day
+        </Text>
+        <Text style={styles.welcomeDay}>
+          {todayFormatted} Specials
         </Text>
         {
           this.state.loading &&
@@ -88,6 +92,7 @@ class Home extends Component {
           <ActivityIndicator
             size="large"
             color="#3498db"
+            style={styles.activityStyle}
           />
 
         }
@@ -96,55 +101,69 @@ class Home extends Component {
             renderRow={this._renderItem.bind(this)}
             enableEmptySections={true}
         />
+        </ScrollView>
       </View>
     );
   }
 
   _renderItem(item) {
+          return (
+            <View style={styles.listContainter}>
+              <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription})}>
+                <Image
+                  onLoadStart={() => this.setState({loading:true})}
+                  onLoad={() => this.setState({loading:false})}
+                  style={styles.listImage}
+                  source={{uri: item.background}}
+                >
+                  <View style={{flex:1,flexDirection:'column', justifyContent:'center'}}>
+                    <Image style={{width:70,height:70, marginLeft:8, }} source={{uri: item.profile}} ></Image>
+                    {
+                      item.special.length > 10 &&
+                      <Text style={{letterSpacing:1,backgroundColor:'rgba(0, 0, 0, 0.44)',color:'white',fontSize:screenWidth/12,fontFamily:'oswald-bold', paddingLeft:8}}>{item.special}</Text>
+                    }
+                    {
+                      item.special.length <= 10 &&
+                      <Text style={{letterSpacing:1,backgroundColor:'rgba(0, 0, 0, 0.44)',color:'white',fontSize:screenWidth/8,fontFamily:'oswald-bold', paddingLeft:8}}>{item.special}</Text>
+                    }
 
-  return (
-    <View>
-      <Image
-        onLoadStart={() => this.setState({loading:true})}
-        onLoadEnd={() => this.setState({loading:false})}
-        style={{width: screenWidth, height: 150}}
-        source={{uri: item.profile}}
-      >
-        <View style={{flex:1,flexDirection:'column', justifyContent:'center'}}>
-          <Image style={{width:70,height:70, marginLeft:8, }} source={{uri: item.test}}></Image>
-          {
-            item.special.length > 10 &&
-            <Text style={{letterSpacing:1,backgroundColor:'rgba(0, 0, 0, 0.44)',color:'white',fontSize:screenWidth/12,fontFamily:'oswald-bold',}}>{item.special}</Text>
-          }
-          {
-            item.special.length <= 10 &&
-            <Text style={{letterSpacing:1,backgroundColor:'rgba(0, 0, 0, 0.44)',color:'white',fontSize:screenWidth/8,fontFamily:'oswald-bold',}}>{item.special}</Text>
-          }
-
-        </View>
-      </Image>
-    </View>
-  );
-}
-
+                  </View>
+                </Image>
+              </TouchableOpacity>
+            </View>
+          );
+      }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    marginTop:screenHeight / 11,
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 10,
+    fontFamily:'oswald-bold',
+    color:"black",
   },
-  instructions: {
+  welcomeDay: {
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    backgroundColor:"#c0392b",
+    color:'white',
+    fontFamily:'oswald-regular',
+    fontSize:18,
+  },
+  listContainter: {
+    backgroundColor:"#c0392b",
+  },
+  listImage:{
+    width: screenWidth,
+    height: 150,
+    marginBottom:2,
+  },
+  activityStyle:{
+    marginTop:5,
   },
 });
 
