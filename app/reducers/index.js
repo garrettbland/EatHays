@@ -1,26 +1,18 @@
 import {
-  LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  LOGOUT_SUCCESS,
-  SET_LISTITEM,
+  LOADING_TRUE,
+  LOADING_FALSE,
 } from '../actions';
 
 
-export default function loginReducer(state,action){
+export default function loadingReducer(state,action){
   switch (action.type) {
-    case LOGIN_SUCCESS:
-      return Object.assign({}, state, {user:{loggedIn:true}});
+    case LOADING_TRUE:
+      return Object.assign({}, state, {user:{loading:true}});
 
-    case LOGIN_ERROR:
-      return Object.assign({}, state, {user:{loginError:true}});
-
-    case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {user:{loggedIn:false}});
-
-    case SET_LISTITEM:
-      return Object.assign({}, state, {user:{selectedRow:action.payload}});
+    case LOADING_FALSE:
+      return Object.assign({}, state, {user:{loading:false}});
 
     default:
-      return Object.assign({}, state, {user:{loggedIn:false}});
+      return Object.assign({}, state, {user:{loading:false}});
   }
 }

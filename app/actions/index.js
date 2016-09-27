@@ -1,30 +1,14 @@
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const REMEMBER_TRUE = 'REMEMBER_TRUE';
-export const SET_LISTITEM = 'SET_LISTITEM';
+export const LOADING_TRUE = 'LOADING_TRUE';
+export const LOADING_FALSE = 'LOADING_FALSE';
 
-export function login(userCredentials){
-  if (userCredentials.userName === 'testuser' && userCredentials.password === '123'){
+export function isLoading(boolean){
+  if (boolean === true){
     return {
-      type:LOGIN_SUCCESS
+      type:LOADING_TRUE
     }
-  } else {
+  }else{
     return {
-      type:LOGIN_ERROR
+      type:LOADING_FALSE
     }
-  }
-}
-
-export function logout(){
-  return {
-    type:LOGOUT_SUCCESS
-  }
-}
-
-export function setListItem(rowData){
-  return {
-    payload:rowData,
-    type:SET_LISTITEM
   }
 }
