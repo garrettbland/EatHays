@@ -8,7 +8,7 @@
  */
 
 #import "AppDelegate.h"
-
+#import "AppHub.h"
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
 
@@ -16,9 +16,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [AppHub setApplicationID:@"9ojKxQ3xFD6MERfLPEcq"];
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  
+  
+//  /**
+//   * OPTION 3 - AppHub
+//   *
+//   * Load cached code and images from AppHub.
+//   *
+//   */
+//  
+//  AHBuild *build = [[AppHub buildManager] currentBuild];
+//  jsCodeLocation = [build.bundle URLForResource:@"main"
+//                                  withExtension:@"jsbundle"];
+  
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"EatHays"

@@ -31,6 +31,10 @@
 		9811EEE445CE4F0D90C26BF5 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7A6351FE3C4C02B9A97B5C /* Entypo.ttf */; };
 		A4CE7ECA007C467F97EAED40 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6107693294D45768D4140B6 /* Octicons.ttf */; };
 		D0963F166EAF4E9595AF25CF /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1C5F97E26E4B31B0503299 /* Foundation.ttf */; };
+		DEA458641D9B115A00EFAF32 /* libAppHub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA458611D9B10B000EFAF32 /* libAppHub.a */; };
+		DEA458661D9B116500EFAF32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA458651D9B116500EFAF32 /* SystemConfiguration.framework */; };
+		DEA458681D9B117100EFAF32 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA458671D9B117100EFAF32 /* libz.tbd */; };
+		DEA4586A1D9B16BD00EFAF32 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA458691D9B16BD00EFAF32 /* Default-568h@2x.png */; };
 		DEE69C1D1D939D7700A16FE8 /* oswald-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEE69C1A1D939D7700A16FE8 /* oswald-bold.ttf */; };
 		DEE69C1E1D939D7700A16FE8 /* oswald-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEE69C1B1D939D7700A16FE8 /* oswald-light.ttf */; };
 		DEE69C1F1D939D7700A16FE8 /* oswald-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEE69C1C1D939D7700A16FE8 /* oswald-regular.ttf */; };
@@ -122,6 +126,20 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		DEA458601D9B10B000EFAF32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DEA458591D9B10B000EFAF32 /* AppHub.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555FF3AF1B37AC8D0064F175;
+			remoteInfo = AppHub;
+		};
+		DEA458621D9B10B000EFAF32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DEA458591D9B10B000EFAF32 /* AppHub.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555FF3BA1B37AC8D0064F175;
+			remoteInfo = AppHubTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +174,10 @@
 		CF1FB4D6AAED490E93DE1737 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		D2B41369D4D04C32BDB1EA39 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		DD1C5F97E26E4B31B0503299 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		DEA458591D9B10B000EFAF32 /* AppHub.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppHub.xcodeproj; path = ../node_modules/apphub/AppHub/AppHub.xcodeproj; sourceTree = "<group>"; };
+		DEA458651D9B116500EFAF32 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DEA458671D9B117100EFAF32 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		DEA458691D9B16BD00EFAF32 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DEE69C1A1D939D7700A16FE8 /* oswald-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oswald-bold.ttf"; sourceTree = "<group>"; };
 		DEE69C1B1D939D7700A16FE8 /* oswald-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oswald-light.ttf"; sourceTree = "<group>"; };
 		DEE69C1C1D939D7700A16FE8 /* oswald-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oswald-regular.ttf"; sourceTree = "<group>"; };
@@ -174,6 +196,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA458681D9B117100EFAF32 /* libz.tbd in Frameworks */,
+				DEA458661D9B116500EFAF32 /* SystemConfiguration.framework in Frameworks */,
+				DEA458641D9B115A00EFAF32 /* libAppHub.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -267,6 +292,7 @@
 		13B07FAE1A68108700A75B9A /* EatHays */ = {
 			isa = PBXGroup;
 			children = (
+				DEA458691D9B16BD00EFAF32 /* Default-568h@2x.png */,
 				DEE69C1A1D939D7700A16FE8 /* oswald-bold.ttf */,
 				DEE69C1B1D939D7700A16FE8 /* oswald-light.ttf */,
 				DEE69C1C1D939D7700A16FE8 /* oswald-regular.ttf */,
@@ -315,6 +341,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DEA458591D9B10B000EFAF32 /* AppHub.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -341,6 +368,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				DEA458671D9B117100EFAF32 /* libz.tbd */,
+				DEA458651D9B116500EFAF32 /* SystemConfiguration.framework */,
 				13B07FAE1A68108700A75B9A /* EatHays */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* EatHaysTests */,
@@ -364,6 +393,15 @@
 			isa = PBXGroup;
 			children = (
 				DE6C74801D8BB817003B87EF /* libRNVectorIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DEA4585A1D9B10B000EFAF32 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DEA458611D9B10B000EFAF32 /* libAppHub.a */,
+				DEA458631D9B10B000EFAF32 /* AppHub.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -420,6 +458,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = BKQ7GC9PF5;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "EatHays" */;
@@ -434,6 +475,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = DEA4585A1D9B10B000EFAF32 /* Products */;
+					ProjectRef = DEA458591D9B10B000EFAF32 /* AppHub.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -565,6 +610,20 @@
 			remoteRef = DE6C747F1D8BB817003B87EF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		DEA458611D9B10B000EFAF32 /* libAppHub.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAppHub.a;
+			remoteRef = DEA458601D9B10B000EFAF32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DEA458631D9B10B000EFAF32 /* AppHub.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AppHub.xctest;
+			remoteRef = DEA458621D9B10B000EFAF32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -584,6 +643,7 @@
 				DEE69C1F1D939D7700A16FE8 /* oswald-regular.ttf in Resources */,
 				9811EEE445CE4F0D90C26BF5 /* Entypo.ttf in Resources */,
 				80D9CC07363D47CCA4B4E5C2 /* EvilIcons.ttf in Resources */,
+				DEA4586A1D9B16BD00EFAF32 /* Default-568h@2x.png in Resources */,
 				3DF5A4817BDA4F4488B0B91D /* FontAwesome.ttf in Resources */,
 				D0963F166EAF4E9595AF25CF /* Foundation.ttf in Resources */,
 				609D7528D7F24BA3A106A957 /* Ionicons.ttf in Resources */,
@@ -696,12 +756,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/apphub/AppHub/**",
 				);
 				INFOPLIST_FILE = EatHays/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -712,6 +775,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.eathays.app;
 				PRODUCT_NAME = EatHays;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -719,11 +784,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/apphub/AppHub/**",
 				);
 				INFOPLIST_FILE = EatHays/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -734,6 +802,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.eathays.app;
 				PRODUCT_NAME = EatHays;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
