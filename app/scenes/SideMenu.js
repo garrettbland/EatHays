@@ -36,7 +36,7 @@ class Index extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(191, 58, 43, 0.85)',
+    backgroundColor: '#c0392b',
   },
   centerText: {
     fontSize: 20,

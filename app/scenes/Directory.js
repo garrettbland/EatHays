@@ -5,69 +5,138 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
+import firebaseApp from "../components/firebaseconfig.js";
+import moment from 'moment';
 
 import {
+  AppRegistry,
   StyleSheet,
   Text,
   View,
-  Image,
+  TouchableOpacity,
   Alert,
+  ListView,
+  Image,
   ActivityIndicator,
+  Dimensions,
+  ScrollView,
 } from 'react-native';
 
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+const today = moment().isoWeekday();
+const todayFormatted = moment().format('dddd');
 
 class Directory extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {loading:false};
+  componentWillMount(){
+    Actions.refresh({key: 'drawer', open: false});
   }
 
-  componentWillMount(){
-    Actions.refresh({key: 'drawer', open: value => !value});
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading:true,
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      })
+    };
+    this.itemsRef = this.getRef().child('directory');
+  }
+
+  getRef() {
+    return firebaseApp.database().ref();
+  }
+
+
+  listenForItems(itemsRef) {
+
+    itemsRef.on('value', (snap) => {
+
+      var items = [];
+      snap.forEach((child) => {
+        items.push({
+          title: child.val().title,
+          address: child.val().address,
+          _key: child.key,
+        });
+      });
+
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(items)
+      });
+
+    });
+  }
+
+  componentDidMount() {
+    this.listenForItems(this.itemsRef);
   }
 
   render() {
     return (
       <View style={styles.container}>
-      <Icon name="sitemap" style={{fontSize:50,color:"#8e44ad"}}></Icon>
-        <Text style={styles.welcome}>
-          Directory
-        </Text>
+      <ScrollView>
         {
           this.state.loading &&
+
           <ActivityIndicator
             size="large"
             color="#3498db"
+            style={styles.activityStyle}
           />
+
         }
-          <Image
-            onLoadStart={() => this.setState({loading:true})}
-            onLoadEnd={() => this.setState({loading:false})}
-            style={{width: 100, height: 100}}
-            source={{uri: 'https://firebasestorage.googleapis.com/v0/b/eat-hays.appspot.com/o/places-to-eat%2Fgellas%2Findex2.jpg?alt=media&token=47384d8d-8268-49ef-b5f9-53e744f2d4cd'}}
-          />
+        <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderItem.bind(this)}
+            enableEmptySections={true}
+        />
+        </ScrollView>
       </View>
     );
   }
+
+  _renderItem(item) {
+          return (
+            <View style={styles.listContainter}>
+              <TouchableOpacity >
+                <Text>Title: {item.title}, Address {item.address}</Text>
+              </TouchableOpacity>
+            </View>
+          );
+      }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    marginTop:screenHeight / 11,
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 10,
+    fontFamily:'oswald-bold',
+    color:"black",
   },
-  instructions: {
+  welcomeDay: {
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    backgroundColor:"#c0392b",
+    color:'white',
+    fontFamily:'oswald-regular',
+    fontSize:18,
+  },
+  listContainter: {
+    backgroundColor:"#c0392b",
+  },
+  listImage:{
+    width: screenWidth,
+    height: 150,
+    marginBottom:2,
+  },
+  activityStyle:{
+    marginTop:5,
   },
 });
 

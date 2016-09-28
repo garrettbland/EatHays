@@ -109,7 +109,7 @@ class Home extends Component {
   _renderItem(item) {
           return (
             <View style={styles.listContainter}>
-              <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription})}>
+              <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}>
                 <Image
                   onLoadStart={() => this.setState({loading:true})}
                   onLoad={() => this.setState({loading:false})}
