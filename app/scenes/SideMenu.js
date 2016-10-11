@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   centerText: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    marginTop: 25,
     color:"#FFFFFF",
     fontFamily:'oswald-bold'
   },

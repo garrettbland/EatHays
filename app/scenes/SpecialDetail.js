@@ -37,6 +37,7 @@ class SpecialDetail extends Component {
     return (
       <View style={styles.container}>
       <ParallaxScrollView
+           fadeOutForeground={false}
            renderBackground={() => <Image source={{ uri: this.props.background, width: window.width, height: screenHeight / 2 }}/>}
            contentBackgroundColor="#ffffff"
            parallaxHeaderHeight={screenHeight / 2}
@@ -46,18 +47,19 @@ class SpecialDetail extends Component {
              </View>
            )}>
            <View>
-            <Text style={styles.welcomeDay}>{this.props.title} {this.props.day} Special</Text>
-            <Text style={styles.description}>{this.props.specialDescription}</Text>
-            <Button
-              raised
-              iconRight
-              icon={{name: 'chevron-right'}}
-              fontFamily="oswald-bold"
-              fontSize={18}
-              buttonStyle={{marginBottom:5,}}
-              backgroundColor="#2bc064"
-              title='View Restaurant'
-              onPress={goToDirectoryDetail} />
+              <Text style={styles.welcomeDay}>{this.props.title} {this.props.day} Special</Text>
+              <Text style={styles.description}>{this.props.specialDescription}</Text>
+              <Button
+                raised
+                iconRight
+                icon={{name: 'chevron-right'}}
+                fontFamily="oswald-bold"
+                fontSize={18}
+                buttonStyle={{marginBottom:5,}}
+                backgroundColor="#2bc064"
+                title='View Restaurant'
+                onPress={goToDirectoryDetail}
+              />
            </View>
          </ParallaxScrollView>
       </View>

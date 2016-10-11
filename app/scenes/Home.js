@@ -26,6 +26,7 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const today = moment().isoWeekday();
 const todayFormatted = moment().format('dddd');
+const imageText = "image";
 
 class Home extends Component {
 
@@ -41,7 +42,7 @@ class Home extends Component {
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
-    this.itemsRef = this.getRef().child('placesToEat');
+    this.itemsRef = this.getRef().child('specials');
   }
 
   getRef() {
@@ -57,7 +58,7 @@ class Home extends Component {
       snap.forEach((child) => {
         items.push({
           title: child.val().title,
-          background:child.val().background,
+          background:child.val()[imageText + today],
           profile:child.val().profile,
           special:child.val()[today],
           specialDescription:child.val()[today + 10],

@@ -57,7 +57,9 @@ class Directory extends Component {
       snap.forEach((child) => {
         items.push({
           title: child.val().title,
-          address: child.val().address,
+          category: child.val().category,
+          description: child.val().description,
+          profile: child.val().profile,
           _key: child.key,
         });
       });
@@ -87,6 +89,7 @@ class Directory extends Component {
           />
 
         }
+        <View style={{height:2,backgroundColor:'#c0392b'}}></View>
         <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderItem.bind(this)}
@@ -101,7 +104,22 @@ class Directory extends Component {
           return (
             <View style={styles.listContainter}>
               <TouchableOpacity >
-                <Text>Title: {item.title}, Address {item.address}</Text>
+                <View style={{marginBottom:2,backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
+                  <View style={{alignItems:'flex-start',flex:2}}>
+                    <Text style={{fontFamily:'oswald-bold',fontSize:20,color:"#000000"}}>{item.title}</Text>
+                    <Text>{item.category}</Text>
+                    <Text>{item.description}</Text>
+                  </View>
+                  <View style={{alignItems:'flex-end',flex:2,}}>
+                    <Image
+                      onLoadStart={() => this.setState({loading:true})}
+                      onLoad={() => this.setState({loading:false})}
+                      style={styles.listImage}
+                      source={{uri: item.profile}}
+                    >
+                    </Image>
+                  </View>
+                </View>
               </TouchableOpacity>
             </View>
           );
@@ -129,11 +147,11 @@ const styles = StyleSheet.create({
   },
   listContainter: {
     backgroundColor:"#c0392b",
+    flex:1,
   },
   listImage:{
-    width: screenWidth,
-    height: 150,
-    marginBottom:2,
+    width: screenWidth / 3,
+    height: screenWidth / 3,
   },
   activityStyle:{
     marginTop:5,
