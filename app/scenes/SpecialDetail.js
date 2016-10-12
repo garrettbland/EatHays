@@ -23,8 +23,6 @@ import {
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-const goToDirectoryDetail = () => console.log("GO TO restaurant");
-
 class SpecialDetail extends Component {
 
   constructor(props) {
@@ -59,7 +57,7 @@ class SpecialDetail extends Component {
                 buttonStyle={{marginBottom:5,}}
                 backgroundColor="#2bc064"
                 title='View Restaurant'
-                onPress={goToDirectoryDetail}
+                onPress={() => Actions.DirectoryDetail({title:this.props.title})}
               />
            </View>
          </ParallaxScrollView>

@@ -14,6 +14,7 @@ import Directory from './scenes/Directory.js';
 import Favorites from './scenes/Favorites.js';
 import About from './scenes/About.js';
 import Contact from './scenes/Contact.js';
+import DirectoryDetail from './scenes/DirectoryDetail.js';
 
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b"};
@@ -34,6 +35,7 @@ class EatHaysRouter extends Component {
                 <Scene key="Home" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Home} type="replace" initial={true} leftTitle={settingsIcon} onLeft={toggleDrawer} title="Eat Hays"/>
                 <Scene key="SpecialDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={SpecialDetail} type="push" title="Deal of the Day" />
                 <Scene key="Directory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Directory} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Directory" />
+                <Scene key="DirectoryDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={DirectoryDetail} type="push" title="Directory Detail" />
                 <Scene key="Favorites" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Favorites} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Favorites" />
                 <Scene key="About" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={About} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="About" />
                 <Scene key="Contact" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={Contact} type="push" title="Contact" />

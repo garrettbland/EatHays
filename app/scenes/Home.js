@@ -109,6 +109,17 @@ class Home extends Component {
   }
 
   _renderItem(item) {
+    console.log(this.state.dataSource.getRowCount());
+    if (this.state.dataSource.getRowCount() == 0){
+      this.setState({loading:false});
+      return (
+        <View>Check back later for sales</View>
+      );
+    }else if (item.special == "nospecial" || item.special == "" || !item.special){
+        return (
+          <View></View>
+        );
+    }else{
           return (
             <View style={styles.listContainter}>
               <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}>
@@ -135,6 +146,7 @@ class Home extends Component {
             </View>
           );
       }
+    }
 }
 
 const styles = StyleSheet.create({

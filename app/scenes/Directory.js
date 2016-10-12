@@ -109,7 +109,7 @@ class Directory extends Component {
   _renderItem(item) {
           return (
             <View style={styles.listContainter}>
-              <TouchableOpacity >
+              <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title})}>
                 <View style={{marginBottom:2,backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                   <View style={{alignItems:'flex-start',flex:2}}>
                     <Text style={{fontFamily:'oswald-bold',fontSize:20,color:"#000000"}}>{item.title}</Text>
