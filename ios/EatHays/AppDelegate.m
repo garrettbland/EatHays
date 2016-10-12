@@ -19,20 +19,21 @@
   [AppHub setApplicationID:@"9ojKxQ3xFD6MERfLPEcq"];
   NSURL *jsCodeLocation;
 
+// change this for local
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-  
-  
+
+//change this for apphub and for apple
 //  /**
 //   * OPTION 3 - AppHub
 //   *
 //   * Load cached code and images from AppHub.
 //   *
 //   */
-//  
+//
 //  AHBuild *build = [[AppHub buildManager] currentBuild];
 //  jsCodeLocation = [build.bundle URLForResource:@"main"
 //                                  withExtension:@"jsbundle"];
-  
+
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"EatHays"

@@ -17,6 +17,7 @@ import {
   ActivityIndicator,
   Dimensions,
   ScrollView,
+  Platform,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -69,7 +70,7 @@ class SpecialDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:screenHeight / 12,
+    paddingTop:Platform.OS === 'ios'? 64 : 54,
     backgroundColor:'#ffffff',
     flex:1,
   },

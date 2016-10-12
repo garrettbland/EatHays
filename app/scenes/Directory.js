@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
+import { SearchBar } from 'react-native-elements';
 
 import {
   AppRegistry,
@@ -20,6 +21,7 @@ import {
   ActivityIndicator,
   Dimensions,
   ScrollView,
+  Platform,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -79,6 +81,11 @@ class Directory extends Component {
     return (
       <View style={styles.container}>
       <ScrollView>
+      <SearchBar
+          lightTheme
+          onChangeText={() => console.log("test")}
+          placeholder='Search...'
+      />
         {
           this.state.loading &&
 
@@ -89,7 +96,6 @@ class Directory extends Component {
           />
 
         }
-        <View style={{height:2,backgroundColor:'#c0392b'}}></View>
         <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderItem.bind(this)}
@@ -129,7 +135,7 @@ class Directory extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop:screenHeight / 11,
+    paddingTop:Platform.OS === 'ios'? 64 : 54,
   },
   welcome: {
     fontSize: 30,
@@ -146,10 +152,11 @@ const styles = StyleSheet.create({
     fontSize:18,
   },
   listContainter: {
-    backgroundColor:"#c0392b",
+    backgroundColor:"#ffffff",
     flex:1,
   },
   listImage:{
+    padding:5,
     width: screenWidth / 3,
     height: screenWidth / 3,
   },
