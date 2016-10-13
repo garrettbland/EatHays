@@ -51,6 +51,7 @@ class SpecialDetail extends Component {
               <Button
                 raised
                 iconRight
+                borderRadius={5}
                 icon={{name: 'chevron-right'}}
                 fontFamily="oswald-bold"
                 fontSize={18}

@@ -58,10 +58,20 @@ class Directory extends Component {
       var items = [];
       snap.forEach((child) => {
         items.push({
-          title: child.val().title,
+          address: child.val().address,
+          background:child.val().background,
           category: child.val().category,
           description: child.val().description,
+          hours: child.val().hours,
+          images: child.val().images,
+          mapImage: child.val().mapImage,
+          menu: child.val().menu,
+          parking: child.val().parking,
+          phone: child.val().phone,
           profile: child.val().profile,
+          reviews: child.val().reviews,
+          title: child.val().title,
+          visits: child.val().visits,
           _key: child.key,
         });
       });
@@ -109,7 +119,7 @@ class Directory extends Component {
   _renderItem(item) {
           return (
             <View style={styles.listContainter}>
-              <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title})}>
+              <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>
                 <View style={{marginBottom:2,backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                   <View style={{alignItems:'flex-start',flex:2}}>
                     <Text style={{fontFamily:'oswald-bold',fontSize:20,color:"#000000"}}>{item.title}</Text>
@@ -121,7 +131,7 @@ class Directory extends Component {
                       onLoadStart={() => this.setState({loading:true})}
                       onLoad={() => this.setState({loading:false})}
                       style={styles.listImage}
-                      source={{uri: item.profile}}
+                      source={{uri: item.background}}
                     >
                     </Image>
                   </View>

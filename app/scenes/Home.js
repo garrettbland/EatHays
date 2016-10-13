@@ -109,7 +109,6 @@ class Home extends Component {
   }
 
   _renderItem(item) {
-    console.log(this.state.dataSource.getRowCount());
     if (this.state.dataSource.getRowCount() == 0){
       this.setState({loading:false});
       return (
