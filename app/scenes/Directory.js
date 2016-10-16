@@ -76,6 +76,7 @@ class Directory extends Component {
         });
       });
 
+
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items)
       });
@@ -117,6 +118,7 @@ class Directory extends Component {
   }
 
   _renderItem(item) {
+    console.log("render item" + item);
           return (
             <View style={styles.listContainter}>
               <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>

@@ -17,7 +17,7 @@ import Contact from './scenes/Contact.js';
 import DirectoryDetail from './scenes/DirectoryDetail.js';
 
 
-const styleNavigationBarStyle = {backgroundColor:"#c0392b"};
+const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderColor:"#c0392b"};
 const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular'};
 
 const toggleDrawer = () => Actions.refresh({key: 'drawer', open: value => !value });

@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {Button} from 'react-native-elements';
+import firebaseApp from "../components/firebaseconfig.js";
 
 import {
   StyleSheet,
@@ -18,21 +19,76 @@ import {
   Dimensions,
   ScrollView,
   Platform,
+  ListView,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
+var items = "ass";
 
 class SpecialDetail extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      loading:true
+      item:{},
+      loading:true,
     };
   }
 
+  getRef() {
+    return firebaseApp.database().ref();
+  }
+
+
+  listenForItems(itemsRef) {
+
+    itemsRef.orderByChild("title").startAt(this.props.title).endAt(this.props.title).on('value', (snap) => {
+
+      items = [];
+      snap.forEach((child) => {
+        items.push({
+          address: child.val().address,
+          background:child.val().background,
+          category: child.val().category,
+          description: child.val().description,
+          hours: child.val().hours,
+          images: child.val().images,
+          mapImage: child.val().mapImage,
+          menu: child.val().menu,
+          parking: child.val().parking,
+          phone: child.val().phone,
+          profile: child.val().profile,
+          reviews: child.val().reviews,
+          title: child.val().title,
+          visits: child.val().visits,
+          _key: child.key,
+        });
+      });
+
+      var stringify = JSON.stringify(items);
+
+      this.setState({
+        items:stringify.toString()
+      });
+
+    });
+  }
+
+  componentWillMount() {
+    this.itemsRef = this.getRef().child('directory');
+    this.listenForItems(this.itemsRef);
+  }
+
   render() {
+
+    if(this.state.items == undefined){
+
+    }else{
+      var itemz = JSON.parse(this.state.items);
+      var item = itemz[0];
+
+    }
     return (
       <View style={styles.container}>
       <ParallaxScrollView
@@ -58,7 +114,7 @@ class SpecialDetail extends Component {
                 buttonStyle={{marginBottom:5,}}
                 backgroundColor="#2bc064"
                 title='View Restaurant'
-                onPress={() => Actions.DirectoryDetail({title:this.props.title})}
+                onPress={() => Actions.DirectoryDetail({title:this.props.title,item})}
               />
            </View>
          </ParallaxScrollView>

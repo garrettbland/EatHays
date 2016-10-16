@@ -31,19 +31,24 @@ const screenHeight = Dimensions.get('window').height;
 class DirectoryDetail extends Component {
 
 
+
 constructor(props) {
    super(props);
-
    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-   this.state = {
-     phoneNumberString:this.props.item.phone.toString(),
-     reviewsDataSource: ds.cloneWithRows(this.props.item.reviews),
-     hoursDataSource: ds.cloneWithRows(this.props.item.hours),
-     imagesDataSource: ds.cloneWithRows(this.props.item.images),
-   };
+
+
+     this.state = {
+       phoneNumberString:this.props.item.phone.toString(),
+       reviewsDataSource: ds.cloneWithRows(this.props.item.reviews),
+       hoursDataSource: ds.cloneWithRows(this.props.item.hours),
+       imagesDataSource: ds.cloneWithRows(this.props.item.images),
+     };
+
+
  }
 
 render() {
+
   return (
     <View style={styles.container}>
 
