@@ -111,10 +111,23 @@ class SpecialDetail extends Component {
                 icon={{name: 'chevron-right'}}
                 fontFamily="oswald-bold"
                 fontSize={18}
-                buttonStyle={{marginBottom:5,}}
+                buttonStyle={{marginBottom:10,}}
                 backgroundColor="#2bc064"
                 title='View Restaurant'
                 onPress={() => Actions.DirectoryDetail({title:this.props.title,item})}
+              />
+
+              <Button
+                raised
+                iconRight
+                borderRadius={5}
+                icon={{name: 'chevron-right'}}
+                fontFamily="oswald-bold"
+                fontSize={18}
+                buttonStyle={{marginBottom:5,}}
+                backgroundColor="#3498db"
+                title='Write Review'
+                onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,fromSpecial:true})}
               />
            </View>
          </ParallaxScrollView>

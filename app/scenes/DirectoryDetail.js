@@ -113,7 +113,6 @@ render() {
           </View>
 
           <View style={{marginBottom:14}}>
-
           <Button
             raised
             iconRight
@@ -127,6 +126,23 @@ render() {
             onPress={() => console.log("TEST")}
           />
           </View>
+
+            <View style={{marginBottom:14}}>
+          <Button
+            raised
+            iconRight
+            borderRadius={5}
+            icon={{name: 'chevron-right'}}
+            fontFamily="oswald-bold"
+            fontSize={18}
+            buttonStyle={{marginBottom:5,}}
+            backgroundColor="#3498db"
+            title='Write Review'
+            onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,fromSpecial:true})}
+          />
+          </View>
+
+
 
 
           <View style={{padding:10,}}>

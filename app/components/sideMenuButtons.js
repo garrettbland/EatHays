@@ -9,6 +9,7 @@ import { Actions } from 'react-native-router-flux';
 
   const goToIndex = () => Actions.Home();
   const goToDirectory = () => Actions.Directory();
+  const goToReview = () => Actions.Review();
   const goToAbout = () => Actions.About();
 
   const titleStyle = {color:"#c0392b",fontFamily:"Verdana", fontSize:20};
@@ -28,6 +29,14 @@ import { Actions } from 'react-native-router-flux';
       icon: 'map',
       iconColor:'#c0392b',
       buttonAction:goToDirectory,
+      fontFamily:'Times',
+    },
+    {
+      title: 'Write a Review',
+      titleStyle:titleStyle,
+      icon: 'edit',
+      iconColor:'#c0392b',
+      buttonAction:goToReview,
       fontFamily:'Times',
     },
     {
