@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {Button} from 'react-native-elements';
 import ImageSlider from 'react-native-image-slider';
+import Communications from 'react-native-communications';
 
 import {
   AppRegistry,
@@ -107,7 +108,7 @@ render() {
             buttonStyle={{marginBottom:5,}}
             backgroundColor="#2bc064"
             title={this.state.phoneNumberString}
-            onPress={() => console.log("TEST")}
+            onPress={() => Communications.phonecall(this.props.item.phone, true)}
           />
           </View>
 

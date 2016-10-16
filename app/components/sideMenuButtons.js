@@ -10,7 +10,6 @@ import { Actions } from 'react-native-router-flux';
   const goToIndex = () => Actions.Home();
   const goToDirectory = () => Actions.Directory();
   const goToAbout = () => Actions.About();
-  const goToFavorites = () => Actions.Favorites();
 
   const titleStyle = {color:"#c0392b",fontFamily:"Verdana", fontSize:20};
 
@@ -30,14 +29,6 @@ import { Actions } from 'react-native-router-flux';
       iconColor:'#c0392b',
       buttonAction:goToDirectory,
       fontFamily:'Times',
-    },
-    {
-      title: 'Favorites',
-      titleStyle:titleStyle,
-      icon: 'star',
-      iconColor:'#c0392b',
-      buttonAction:goToFavorites,
-      fontFamily:'oswald-bold',
     },
     {
       title: 'About',

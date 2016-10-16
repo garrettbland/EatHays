@@ -11,13 +11,12 @@ import Drawer from './components/drawer.js';
 import Home from './scenes/Home.js';
 import SpecialDetail from './scenes/SpecialDetail.js';
 import Directory from './scenes/Directory.js';
-import Favorites from './scenes/Favorites.js';
 import About from './scenes/About.js';
 import Contact from './scenes/Contact.js';
 import DirectoryDetail from './scenes/DirectoryDetail.js';
 
 
-const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderColor:"#c0392b"};
+const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b"};
 const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular'};
 
 const toggleDrawer = () => Actions.refresh({key: 'drawer', open: value => !value });
@@ -36,7 +35,6 @@ class EatHaysRouter extends Component {
                 <Scene key="SpecialDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={SpecialDetail} type="push" title="Deal of the Day" />
                 <Scene key="Directory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Directory} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Directory" />
                 <Scene key="DirectoryDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={DirectoryDetail} type="push" title="Directory Detail" />
-                <Scene key="Favorites" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Favorites} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Favorites" />
                 <Scene key="About" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={About} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="About" />
                 <Scene key="Contact" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={Contact} type="push" title="Contact" />
               </Scene>
