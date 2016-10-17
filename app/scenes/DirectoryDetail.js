@@ -123,7 +123,7 @@ render() {
             buttonStyle={{marginBottom:5,}}
             backgroundColor="#8e44ad"
             title='View Menu'
-            onPress={() => console.log("TEST")}
+            onPress={() => Actions.MenuDetail({menu:this.props.item.menu})}
           />
           </View>
 
