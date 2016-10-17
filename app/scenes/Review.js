@@ -30,7 +30,7 @@ class Review extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Icon name="comments" style={{fontSize:50, color:"#2ecc71"}}></Icon>
+      <Icon name="comments" style={{fontSize:50, color:"#c0392b"}}></Icon>
         <Text style={styles.disclaimer}>
           All data and information provided will be reviewed before published. We reserve the right to right to remove any reviews.
           We encourage you to write a constructive review about the food, service, price, ect. Thank you!
