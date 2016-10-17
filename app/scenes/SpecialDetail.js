@@ -126,7 +126,7 @@ class SpecialDetail extends Component {
                 fontSize={18}
                 buttonStyle={{marginBottom:5,}}
                 backgroundColor="#3498db"
-                title='Write Review'
+                title='Review this meal'
                 onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,fromSpecial:true})}
               />
            </View>

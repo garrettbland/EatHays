@@ -168,7 +168,7 @@ render() {
             buttonStyle={{marginBottom:5,}}
             backgroundColor="#e74c3c"
             title='Get Directions'
-            onPress={() => console.log("TEST")}
+            onPress={() => Actions.MapDetail({addressURL:this.props.item.addressURL})}
           />
           </View>
           </Image>
@@ -186,9 +186,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop:Platform.OS === 'ios'? 64 : 54,
-  },
-  map:{
-
   },
   welcome: {
     fontSize: 20,
