@@ -49,6 +49,7 @@ class SpecialDetail extends Component {
       snap.forEach((child) => {
         items.push({
           address: child.val().address,
+          addressURL: child.val().addressURL,
           background:child.val().background,
           category: child.val().category,
           description: child.val().description,
