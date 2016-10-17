@@ -34,6 +34,7 @@ class SpecialDetail extends Component {
       item:{},
       loading:true,
     };
+    
   }
 
   getRef() {
