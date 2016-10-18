@@ -90,11 +90,8 @@ class Directory extends Component {
     this.listenForItems(this.itemsRef);
   }
 
-  firstSearch(text) {
+  firstSearch() {
     this.searchDirectory(this.itemsRef);
-    this.setState({
-      searchText:text
-    })
   }
 
   searchDirectory(itemsRef) {
@@ -145,7 +142,7 @@ class Directory extends Component {
           returnKeyType='search'
           lightTheme
           placeholder='Search...'
-          onChangeText={(text) => this.firstSearch(text)}
+          onChangeText={(text) => this.setState({searchText:text})}
           onSubmitEditing={() => this.firstSearch()}
       />
         {
