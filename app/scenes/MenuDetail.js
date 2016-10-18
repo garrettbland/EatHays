@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import PhotoView from 'react-native-photo-view';
 import { Actions } from 'react-native-router-flux';
 import {Button} from 'react-native-elements';
 import {
@@ -18,6 +19,7 @@ import {
   ActivityIndicator,
   Image,
   Dimensions,
+  ListView,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -26,9 +28,16 @@ const screenHeight = Dimensions.get('window').height;
 class MenuDetail extends Component {
 
   constructor(props) {
-    super(props);
-    this.state = { loading:true };
-  }
+     super(props);
+     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+       this.state = {
+         loading:true,
+         menuDataSource: ds.cloneWithRows(this.props.menu),
+       };
+
+
+   }
 
 
   render() {
@@ -41,11 +50,26 @@ class MenuDetail extends Component {
           style={{paddingTop:4}}
         />
       }
-      <Image onLoad={() => this.setState({loading:false})} source={{ uri: this.props.menu, width: screenWidth, height: screenHeight, }}/>
+      <ListView
+        style={{}}
+        dataSource={this.state.menuDataSource}
+        renderRow={(data) =>
+          <View>
+            <PhotoView
+              source={{uri: data}}
+              minimumZoomScale={0.5}
+              maximumZoomScale={3}
+              onLoad={() => this.setState({loading:false})}
+              style={{width: screenWidth, height: 600}}
+            />
+          </View>
+        }
+      />
 
       </View>
     );
   }
+
 }
 
 const styles = StyleSheet.create({

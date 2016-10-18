@@ -39,6 +39,7 @@ class Directory extends Component {
     super(props);
     this.state = {
       loading:true,
+      searchText:"",
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
@@ -89,14 +90,60 @@ class Directory extends Component {
     this.listenForItems(this.itemsRef);
   }
 
+  firstSearch() {
+    this.searchDirectory(this.itemsRef);
+  }
+
+  searchDirectory(itemsRef) {
+
+    var searchText = this.state.searchText.toString();
+    if (searchText == ""){
+      this.listenForItems(itemsRef);
+    }else{
+      itemsRef.orderByChild("title").startAt(searchText).endAt(searchText).on('value', (snap) => {
+
+        items = [];
+        snap.forEach((child) => {
+          items.push({
+            address: child.val().address,
+            addressURL: child.val().addressURL,
+            background:child.val().background,
+            category: child.val().category,
+            description: child.val().description,
+            hours: child.val().hours,
+            images: child.val().images,
+            mapImage: child.val().mapImage,
+            menu: child.val().menu,
+            parking: child.val().parking,
+            phone: child.val().phone,
+            profile: child.val().profile,
+            reviews: child.val().reviews,
+            title: child.val().title,
+            visits: child.val().visits,
+            _key: child.key,
+          });
+        });
+
+
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(items)
+        });
+
+      });
+    }
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
       <ScrollView>
       <SearchBar
+          returnKeyType='search'
           lightTheme
-          onChangeText={() => console.log("test")}
           placeholder='Search...'
+          onChangeText={(text) => this.setState({searchText:text})}
+          onSubmitEditing={() => this.firstSearch()}
       />
         {
           this.state.loading &&
@@ -119,7 +166,6 @@ class Directory extends Component {
   }
 
   _renderItem(item) {
-    console.log("render item" + item);
           return (
             <View style={styles.listContainter}>
               <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>

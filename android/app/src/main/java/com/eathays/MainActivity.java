@@ -2,6 +2,7 @@ package com.eathays;
 
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.reactnative.photoview.PhotoViewPackage;
 
 public class MainActivity extends ReactActivity {
 
@@ -13,4 +14,6 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "EatHays";
     }
+
+
 }

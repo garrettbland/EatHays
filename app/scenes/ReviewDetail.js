@@ -123,13 +123,13 @@ class ReviewDetail extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <ScrollView scrollable={false}>
+      <ScrollView>
       <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Name</FormLabel>
       <FormInput placeholder="Your name" value={this.state.name} onChangeText={(text) => this.setState({name:text})}/>
 
       <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Restaurant</FormLabel>
       {this.state.fromSpecial &&
-        <FormInput placeholder="Where did you eat at?" value={this.state.restaurantTitle} onChangeText={() => console.log("TEST")}/>
+        <FormInput placeholder="Where did you eat at?" editable={false} value={this.state.restaurantTitle} onChangeText={() => console.log("TEST")}/>
       }
       {!this.state.fromSpecial &&
         <FormInput placeholder="Where did you eat at?" value={this.state.restaurant} onChangeText={(text) => this.setState({restaurant:text})}/>
