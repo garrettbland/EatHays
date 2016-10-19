@@ -72,6 +72,7 @@ class Directory extends Component {
           phone: child.val().phone,
           profile: child.val().profile,
           reviews: child.val().reviews,
+          searchable: child.val().searchable,
           title: child.val().title,
           visits: child.val().visits,
           _key: child.key,
@@ -96,11 +97,12 @@ class Directory extends Component {
 
   searchDirectory(itemsRef) {
 
-    var searchText = this.state.searchText.toString();
+    var searchText = this.state.searchText.charAt(0).toString().toLowerCase();
+    
     if (searchText == ""){
       this.listenForItems(itemsRef);
     }else{
-      itemsRef.orderByChild("title").startAt(searchText).endAt(searchText).on('value', (snap) => {
+      itemsRef.orderByChild("searchable").startAt(searchText).endAt(searchText).on('value', (snap) => {
 
         items = [];
         snap.forEach((child) => {
@@ -118,6 +120,7 @@ class Directory extends Component {
             phone: child.val().phone,
             profile: child.val().profile,
             reviews: child.val().reviews,
+            searchable: child.val().searchable,
             title: child.val().title,
             visits: child.val().visits,
             _key: child.key,
