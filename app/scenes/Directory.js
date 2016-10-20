@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import firebaseApp from "../components/firebaseconfig.js";
+import firebaseApp from '../components/firebaseconfig.js';
 import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
+import ModalPicker from 'react-native-modal-picker'
 
 import {
   AppRegistry,
@@ -15,6 +16,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TouchableHighlight,
   Alert,
   ListView,
   Image,
@@ -22,12 +24,15 @@ import {
   Dimensions,
   ScrollView,
   Platform,
+  Modal,
+  TextInput,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const today = moment().isoWeekday();
 const todayFormatted = moment().format('dddd');
+const filterIcon = (<Icon name="sliders" size={35} color="#c0392b" />);
 
 class Directory extends Component {
 
@@ -39,6 +44,7 @@ class Directory extends Component {
     super(props);
     this.state = {
       loading:true,
+      visible:false,
       searchText:"",
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
@@ -98,7 +104,7 @@ class Directory extends Component {
   searchDirectory(itemsRef) {
 
     var searchText = this.state.searchText.charAt(0).toString().toLowerCase();
-    
+
     if (searchText == ""){
       this.listenForItems(itemsRef);
     }else{
@@ -138,16 +144,46 @@ class Directory extends Component {
   }
 
   render() {
+    let index = 0;
+        const data = [
+            { key: index++, section: true, label: 'Categories' },
+            { key: index++, label: 'All' },
+            { key: index++, label: 'American' },
+            { key: index++, label: 'Fast Food' },
+            { key: index++, label: 'Breweries' },
+            { key: index++, label: 'Italian' },
+            { key: index++, label: 'Delivery' },
+            { key: index++, label: 'Mexican' },
+            { key: index++, label: 'Pizza' },
+            { key: index++, label: 'Steak House' },
+            { key: index++, label: 'Chinease' },
+            { key: index++, label: 'Japanese' },
+        ];
     return (
+
       <View style={styles.container}>
+      <View style={{flexDirection:'row',backgroundColor:'#e1e8ef',}}>
+        <SearchBar
+            returnKeyType='search'
+            lightTheme
+            placeholder='Search...'
+            onChangeText={(text) => this.setState({searchText:text})}
+            onSubmitEditing={() => this.firstSearch()}
+            containerStyle={{width:screenWidth,borderBottomColor:'#e1e8ef',borderTopColor:'#e1e8ef'}}
+        />
+      </View>
       <ScrollView>
-      <SearchBar
-          returnKeyType='search'
-          lightTheme
-          placeholder='Search...'
-          onChangeText={(text) => this.setState({searchText:text})}
-          onSubmitEditing={() => this.firstSearch()}
-      />
+      <ModalPicker
+          selectStyle={{borderRadius:0,borderRadius:0,borderColor:'transparent'}}
+          selectTextStyle={{fontFamily:'oswald-bold'}}
+          data={data}
+          sectionTextStyle={{color:'#000000', fontFamily:'oswald-bold'}}
+          optionTextStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
+          cancelTextStyle={{color:'#e74c3c', fontFamily:'oswald-regular'}}
+          cancelStyle={{backgroundColor:'#ffffff'}}
+          initValue="Filter By Category"
+          onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+      </ModalPicker>
         {
           this.state.loading &&
 
@@ -172,7 +208,7 @@ class Directory extends Component {
           return (
             <View style={styles.listContainter}>
               <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>
-                <View style={{marginBottom:2,backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
+                <View style={{backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                   <View style={{alignItems:'flex-start',flex:2}}>
                     <Text style={{fontFamily:'oswald-bold',fontSize:20,color:"#000000"}}>{item.title}</Text>
                     <Text>{item.category}</Text>
@@ -198,6 +234,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop:Platform.OS === 'ios'? 64 : 54,
+    backgroundColor:'#e1e8ef',
   },
   welcome: {
     fontSize: 30,
@@ -216,9 +253,9 @@ const styles = StyleSheet.create({
   listContainter: {
     backgroundColor:"#ffffff",
     flex:1,
+    marginTop:2,
   },
   listImage:{
-    padding:5,
     width: screenWidth / 3,
     height: screenWidth / 3,
   },
