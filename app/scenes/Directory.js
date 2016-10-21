@@ -46,7 +46,7 @@ class Directory extends Component {
       loading:true,
       visible:false,
       searchText:"",
-      filterValue:"",
+      filterValue:"Filter By Category",
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
@@ -100,13 +100,12 @@ class Directory extends Component {
 
   firstSearch() {
     this.searchDirectory(this.itemsRef);
-    this.setState({filterValue:"All",searchedTextBar:true})
+    this.setState({filterValue:"All",searchedTextBar:"All"})
   }
 
   searchDirectory(itemsRef) {
-
+    this.setState({searchedTextBar:true})
     var searchText = this.state.searchText.charAt(0).toString().toLowerCase();
-    var filterText = this.state.searchText.toString().toLowerCase();
 
     if (searchText == ""){
       this.listenForItems(itemsRef);
@@ -232,7 +231,7 @@ class Directory extends Component {
           optionTextStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
           cancelTextStyle={{color:'#e74c3c', fontFamily:'oswald-regular'}}
           cancelStyle={{backgroundColor:'#ffffff'}}
-          initValue={this.state.searchedTextBar === true? "All" : "Filter By Category"}
+          initValue={this.state.filterValue.toString()}
           onChange={(option)=> this.firstFilter(option.label)}>
 
 
