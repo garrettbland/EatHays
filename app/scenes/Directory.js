@@ -100,7 +100,7 @@ class Directory extends Component {
 
   firstSearch() {
     this.searchDirectory(this.itemsRef);
-    this.setState({filterValue:"All"})
+    this.setState({filterValue:"All",searchedTextBar:true})
   }
 
   searchDirectory(itemsRef) {
@@ -146,19 +146,18 @@ class Directory extends Component {
 
   }
 
-  firstFilter() {
-    this.searchDirectory(this.itemsRef);
+  firstFilter(option) {
+    this.setState({filterValue:option,searchText:""});
+    this.filterDirectory(this.itemsRef,option);
   }
 
-  filterDirectory(itemsRef) {
+  filterDirectory(itemsRef,option) {
+    var filterText = option.toString();
 
-    var searchText = this.state.searchText.charAt(0).toString().toLowerCase();
-    var filterText = this.state.searchText.toString().toLowerCase();
-
-    if (searchText == ""){
+    if (filterText == "All"){
       this.listenForItems(itemsRef);
     }else{
-      itemsRef.orderByChild("searchable").startAt(searchText).endAt(searchText).on('value', (snap) => {
+      itemsRef.orderByChild("category").startAt(filterText).endAt(filterText).on('value', (snap) => {
 
         items = [];
         snap.forEach((child) => {
@@ -212,6 +211,7 @@ class Directory extends Component {
     return (
 
       <View style={styles.container}>
+      <ScrollView>
       <View style={{flexDirection:'row',backgroundColor:'#e1e8ef',}}>
         <SearchBar
             returnKeyType='search'
@@ -223,7 +223,7 @@ class Directory extends Component {
             containerStyle={{width:screenWidth,borderBottomColor:'#e1e8ef',borderTopColor:'#e1e8ef'}}
         />
       </View>
-      <ScrollView>
+
       <ModalPicker
           selectStyle={{borderRadius:0,borderRadius:0,borderColor:'transparent'}}
           selectTextStyle={{fontFamily:'oswald-bold'}}
@@ -232,14 +232,11 @@ class Directory extends Component {
           optionTextStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
           cancelTextStyle={{color:'#e74c3c', fontFamily:'oswald-regular'}}
           cancelStyle={{backgroundColor:'#ffffff'}}
-          onChange={(option)=> this.setState({filterValue:option.label,searchText:""})}>
-            <View style={{flexDirection:'column'}}>
-              <TextInput
-                            style={{borderWidth:0, padding:10, height:30, fontFamily:'oswald-regular'}}
-                            editable={false}
-                            placeholder="Filter By Category"
-                            value={this.state.filterValue} />
-            </View>
+          initValue={this.state.searchedTextBar === true? "All" : "Filter By Category"}
+          onChange={(option)=> this.firstFilter(option.label)}>
+
+
+
       </ModalPicker>
         {
           this.state.loading &&
