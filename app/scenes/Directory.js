@@ -46,6 +46,7 @@ class Directory extends Component {
       loading:true,
       visible:false,
       searchText:"",
+      filterValue:"",
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
@@ -99,11 +100,60 @@ class Directory extends Component {
 
   firstSearch() {
     this.searchDirectory(this.itemsRef);
+    this.setState({filterValue:"All"})
   }
 
   searchDirectory(itemsRef) {
 
     var searchText = this.state.searchText.charAt(0).toString().toLowerCase();
+    var filterText = this.state.searchText.toString().toLowerCase();
+
+    if (searchText == ""){
+      this.listenForItems(itemsRef);
+    }else{
+      itemsRef.orderByChild("searchable").startAt(searchText).endAt(searchText).on('value', (snap) => {
+
+        items = [];
+        snap.forEach((child) => {
+          items.push({
+            address: child.val().address,
+            addressURL: child.val().addressURL,
+            background:child.val().background,
+            category: child.val().category,
+            description: child.val().description,
+            hours: child.val().hours,
+            images: child.val().images,
+            mapImage: child.val().mapImage,
+            menu: child.val().menu,
+            parking: child.val().parking,
+            phone: child.val().phone,
+            profile: child.val().profile,
+            reviews: child.val().reviews,
+            searchable: child.val().searchable,
+            title: child.val().title,
+            visits: child.val().visits,
+            _key: child.key,
+          });
+        });
+
+
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(items)
+        });
+
+      });
+    }
+
+  }
+
+  firstFilter() {
+    this.searchDirectory(this.itemsRef);
+  }
+
+  filterDirectory(itemsRef) {
+
+    var searchText = this.state.searchText.charAt(0).toString().toLowerCase();
+    var filterText = this.state.searchText.toString().toLowerCase();
 
     if (searchText == ""){
       this.listenForItems(itemsRef);
@@ -150,7 +200,7 @@ class Directory extends Component {
             { key: index++, label: 'All' },
             { key: index++, label: 'American' },
             { key: index++, label: 'Fast Food' },
-            { key: index++, label: 'Breweries' },
+            { key: index++, label: 'BBQ' },
             { key: index++, label: 'Italian' },
             { key: index++, label: 'Delivery' },
             { key: index++, label: 'Mexican' },
@@ -167,6 +217,7 @@ class Directory extends Component {
             returnKeyType='search'
             lightTheme
             placeholder='Search...'
+            value={this.state.searchText}
             onChangeText={(text) => this.setState({searchText:text})}
             onSubmitEditing={() => this.firstSearch()}
             containerStyle={{width:screenWidth,borderBottomColor:'#e1e8ef',borderTopColor:'#e1e8ef'}}
@@ -181,8 +232,14 @@ class Directory extends Component {
           optionTextStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
           cancelTextStyle={{color:'#e74c3c', fontFamily:'oswald-regular'}}
           cancelStyle={{backgroundColor:'#ffffff'}}
-          initValue="Filter By Category"
-          onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+          onChange={(option)=> this.setState({filterValue:option.label,searchText:""})}>
+            <View style={{flexDirection:'column'}}>
+              <TextInput
+                            style={{borderWidth:0, padding:10, height:30, fontFamily:'oswald-regular'}}
+                            editable={false}
+                            placeholder="Filter By Category"
+                            value={this.state.filterValue} />
+            </View>
       </ModalPicker>
         {
           this.state.loading &&
