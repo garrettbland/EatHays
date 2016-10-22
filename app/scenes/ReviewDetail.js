@@ -21,6 +21,7 @@ import {
   Platform,
   TextInput,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 
 
@@ -32,9 +33,19 @@ class ReviewDetail extends Component {
 
     MessageBarManager.registerMessageBar(this.refs.alert);
 
-    if(this.props.fromSpecial == true){
+    if (this.props.fromDirectory == true){
       this.setState({
         restaurantTitle:this.props.restaurantTitle,
+        specialHashTag:"",
+        special:"",
+        restaurant:this.props.restaurantTitle,
+        fromSpecial:true,
+      });
+    }else if(this.props.fromSpecial == true){
+      this.setState({
+        restaurantTitle:this.props.restaurantTitle,
+        specialHashTag:" #"+this.props.specialHashTag,
+        special:this.props.specialHashTag,
         restaurant:this.props.restaurantTitle,
         fromSpecial:true,
       });
@@ -42,28 +53,34 @@ class ReviewDetail extends Component {
       this.setState({
         restaurantTitle:"",
         fromSpecial:false,
+        specialHashTag:"",
+        special:"",
       });
     }
   }
 
   constructor(props) {
     super(props);
-    this.state = {restaurantTitle:"",name:"",restaurant:"",review:""};
+    this.state = {restaurantTitle:"",name:"",restaurant:"",review:"",loading:false,firsReview:true};
     this.itemsRef = this.getRef().child('reviews');
   }
+
 
   getRef() {
     return firebaseApp.database().ref();
   }
 
+
   submitReview(){
 
-    var dateSubmitted = moment().format('LL');
+    var dateSubmitted = moment().format('LL h:mm A');
+    var stopLoading = ()=>this.setState({loading:false,firstReview:false});
     var onComplete = function(error) {
        if (error) {
          MessageBarManager.showAlert({
           viewTopOffset : Platform.OS === 'ios'? 64 : 54,
           duration:4000,
+          onHide:stopLoading,
           title: 'Error',
           message: 'An error occured. Please try again',
           alertType: 'error',
@@ -76,6 +93,7 @@ class ReviewDetail extends Component {
          MessageBarManager.showAlert({
           viewTopOffset : Platform.OS === 'ios'? 64 : 54,
           duration:4000,
+          onHide:stopLoading,
           title: 'Success!',
           message: 'Your review has been saved, thank you!',
           alertType: 'success',
@@ -84,7 +102,9 @@ class ReviewDetail extends Component {
           titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
           stylesheetSuccess: { backgroundColor: '#2bc064', strokeColor:'#2bc064' }
         });
+
        }
+
      };
 
     if (this.state.name == "" || this.state.restaurant == "" || this.state.review == ""){
@@ -103,14 +123,18 @@ class ReviewDetail extends Component {
       this.itemsRef.push({
           name: this.state.name,
           restaurant: this.state.restaurant,
+          special: this.state.special,
           review: this.state.review,
           timestamp: dateSubmitted,
         },(onComplete));
 
       this.setState({
+        loading:true,
         name:"",
         restaurant:"",
-        review:""
+        review:"",
+        restaurantTitle:"",
+        specialHashTag:"",
     });
   }
 }
@@ -124,36 +148,62 @@ class ReviewDetail extends Component {
     return (
       <View style={styles.container}>
       <ScrollView>
-      <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Name</FormLabel>
-      <FormInput placeholder="Your name" value={this.state.name} onChangeText={(text) => this.setState({name:text})}/>
+        <View>
+          <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Name</FormLabel>
+          <FormInput placeholder="Your name" value={this.state.name} onChangeText={(text) => this.setState({name:text})}/>
 
-      <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Restaurant</FormLabel>
-      {this.state.fromSpecial &&
-        <FormInput placeholder="Where did you eat at?" editable={false} value={this.state.restaurantTitle} onChangeText={() => console.log("TEST")}/>
+          <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Restaurant</FormLabel>
+          {this.state.fromSpecial &&
+            <FormInput placeholder="Where did you eat at?" editable={false} value={this.state.restaurantTitle  + this.state.specialHashTag} onChangeText={() => console.log("TEST")}/>
+          }
+          {!this.state.fromSpecial &&
+            <FormInput placeholder="Where did you eat at? Use # for specific dishes" value={this.state.restaurant} onChangeText={(text) => this.setState({restaurant:text})}/>
+          }
+
+          <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Review</FormLabel>
+          <View style={{marginBottom:20}}>
+          <FormInput
+            value={this.state.review}
+             multiline = {true}
+             placeholder="Share your thoughts and opinions"
+             onChangeText={(text) => this.setState({review:text})}
+          />
+          </View>
+
+          <Button
+            raised
+            borderRadius={5}
+            fontFamily='oswald-bold'
+            icon={{name: 'mail'}}
+            title='Submit Review'
+            backgroundColor="#3498db"
+            onPress={() => this.submitReview()}
+          />
+          </View>
+
+        { this.state.firstReview === false &&
+          <View style={{paddingTop:14}}>
+          <Button
+            raised
+            borderRadius={5}
+            fontFamily='oswald-bold'
+            icon={{name: 'chevron-left'}}
+            title='Return'
+            backgroundColor="#3498db"
+            onPress={() => Actions.pop()}
+          />
+          </View>
+        }
+
+        {
+          this.state.loading &&
+        <ActivityIndicator
+          size="large"
+          color="#3498db"
+          style={styles.activityStyle}
+        />
       }
-      {!this.state.fromSpecial &&
-        <FormInput placeholder="Where did you eat at?" value={this.state.restaurant} onChangeText={(text) => this.setState({restaurant:text})}/>
-      }
 
-      <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Review</FormLabel>
-      <View style={{marginBottom:20}}>
-      <FormInput
-        value={this.state.review}
-         multiline = {true}
-         placeholder="Share your thoughts and opinions"
-         onChangeText={(text) => this.setState({review:text})}
-      />
-      </View>
-
-      <Button
-        raised
-        borderRadius={5}
-        fontFamily='oswald-bold'
-        icon={{name: 'mail'}}
-        title='Submit Review'
-        backgroundColor="#3498db"
-        onPress={() => this.submitReview()}
-      />
       </ScrollView>
           <MessageBarAlert ref="alert" />
       </View>
@@ -178,6 +228,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  activityStyle:{
+    marginTop:15,
   },
 });
 

@@ -5,11 +5,12 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import * as firebase from 'firebase';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {Button} from 'react-native-elements';
 import ImageSlider from 'react-native-image-slider';
 import Communications from 'react-native-communications';
+import firebaseApp from "../components/firebaseconfig.js";
+import moment from 'moment';
 
 import {
   AppRegistry,
@@ -37,7 +38,6 @@ constructor(props) {
    super(props);
    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-
      this.state = {
        phoneNumberString:this.props.item.phone.toString(),
        reviewsDataSource: ds.cloneWithRows(this.props.item.reviews),
@@ -45,8 +45,30 @@ constructor(props) {
        imagesDataSource: ds.cloneWithRows(this.props.item.images),
      };
 
+    this.itemsRef = this.getRef().child("directoryStatistics");
+
 
  }
+
+ getRef() {
+   return firebaseApp.database().ref();
+ }
+
+componentDidMount(){
+  this.recordVisits()
+}
+
+
+
+ recordVisits(currentVisits){
+   var dateSubmitted = moment().format('LL h:mm A');
+   this.itemsRef.push({
+       restaurant:this.props.title,
+       visits:1,
+       timestamp: dateSubmitted,
+     });
+ }
+
 
 render() {
 
@@ -65,6 +87,7 @@ render() {
          )}>
          <View style={styles.detailContainer}>
 
+
           <View style={{padding:10,}}>
             <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Summary</Text>
             <Text>{this.props.item.description}</Text>
@@ -79,21 +102,14 @@ render() {
             />
           </View>
 
+
+
           <View style={{padding:10,}}>
             <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Hours</Text>
             <ListView
               style={{}}
               dataSource={this.state.hoursDataSource}
               renderRow={(data) => <View><Text>{data}</Text></View>}
-            />
-          </View>
-
-          <View style={{padding:10,}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Reviews</Text>
-            <ListView
-              style={{}}
-              dataSource={this.state.reviewsDataSource}
-              renderRow={(data) => <View><Text>"{data}"</Text></View>}
             />
           </View>
 
@@ -127,20 +143,56 @@ render() {
           />
           </View>
 
-            <View style={{marginBottom:14}}>
+          <View style={{padding:10,}}>
+            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Reviews</Text>
+            <ListView
+              style={{paddingTop:10}}
+              dataSource={this.state.reviewsDataSource}
+              renderRow={(data) =>
+                <View style={{flexDirection:'row',paddingBottom:10}}>
+                  <View style={{width:screenWidth/10}}>
+                    <Icon name="user" style={{fontSize:20, color:"#c0392b"}}></Icon>
+                  </View>
+
+                  <View style={{width:screenWidth /1.2}}>
+                    <Text style={{fontSize:12,color:'black'}}>"{data}"</Text>
+                  </View>
+                </View>
+              }
+            />
+          </View>
+
+          <View style={{marginBottom:4}}>
           <Button
             raised
+            small
             iconRight
             borderRadius={5}
             icon={{name: 'chevron-right'}}
             fontFamily="oswald-bold"
-            fontSize={18}
+            fontSize={14}
             buttonStyle={{marginBottom:5,}}
-            backgroundColor="#3498db"
-            title='Write Review'
-            onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,fromSpecial:true})}
+            backgroundColor="#e67e22"
+            title="View All Reviews"
+            onPress={() => console.log("TEST")}
           />
           </View>
+
+      <View style={{marginBottom:14}}>
+        <Button
+          raised
+          iconRight
+          borderRadius={5}
+          icon={{name: 'chevron-right'}}
+          fontFamily="oswald-bold"
+          fontSize={18}
+          buttonStyle={{marginBottom:5,}}
+          backgroundColor="#3498db"
+          title='Write Review'
+          onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,fromDirectory:true})}
+        />
+        </View>
+
 
 
 

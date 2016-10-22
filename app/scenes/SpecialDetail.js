@@ -116,7 +116,7 @@ class SpecialDetail extends Component {
                 buttonStyle={{marginBottom:10,}}
                 backgroundColor="#2bc064"
                 title='View Restaurant'
-                onPress={() => Actions.DirectoryDetail({title:this.props.title,item})}
+                onPress={() => Actions.DirectoryDetail({title:this.props.title,item,specialHashTag:this.props.special})}
               />
 
               <Button
@@ -129,7 +129,7 @@ class SpecialDetail extends Component {
                 buttonStyle={{marginBottom:5,}}
                 backgroundColor="#3498db"
                 title='Review this meal'
-                onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,fromSpecial:true})}
+                onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,specialHashTag:this.props.special,fromSpecial:true})}
               />
            </View>
          </ParallaxScrollView>
