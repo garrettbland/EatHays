@@ -8,6 +8,7 @@ import { Actions } from 'react-native-router-flux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {Button} from 'react-native-elements';
 import firebaseApp from "../components/firebaseconfig.js";
+import moment from 'moment';
 
 import {
   StyleSheet,
@@ -35,10 +36,29 @@ class SpecialDetail extends Component {
       loading:true,
     };
 
+    this.recordItemsRef = this.getRef().child("specialsStatistics");
+
   }
 
   getRef() {
     return firebaseApp.database().ref();
+  }
+
+  componentDidMount(){
+    this.recordVisits()
+  }
+
+  recordVisits(currentVisits){
+    var dateSubmitted = moment().format('LL h:mm A');
+    var unixTimeStamp = moment().unix();
+    var userPlatform = Platform.OS === 'ios'? "ios" : "android";
+    this.recordItemsRef.push({
+        restaurant:this.props.title,
+        platform:userPlatform,
+        visited: dateSubmitted,
+        timestamp:unixTimeStamp,
+        special:this.props.special,
+      });
   }
 
 

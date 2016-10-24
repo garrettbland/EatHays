@@ -62,10 +62,13 @@ componentDidMount(){
 
  recordVisits(currentVisits){
    var dateSubmitted = moment().format('LL h:mm A');
+   var unixTimeStamp = moment().unix();
+   var userPlatform = Platform.OS === 'ios'? "ios" : "android";
    this.itemsRef.push({
        restaurant:this.props.title,
-       visits:1,
-       timestamp: dateSubmitted,
+       platform:userPlatform,
+       visited: dateSubmitted,
+       timestamp:unixTimeStamp,
      });
  }
 
