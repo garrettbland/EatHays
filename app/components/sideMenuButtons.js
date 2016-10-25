@@ -12,7 +12,7 @@ import { Actions } from 'react-native-router-flux';
   const goToReview = () => Actions.Review();
   const goToAbout = () => Actions.About();
 
-  const titleStyle = {color:"#c0392b",fontFamily:"Verdana", fontSize:20};
+  const titleStyle = {color:"#c0392b",fontFamily:"Verdana", fontSize:25};
 
   const list = [
     {

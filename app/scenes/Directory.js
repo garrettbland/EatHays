@@ -225,11 +225,11 @@ class Directory extends Component {
 
       <ModalPicker
           selectStyle={{borderRadius:0,borderRadius:0,borderColor:'transparent'}}
-          selectTextStyle={{fontFamily:'oswald-bold'}}
+          selectTextStyle={{fontFamily:'oswald-bold',fontSize:20}}
           data={data}
-          sectionTextStyle={{color:'#000000', fontFamily:'oswald-bold'}}
-          optionTextStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
-          cancelTextStyle={{color:'#e74c3c', fontFamily:'oswald-regular'}}
+          sectionTextStyle={{color:'#000000', fontFamily:'oswald-bold',fontSize:20}}
+          optionTextStyle={{color:'#c0392b', fontFamily:'oswald-regular',fontSize:20}}
+          cancelTextStyle={{color:'#e74c3c', fontFamily:'oswald-regular',fontSize:20}}
           cancelStyle={{backgroundColor:'#ffffff'}}
           initValue={this.state.filterValue.toString()}
           onChange={(option)=> this.firstFilter(option.label)}>
@@ -264,7 +264,7 @@ class Directory extends Component {
               <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>
                 <View style={{backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                   <View style={{alignItems:'flex-start',flex:2}}>
-                    <Text style={{fontFamily:'oswald-bold',fontSize:20,color:"#000000"}}>{item.title}</Text>
+                    <Text style={{fontFamily:'oswald-bold',fontSize:24,color:"#000000"}}>{item.title}</Text>
                     <Text>{item.category}</Text>
                     <Text>{item.description}</Text>
                   </View>

@@ -85,9 +85,6 @@ class Home extends Component {
         <Text style={styles.welcome}>
           Deals of the Day
         </Text>
-        <Text style={styles.welcomeDay}>
-          {todayFormatted} Specials
-        </Text>
         {
           this.state.loading &&
 
@@ -98,6 +95,10 @@ class Home extends Component {
           />
 
         }
+        <Text style={styles.welcomeDay}>
+          {todayFormatted} Specials
+        </Text>
+
         <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderItem.bind(this)}
@@ -124,6 +125,7 @@ class Home extends Component {
           return (
             <View style={styles.listContainter}>
               <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}>
+
                 <Image
                   onLoadStart={() => this.setState({loading:true})}
                   onLoad={() => this.setState({loading:false})}
@@ -154,11 +156,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop:Platform.OS === 'ios'? 64 : 54,
+    backgroundColor:'#e1e8ef',
   },
   welcome: {
-    fontSize: 30,
+    fontSize: 40,
     textAlign: 'center',
     margin: 10,
+    paddingTop:20,
+    paddingBottom:15,
     fontFamily:'oswald-bold',
     color:"black",
   },
@@ -167,18 +172,20 @@ const styles = StyleSheet.create({
     backgroundColor:"#c0392b",
     color:'white',
     fontFamily:'oswald-regular',
-    fontSize:18,
+    fontSize:27,
   },
   listContainter: {
-    backgroundColor:"#c0392b",
+    backgroundColor:"#e1e8ef",
   },
   listImage:{
     width: screenWidth,
     height: 150,
     marginBottom:2,
+    backgroundColor:'#e1e8ef',
   },
   activityStyle:{
-    marginTop:5,
+    paddingBottom:5,
+    backgroundColor:'#e1e8ef',
   },
 });
 
