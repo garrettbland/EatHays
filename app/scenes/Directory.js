@@ -9,8 +9,6 @@ import firebaseApp from '../components/firebaseconfig.js';
 import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
 import ModalPicker from 'react-native-modal-picker';
-import Image from 'react-native-image-progress';
-import ProgressBar from 'react-native-progress/Bar';
 
 import {
   AppRegistry,
@@ -21,6 +19,8 @@ import {
   TouchableHighlight,
   Alert,
   ListView,
+  Image,
+  ActivityIndicator,
   Dimensions,
   ScrollView,
   Platform,
@@ -43,6 +43,7 @@ class Directory extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading:true,
       visible:false,
       searchText:"",
       filterValue:"Filter By Category",
@@ -236,13 +237,22 @@ class Directory extends Component {
 
 
       </ModalPicker>
+        {
+          this.state.loading &&
 
+          <ActivityIndicator
+            size="large"
+            color="#3498db"
+            style={styles.activityStyle}
+          />
+
+        }
         <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderItem.bind(this)}
             enableEmptySections={true}
-        />
 
+        />
         </ScrollView>
       </View>
     );
@@ -260,10 +270,8 @@ class Directory extends Component {
                   </View>
                   <View style={{alignItems:'flex-end',flex:2,}}>
                     <Image
-                      indicator={ProgressBar}
-                      indicatorProps={{
-                          borderRadius:10,
-                        }}
+                      onLoadStart={() => this.setState({loading:true})}
+                      onLoad={() => this.setState({loading:false})}
                       style={styles.listImage}
                       source={{uri: item.background}}
                     >

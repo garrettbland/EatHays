@@ -115,7 +115,7 @@ class SpecialDetail extends Component {
       <View style={styles.container}>
       <ParallaxScrollView
            fadeOutForeground={false}
-           renderBackground={() => <Image source={{ uri: this.props.background, width: window.width, height: screenHeight / 2 }}/>}
+           renderBackground={() => <Image source={{ uri: this.props.background, width: window.width, height: screenHeight / 2 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>}
            contentBackgroundColor="#ffffff"
            parallaxHeaderHeight={screenHeight / 2}
            renderForeground={() => (
@@ -125,6 +125,16 @@ class SpecialDetail extends Component {
            )}>
            <View>
               <Text style={styles.welcomeDay}>{this.props.title} {this.props.day} Special</Text>
+              {
+                this.state.loading &&
+
+                <ActivityIndicator
+                  size="large"
+                  color="#3498db"
+                  style={styles.activityStyle}
+                />
+
+              }
               <Text style={styles.description}>{this.props.specialDescription}</Text>
               <Button
                 raised
@@ -188,6 +198,9 @@ const styles = StyleSheet.create({
     color:'#c0392b',
     textAlign:'center',
     padding:5,
+  },
+  activityStyle:{
+    marginTop:5,
   },
 });
 
