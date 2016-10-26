@@ -68,6 +68,7 @@ class Directory extends Component {
         items.push({
           address: child.val().address,
           addressURL: child.val().addressURL,
+          averagePrice: child.val().averagePrice,
           background:child.val().background,
           category: child.val().category,
           description: child.val().description,
@@ -251,7 +252,7 @@ class Directory extends Component {
             dataSource={this.state.dataSource}
             renderRow={this._renderItem.bind(this)}
             enableEmptySections={true}
-
+            initialListSize={2}
         />
         </ScrollView>
       </View>

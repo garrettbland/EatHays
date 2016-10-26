@@ -104,7 +104,7 @@ class Home extends Component {
             renderRow={this._renderItem.bind(this)}
             enableEmptySections={true}
             scrollRenderAheadDistance={20}
-            initialListSize={4}
+            initialListSize={2}
         />
         </ScrollView>
       </View>
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   listImage:{
     width: screenWidth,
     height: 150,
-    marginBottom:2,
+    marginBottom:0,
     backgroundColor:'#e1e8ef',
   },
   activityStyle:{

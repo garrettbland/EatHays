@@ -123,18 +123,19 @@ class SpecialDetail extends Component {
                <Image source={{ uri: this.props.profile, width: screenWidth / 4, height: 100 }}/>
              </View>
            )}>
+           <View style={{height:10,backgroundColor:'#c0392b',}}></View>
            <View>
+               {
+                 this.state.loading &&
+
+                 <ActivityIndicator
+                   size="large"
+                   color="#3498db"
+                   style={styles.activityStyle}
+                 />
+
+               }
               <Text style={styles.welcomeDay}>{this.props.title} {this.props.day} Special</Text>
-              {
-                this.state.loading &&
-
-                <ActivityIndicator
-                  size="large"
-                  color="#3498db"
-                  style={styles.activityStyle}
-                />
-
-              }
               <Text style={styles.description}>{this.props.specialDescription}</Text>
               <Button
                 raised
@@ -181,11 +182,13 @@ const styles = StyleSheet.create({
     paddingTop:12,
   },
   welcomeDay: {
+    fontSize: 40,
     textAlign: 'center',
-    backgroundColor:"#c0392b",
-    color:'white',
-    fontFamily:'oswald-regular',
-    fontSize:18,
+    margin: 10,
+    paddingTop:20,
+    paddingBottom:15,
+    fontFamily:'oswald-bold',
+    color:"black",
   },
   instructions: {
     textAlign: 'center',
@@ -198,6 +201,7 @@ const styles = StyleSheet.create({
     color:'#c0392b',
     textAlign:'center',
     padding:5,
+    paddingBottom:15,
   },
   activityStyle:{
     marginTop:5,

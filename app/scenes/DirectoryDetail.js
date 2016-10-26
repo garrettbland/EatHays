@@ -41,13 +41,41 @@ constructor(props) {
      this.state = {
        phoneNumberString:this.props.item.phone.toString(),
        reviewsDataSource: ds.cloneWithRows(this.props.item.reviews),
-       hoursDataSource: ds.cloneWithRows(this.props.item.hours),
        imagesDataSource: ds.cloneWithRows(this.props.item.images),
+       monday: <Text>Monday</Text>,
+       tuesday: <Text>Tuesday</Text>,
+       wednesday: <Text>Wednesday</Text>,
+       thursday: <Text>Thursday</Text>,
+       friday: <Text>Friday</Text>,
+       saturday: <Text>Saturday</Text>,
+       sunday: <Text>Sunday</Text>
      };
+
 
     this.itemsRef = this.getRef().child("directoryStatistics");
 
 
+ }
+
+ getDayOfWeek(){
+   var dayOfTheWeek = moment().format('dddd');
+   if (dayOfTheWeek == "Monday"){
+     this.setState({monday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Monday</Text>})
+   }else if (dayOfTheWeek == "Tuesday"){
+     this.setState({tuesday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Tuesday</Text>})
+   }else if (dayOfTheWeek == "Wednesday"){
+     this.setState({wednesday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular'}}>Wednesday</Text>})
+   }else if (dayOfTheWeek == "Thursday"){
+     this.setState({thursday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Thursday</Text>})
+   }else if (dayOfTheWeek == "Friday"){
+     this.setState({friday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Friday</Text>})
+   }else if (dayOfTheWeek == "Saturday"){
+     this.setState({saturday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Saturday</Text>})
+   }else if (dayOfTheWeek == "Sunday"){
+     this.setState({sunday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Sunday</Text>})
+   }else{
+
+   }
  }
 
  getRef() {
@@ -55,7 +83,8 @@ constructor(props) {
  }
 
 componentDidMount(){
-  this.recordVisits()
+  this.recordVisits();
+  this.getDayOfWeek();
 }
 
 
@@ -109,11 +138,28 @@ render() {
 
           <View style={{padding:10,}}>
             <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Hours</Text>
-            <ListView
-              style={{}}
-              dataSource={this.state.hoursDataSource}
-              renderRow={(data) => <View><Text>{data}</Text></View>}
-            />
+
+            <View style={{flexDirection:'row'}}>
+              <View style={{width:screenWidth / 3.5}}>
+                <Text style={{height:30}}>{this.state.monday}</Text>
+                <Text style={{height:30}}>{this.state.tuesday}</Text>
+                <Text style={{height:30}}>{this.state.wednesday}</Text>
+                <Text style={{height:30}}>{this.state.thursday}</Text>
+                <Text style={{height:30}}>{this.state.friday}</Text>
+                <Text style={{height:30}}>{this.state.saturday}</Text>
+                <Text style={{height:30}}>{this.state.sunday}</Text>
+              </View>
+
+              <View style={{width:screenWidth / 3}}>
+              <Text style={{height:30}}>{this.props.item.hours[1]}</Text>
+              <Text style={{height:30}}>{this.props.item.hours[2]}</Text>
+              <Text style={{height:30}}>{this.props.item.hours[3]}</Text>
+              <Text style={{height:30}}>{this.props.item.hours[4]}</Text>
+              <Text style={{height:30}}>{this.props.item.hours[5]}</Text>
+              <Text style={{height:30}}>{this.props.item.hours[6]}</Text>
+              <Text style={{height:30}}>{this.props.item.hours[7]}</Text>
+              </View>
+            </View>
           </View>
 
           <View style={{marginBottom:14}}>
