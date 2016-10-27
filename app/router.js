@@ -20,6 +20,7 @@ import Contact from './scenes/Contact.js';
 import DirectoryDetail from './scenes/DirectoryDetail.js';
 import MapDetail from './scenes/MapDetail.js';
 import MenuDetail from './scenes/MenuDetail.js';
+import ReviewFullList from './scenes/ReviewFullList.js';
 
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b"};
@@ -44,6 +45,7 @@ class EatHaysRouter extends Component {
                 <Scene key="MenuDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={MenuDetail} type="push" title="Menu" />
                 <Scene key="Review" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Review} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Write a Review" />
                 <Scene key="ReviewDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={ReviewDetail} type="push" title="Your Thoughts" />
+                <Scene key="ReviewFullList" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={ReviewFullList} type="push" title="All Reviews" />
                 <Scene key="DirectoryDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={DirectoryDetail} type="push" title="Directory Detail" />
                 <Scene key="About" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={About} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="About" />
                 <Scene key="Contact" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={Contact} type="push" title="Contact" />

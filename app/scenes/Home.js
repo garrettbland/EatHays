@@ -104,7 +104,7 @@ class Home extends Component {
             renderRow={this._renderItem.bind(this)}
             enableEmptySections={true}
             scrollRenderAheadDistance={20}
-            initialListSize={2}
+            initialListSize={5}
         />
         </ScrollView>
       </View>

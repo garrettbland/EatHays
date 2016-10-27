@@ -37,10 +37,11 @@ class DirectoryDetail extends Component {
 constructor(props) {
    super(props);
    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
+   var reviewsNotSliced = this.props.item.reviews;
+   var reviewsSliced = reviewsNotSliced.slice(0,3);
      this.state = {
        phoneNumberString:this.props.item.phone.toString(),
-       reviewsDataSource: ds.cloneWithRows(this.props.item.reviews),
+       reviewsDataSource: ds.cloneWithRows(reviewsSliced),
        imagesDataSource: ds.cloneWithRows(this.props.item.images),
        monday: <Text>Monday</Text>,
        tuesday: <Text>Tuesday</Text>,
@@ -60,19 +61,19 @@ constructor(props) {
  getDayOfWeek(){
    var dayOfTheWeek = moment().format('dddd');
    if (dayOfTheWeek == "Monday"){
-     this.setState({monday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Monday</Text>})
+     this.setState({monday: <Text style={{color:'#c0392b',fontWeight:'bold'}}>Monday</Text>})
    }else if (dayOfTheWeek == "Tuesday"){
-     this.setState({tuesday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Tuesday</Text>})
+     this.setState({tuesday: <Text style={{color:'#c0392b',fontWeight:'bold'}}>Tuesday</Text>})
    }else if (dayOfTheWeek == "Wednesday"){
-     this.setState({wednesday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular'}}>Wednesday</Text>})
+     this.setState({wednesday: <Text style={{color:'#c0392b',fontWeight:'bold'}}>Wednesday</Text>})
    }else if (dayOfTheWeek == "Thursday"){
-     this.setState({thursday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Thursday</Text>})
+     this.setState({thursday: <Text style={{color:'#c0392b',fontWeight:'bold'}}>Thursday</Text>})
    }else if (dayOfTheWeek == "Friday"){
-     this.setState({friday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Friday</Text>})
+     this.setState({friday: <Text style={{color:'#c0392b',fontWeight:'bold'}}>Friday</Text>})
    }else if (dayOfTheWeek == "Saturday"){
-     this.setState({saturday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Saturday</Text>})
+     this.setState({saturday: <Text style={{color:'#c0392b',fontWeight:'bold'}}>Saturday</Text>})
    }else if (dayOfTheWeek == "Sunday"){
-     this.setState({sunday: <Text style={{color:'#c0392b',fontWeight:'bold',fontFamily:'oswald-regular',fontSize:15}}>Sunday</Text>})
+     this.setState({sunday: <Text style={{color:'#c0392b',fontWeight:'bold'}}>Sunday</Text>})
    }else{
 
    }
@@ -139,25 +140,25 @@ render() {
           <View style={{padding:10,}}>
             <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Hours</Text>
 
-            <View style={{flexDirection:'row'}}>
+            <View style={{flexDirection:'row',paddingLeft:6}}>
               <View style={{width:screenWidth / 3.5}}>
-                <Text style={{height:30}}>{this.state.monday}</Text>
-                <Text style={{height:30}}>{this.state.tuesday}</Text>
-                <Text style={{height:30}}>{this.state.wednesday}</Text>
-                <Text style={{height:30}}>{this.state.thursday}</Text>
-                <Text style={{height:30}}>{this.state.friday}</Text>
-                <Text style={{height:30}}>{this.state.saturday}</Text>
-                <Text style={{height:30}}>{this.state.sunday}</Text>
+                <Text style={{height:20}}>{this.state.monday}</Text>
+                <Text style={{height:20}}>{this.state.tuesday}</Text>
+                <Text style={{height:20}}>{this.state.wednesday}</Text>
+                <Text style={{height:20}}>{this.state.thursday}</Text>
+                <Text style={{height:20}}>{this.state.friday}</Text>
+                <Text style={{height:20}}>{this.state.saturday}</Text>
+                <Text style={{height:20}}>{this.state.sunday}</Text>
               </View>
 
               <View style={{width:screenWidth / 3}}>
-              <Text style={{height:30}}>{this.props.item.hours[1]}</Text>
-              <Text style={{height:30}}>{this.props.item.hours[2]}</Text>
-              <Text style={{height:30}}>{this.props.item.hours[3]}</Text>
-              <Text style={{height:30}}>{this.props.item.hours[4]}</Text>
-              <Text style={{height:30}}>{this.props.item.hours[5]}</Text>
-              <Text style={{height:30}}>{this.props.item.hours[6]}</Text>
-              <Text style={{height:30}}>{this.props.item.hours[7]}</Text>
+              <Text style={{height:20}}>{this.props.item.hours[1]}</Text>
+              <Text style={{height:20}}>{this.props.item.hours[2]}</Text>
+              <Text style={{height:20}}>{this.props.item.hours[3]}</Text>
+              <Text style={{height:20}}>{this.props.item.hours[4]}</Text>
+              <Text style={{height:20}}>{this.props.item.hours[5]}</Text>
+              <Text style={{height:20}}>{this.props.item.hours[6]}</Text>
+              <Text style={{height:20}}>{this.props.item.hours[7]}</Text>
               </View>
             </View>
           </View>
@@ -223,7 +224,7 @@ render() {
             buttonStyle={{marginBottom:5,}}
             backgroundColor="#e67e22"
             title="View All Reviews"
-            onPress={() => console.log("TEST")}
+            onPress={() => Actions.ReviewFullList({restaurantTitle:this.props.title, reviews:this.props.item.reviews})}
           />
           </View>
 
