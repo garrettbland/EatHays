@@ -119,7 +119,11 @@ render() {
            </View>
          )}>
          <View style={styles.detailContainer}>
+        <View style={{height:10,backgroundColor:'#c0392b',}}></View>
 
+         <Text style={styles.welcomeDay}>
+           {this.props.title}
+         </Text>
 
           <View style={{padding:10,}}>
             <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Summary</Text>
@@ -298,6 +302,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  welcomeDay: {
+    fontSize: 40,
+    textAlign: 'center',
+    margin: 10,
+    paddingTop:20,
+    paddingBottom:15,
+    fontFamily:'oswald-bold',
+    color:"black",
   },
 });
 

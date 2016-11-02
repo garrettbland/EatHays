@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
+import Image from 'react-native-image-progress';
 
 import {
   AppRegistry,
@@ -16,7 +17,6 @@ import {
   TouchableOpacity,
   Alert,
   ListView,
-  Image,
   ActivityIndicator,
   Dimensions,
   ScrollView,
@@ -85,16 +85,7 @@ class Home extends Component {
         <Text style={styles.welcome}>
           Deals of the Day
         </Text>
-        {
-          this.state.loading &&
 
-          <ActivityIndicator
-            size="large"
-            color="#3498db"
-            style={styles.activityStyle}
-          />
-
-        }
         <Text style={styles.welcomeDay}>
           {todayFormatted} Specials
         </Text>
@@ -131,9 +122,10 @@ class Home extends Component {
                   onLoad={() => this.setState({loading:false})}
                   style={styles.listImage}
                   source={{uri: item.background}}
+                  indicator={ActivityIndicator}
                 >
                   <View style={{flex:1,flexDirection:'column', justifyContent:'center'}}>
-                    <Image style={{width:70,height:70, marginLeft:8, }} source={{uri: item.profile}} ></Image>
+                    <Image indicator={ActivityIndicator} style={{width:70,height:70, marginLeft:8, }} source={{uri: item.profile}} ></Image>
                     {
                       item.special.length > 10 &&
                       <Text style={{letterSpacing:1,backgroundColor:'rgba(0, 0, 0, 0.44)',color:'white',fontSize:screenWidth/12,fontFamily:'oswald-bold', paddingLeft:8}}>{item.special}</Text>

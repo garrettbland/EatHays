@@ -9,6 +9,7 @@ import firebaseApp from '../components/firebaseconfig.js';
 import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
 import ModalPicker from 'react-native-modal-picker';
+import Image from 'react-native-image-progress';
 
 import {
   AppRegistry,
@@ -19,7 +20,6 @@ import {
   TouchableHighlight,
   Alert,
   ListView,
-  Image,
   ActivityIndicator,
   Dimensions,
   ScrollView,
@@ -238,16 +238,7 @@ class Directory extends Component {
 
 
       </ModalPicker>
-        {
-          this.state.loading &&
 
-          <ActivityIndicator
-            size="large"
-            color="#3498db"
-            style={styles.activityStyle}
-          />
-
-        }
         <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderItem.bind(this)}
@@ -275,6 +266,7 @@ class Directory extends Component {
                       onLoad={() => this.setState({loading:false})}
                       style={styles.listImage}
                       source={{uri: item.background}}
+                      indicator={ActivityIndicator}
                     >
                     </Image>
                   </View>
