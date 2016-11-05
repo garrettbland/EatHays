@@ -8,6 +8,7 @@ import { Actions } from 'react-native-router-flux';
 import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 import Image from 'react-native-image-progress';
+import { Card, Button } from 'react-native-elements'
 
 import {
   AppRegistry,
@@ -115,6 +116,25 @@ class Home extends Component {
     }else{
           return (
             <View style={styles.listContainter}>
+
+            <Card
+              title={item.special}
+              image={{uri: item.background}}>
+              <Text style={{marginBottom: 10}}>
+                test
+              </Text>
+              <Button
+                small
+                icon={{name: 'code'}}
+                backgroundColor='#03A9F4'
+                fontFamily='oswald-regular'
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                title='VIEW NOW'
+              onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}
+              />
+            </Card>
+
+
               <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}>
 
                 <Image
