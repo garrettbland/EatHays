@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   description:{
-    fontSize:screenWidth / 11,
+    fontSize:screenWidth / 12,
     fontFamily:'oswald-regular',
     color:'#c0392b',
     textAlign:'center',

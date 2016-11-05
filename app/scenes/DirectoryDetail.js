@@ -126,12 +126,12 @@ render() {
          </Text>
 
           <View style={{padding:10,}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Summary</Text>
+            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Summary</Text>
             <Text>{this.props.item.description}</Text>
           </View>
 
           <View style={{padding:10,}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Media</Text>
+            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Media</Text>
             <Text>Swipe for more photos</Text>
             <ImageSlider
                 images={this.props.item.images}
@@ -142,7 +142,7 @@ render() {
 
 
           <View style={{padding:10,}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Hours</Text>
+            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Hours</Text>
 
             <View style={{flexDirection:'row',paddingLeft:6}}>
               <View style={{width:screenWidth / 3.5}}>
@@ -198,7 +198,7 @@ render() {
           </View>
 
           <View style={{padding:10,}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Reviews</Text>
+            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Reviews</Text>
             <ListView
               style={{paddingTop:10}}
               dataSource={this.state.reviewsDataSource}
@@ -252,7 +252,7 @@ render() {
 
 
           <View style={{padding:10,}}>
-              <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-regular'}}>Address</Text>
+              <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Address</Text>
               <Text>{this.props.item.address}</Text>
           </View>
 

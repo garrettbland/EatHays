@@ -104,6 +104,14 @@ class Home extends Component {
   }
 
   _renderItem(item) {
+
+    var descriptonString = item.specialDescription;
+    if (descriptonString.length > 93){
+      var newDescriptionString = descriptonString.substring(0,93-3)+"..."
+    }else{
+      newDescriptionString = descriptonString
+    }
+
     if (this.state.dataSource.getRowCount() == 0){
       this.setState({loading:false});
       return (
@@ -119,45 +127,24 @@ class Home extends Component {
 
             <Card
               title={item.special}
-              image={{uri: item.background}}>
+              image={{uri: item.background}}
+              titleStyle={{fontFamily:'oswald-regular',fontSize:20,color:'#000000'}}
+            >
               <Text style={{marginBottom: 10}}>
-                test
+                {newDescriptionString}
               </Text>
               <Button
                 small
-                icon={{name: 'code'}}
-                backgroundColor='#03A9F4'
+                borderRadius={0}
+                icon={{name: 'star'}}
+                backgroundColor='#2bc064'
                 fontFamily='oswald-regular'
-                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                buttonStyle={{marginLeft: 0, marginRight: 0, marginBottom: 0}}
                 title='VIEW NOW'
               onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}
               />
             </Card>
 
-
-              <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}>
-
-                <Image
-                  onLoadStart={() => this.setState({loading:true})}
-                  onLoad={() => this.setState({loading:false})}
-                  style={styles.listImage}
-                  source={{uri: item.background}}
-                  indicator={ActivityIndicator}
-                >
-                  <View style={{flex:1,flexDirection:'column', justifyContent:'center'}}>
-                    <Image indicator={ActivityIndicator} style={{width:70,height:70, marginLeft:8, }} source={{uri: item.profile}} ></Image>
-                    {
-                      item.special.length > 10 &&
-                      <Text style={{letterSpacing:1,backgroundColor:'rgba(0, 0, 0, 0.44)',color:'white',fontSize:screenWidth/12,fontFamily:'oswald-bold', paddingLeft:8}}>{item.special}</Text>
-                    }
-                    {
-                      item.special.length <= 10 &&
-                      <Text style={{letterSpacing:1,backgroundColor:'rgba(0, 0, 0, 0.44)',color:'white',fontSize:screenWidth/8,fontFamily:'oswald-bold', paddingLeft:8}}>{item.special}</Text>
-                    }
-
-                  </View>
-                </Image>
-              </TouchableOpacity>
             </View>
           );
       }
