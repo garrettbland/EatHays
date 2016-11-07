@@ -251,14 +251,22 @@ class Directory extends Component {
   }
 
   _renderItem(item) {
+
+    var descriptonString = item.description;
+    if (descriptonString.length > 85){
+      var newDescriptionString = descriptonString.substring(0,93-3)+"..."
+    }else{
+      newDescriptionString = descriptonString
+    }
+
           return (
             <View style={styles.listContainter}>
               <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>
                 <View style={{backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
-                  <View style={{alignItems:'flex-start',flex:2}}>
+                  <View style={{alignItems:'flex-start',flex:3,}}>
                     <Text style={{fontFamily:'oswald-bold',fontSize:24,color:"#000000"}}>{item.title}</Text>
-                    <Text>{item.category}</Text>
-                    <Text>{item.description}</Text>
+                    <Text style={{paddingBottom:4,fontFamily:'oswald-regular',color:'#c0392b'}}>{item.category}</Text>
+                    <Text>{newDescriptionString}</Text>
                   </View>
                   <View style={{alignItems:'flex-end',flex:2,}}>
                     <Image

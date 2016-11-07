@@ -125,6 +125,7 @@ class Home extends Component {
           return (
             <View style={styles.listContainter}>
 
+            <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}>
             <Card
               title={item.special}
               image={{uri: item.background}}
@@ -144,6 +145,7 @@ class Home extends Component {
               onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}
               />
             </Card>
+            </TouchableOpacity>
 
             </View>
           );

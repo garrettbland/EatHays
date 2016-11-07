@@ -23,8 +23,8 @@ import MenuDetail from './scenes/MenuDetail.js';
 import ReviewFullList from './scenes/ReviewFullList.js';
 
 
-const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b"};
-const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular'};
+const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b",borderBottomWidth:4};
+const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular',fontSize:20};
 
 const toggleDrawer = () => Actions.refresh({key: 'drawer', open: value => !value });
 

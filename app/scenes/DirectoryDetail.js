@@ -115,7 +115,7 @@ render() {
          parallaxHeaderHeight={screenHeight / 2}
          renderForeground={() => (
           <View style={{ height: 300, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-             <Image source={{ uri: this.props.item.profile, width: screenWidth / 4, height: 100 }}/>
+             <Image resizeMode={'contain'} source={{ uri: this.props.item.profile, width: screenWidth, height: 100 }}/>
            </View>
          )}>
          <View style={styles.detailContainer}>
@@ -130,9 +130,11 @@ render() {
             <Text>{this.props.item.description}</Text>
           </View>
 
-          <View style={{padding:10,}}>
+          <View style={{padding:10}}>
             <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Media</Text>
             <Text>Swipe for more photos</Text>
+          </View>
+          <View>
             <ImageSlider
                 images={this.props.item.images}
                 height={screenHeight / 3}
