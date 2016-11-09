@@ -198,15 +198,24 @@ class Directory extends Component {
             { key: index++, section: true, label: 'Categories' },
             { key: index++, label: 'All' },
             { key: index++, label: 'American' },
-            { key: index++, label: 'Fast Food' },
+            { key: index++, label: 'Asian' },
+            { key: index++, label: 'Bar & Grill' },
             { key: index++, label: 'BBQ' },
+            { key: index++, label: 'Breakfast' },
+            { key: index++, label: 'Buffet' },
+            { key: index++, label: 'Cafe' },
+            { key: index++, label: 'Chicken' },
+            { key: index++, label: 'Chinese' },
+            { key: index++, label: 'Coffee Shop' },
+            { key: index++, label: 'Dessert' },
+            { key: index++, label: 'Fast Food' },
             { key: index++, label: 'Italian' },
-            { key: index++, label: 'Delivery' },
-            { key: index++, label: 'Mexican' },
-            { key: index++, label: 'Pizza' },
-            { key: index++, label: 'Steak House' },
-            { key: index++, label: 'Chinease' },
             { key: index++, label: 'Japanese' },
+            { key: index++, label: 'Mexican' },
+            { key: index++, label: 'Night Club' },
+            { key: index++, label: 'Pizza' },
+            { key: index++, label: 'Sushi' },
+            { key: index++, label: 'Vietnamese' },
         ];
     return (
 
@@ -254,7 +263,7 @@ class Directory extends Component {
 
     var descriptonString = item.description;
     if (descriptonString.length > 85){
-      var newDescriptionString = descriptonString.substring(0,93-3)+"..."
+      var newDescriptionString = descriptonString.substring(0,83-3)+"..."
     }else{
       newDescriptionString = descriptonString
     }
@@ -268,12 +277,13 @@ class Directory extends Component {
                     <Text style={{paddingBottom:4,fontFamily:'oswald-regular',color:'#c0392b'}}>{item.category}</Text>
                     <Text>{newDescriptionString}</Text>
                   </View>
-                  <View style={{alignItems:'flex-end',flex:2,}}>
+                  <View style={{alignItems:'flex-end',flex:2,paddingRight:5}}>
                     <Image
                       onLoadStart={() => this.setState({loading:true})}
                       onLoad={() => this.setState({loading:false})}
                       style={styles.listImage}
-                      source={{uri: item.background}}
+                      source={{uri: item.profile}}
+                      resizeMode={'contain'}
                       indicator={ActivityIndicator}
                     >
                     </Image>
