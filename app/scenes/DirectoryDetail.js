@@ -211,7 +211,7 @@ render() {
                   </View>
 
                   <View style={{width:screenWidth /1.2}}>
-                    <Text style={{fontSize:12,color:'black'}}>"{data}"</Text>
+                    <Text style={{fontSize:12,color:'black'}}>{data === 'no reviews yet'? "No reviews quiet yet. Share your thoughts!" : '"'+data+'"'}</Text>
                   </View>
                 </View>
               }

@@ -127,10 +127,26 @@ class Home extends Component {
 
             <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}>
             <Card
-              title={item.special}
               image={{uri: item.background}}
-              titleStyle={{fontFamily:'oswald-regular',fontSize:20,color:'#000000'}}
             >
+
+            <View style={{flexDirection:'row'}}>
+              <View style={{alignItems:'flex-start', flex:4, justifyContent:'center'}}>
+                <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#000000'}}>{item.special}</Text>
+              </View>
+
+              <View style={{alignItems:'flex-end', flex:2}}>
+              <Image
+                onLoadStart={() => this.setState({loading:true})}
+                onLoad={() => this.setState({loading:false})}
+                style={{height:75, width:125}}
+                source={{uri: item.profile}}
+                resizeMode={'contain'}
+                indicator={ActivityIndicator}
+              />
+              </View>
+            </View>
+
               <Text style={{marginBottom: 10}}>
                 {newDescriptionString}
               </Text>
@@ -141,7 +157,7 @@ class Home extends Component {
                 backgroundColor='#2bc064'
                 fontFamily='oswald-regular'
                 buttonStyle={{marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                title='VIEW NOW'
+                title={'VIEW DETAILS'}
               onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.background,special:item.special,specialDescription:item.specialDescription,day:todayFormatted})}
               />
             </Card>
