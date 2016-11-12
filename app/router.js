@@ -21,6 +21,8 @@ import DirectoryDetail from './scenes/DirectoryDetail.js';
 import MapDetail from './scenes/MapDetail.js';
 import MenuDetail from './scenes/MenuDetail.js';
 import ReviewFullList from './scenes/ReviewFullList.js';
+import OwnerLogin from './scenes/OwnerLogin.js';
+import OwnerAccount from './scenes/OwnerAccount.js';
 
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b",borderBottomWidth:4};
@@ -47,6 +49,8 @@ class EatHaysRouter extends Component {
                 <Scene key="ReviewDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={ReviewDetail} type="push" title="Your Thoughts" />
                 <Scene key="ReviewFullList" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={ReviewFullList} type="push" title="All Reviews" />
                 <Scene key="DirectoryDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={DirectoryDetail} type="push" title="Directory Detail" />
+                <Scene key="OwnerLogin" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={OwnerLogin} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Owner Login" />
+                <Scene key="OwnerAccount" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={OwnerAccount} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Account" />
                 <Scene key="About" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={About} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="About" />
                 <Scene key="Contact" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={Contact} type="push" title="Contact" />
               </Scene>

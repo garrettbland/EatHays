@@ -10,6 +10,7 @@ import { Actions } from 'react-native-router-flux';
   const goToIndex = () => Actions.Home();
   const goToDirectory = () => Actions.Directory();
   const goToReview = () => Actions.Review();
+  const goToOwnerLogin = () => Actions.OwnerLogin();
   const goToAbout = () => Actions.About();
 
   const titleStyle = {color:"#c0392b",fontFamily:"Verdana", fontSize:25};
@@ -38,6 +39,14 @@ import { Actions } from 'react-native-router-flux';
       iconColor:'#c0392b',
       buttonAction:goToReview,
       fontFamily:'Times',
+    },
+    {
+      title: 'Member Login',
+      titleStyle:titleStyle,
+      icon: 'lock',
+      iconColor:'#c0392b',
+      buttonAction:goToOwnerLogin,
+      fontFamily:'Oswald-bold',
     },
     {
       title: 'About',

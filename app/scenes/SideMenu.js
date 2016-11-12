@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions';
 import SideMenuButtons from '../components/sideMenuButtons.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from 'react-native-elements';
 
 import {
   AppRegistry,

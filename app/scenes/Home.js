@@ -8,7 +8,7 @@ import { Actions } from 'react-native-router-flux';
 import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 import Image from 'react-native-image-progress';
-import { Card, Button } from 'react-native-elements'
+import { Card, Button } from 'react-native-elements';
 
 import {
   AppRegistry,
