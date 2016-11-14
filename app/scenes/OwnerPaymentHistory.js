@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import {Button} from 'react-native-elements';
+import {List, ListItem} from 'react-native-elements';
 import firebaseApp from "../components/firebaseconfig.js";
 import {
   AppRegistry,
@@ -29,8 +29,10 @@ class OwnerPaymentHistory extends Component {
      super(props);
      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
+     var dataSource = this.props.paymentHistory;
+     var dataSourceReversed = dataSource.reverse();
        this.state = {
-         paymentHistoryDataSource: ds.cloneWithRows(this.props.paymentHistory),
+         paymentHistoryDataSource: ds.cloneWithRows(dataSourceReversed),
        };
 
 
@@ -59,14 +61,17 @@ class OwnerPaymentHistory extends Component {
   }
 
   _renderItem(item) {
-
+    const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
+    const subtitleStyle = {color:'#95a5a6', fontFamily:'oswald-regular', fontSize:13};
           return (
             <View>
-              <Text>
-                Amount Paid: {item.amountPaid}
-                Date Paid: {item.datePaid}
-                Summary: {item.description}
-              </Text>
+                  <ListItem
+                    key={item._key}
+                    titleStyle={titleStyle}
+                    title={item.datePaid}
+                    subtitle={item.amountPaid + " - " + item.description}
+                    subtitleStyle={subtitleStyle}
+                  />
             </View>
           );
       }
@@ -79,7 +84,7 @@ class OwnerPaymentHistory extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingTop:Platform.OS === 'ios'? 64 : 54,
-    backgroundColor:'#ffffff',
+    backgroundColor:'#e1e8ef',
     flex:1,
   },
   welcomeDay: {

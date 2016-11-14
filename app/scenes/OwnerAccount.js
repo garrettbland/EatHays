@@ -101,12 +101,12 @@ class OwnerAccount extends Component {
   }
 
   render() {
-    const titleStyle = {color:"#c0392b",fontFamily:"Verdana", fontSize:20};
+    const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
+    const subtitleStyle = {color:'#95a5a6', fontFamily:'oswald-regular', fontSize:13};
     const paymentHistory = () => Actions.OwnerPaymentHistory({paymentHistory:this.state.paymentHistory})
     const list = [
       {
         title: 'Your restaurant',
-        titleStyle:titleStyle,
         subtitle:this.state.ownerRestaurant,
         icon: 'thumb-up',
         iconColor:'#c0392b',
@@ -115,7 +115,6 @@ class OwnerAccount extends Component {
       },
       {
         title: 'Account Email',
-        titleStyle:titleStyle,
         subtitle:this.state.ownerEmail,
         icon: 'map',
         iconColor:'#c0392b',
@@ -124,7 +123,6 @@ class OwnerAccount extends Component {
       },
       {
         title: 'Member Since',
-        titleStyle:titleStyle,
         subtitle:this.state.membershipStarted,
         icon: 'edit',
         iconColor:'#c0392b',
@@ -133,7 +131,6 @@ class OwnerAccount extends Component {
       },
       {
         title: 'Monthly Payment',
-        titleStyle:titleStyle,
         subtitle:"$"+this.state.monthlyCharge,
         icon: 'lock',
         iconColor:'#c0392b',
@@ -142,7 +139,6 @@ class OwnerAccount extends Component {
       },
       {
         title: 'Monthly Payment Date',
-        titleStyle:titleStyle,
         subtitle:this.state.paymentDate,
         icon: 'group',
         iconColor:'#c0392b',
@@ -151,7 +147,6 @@ class OwnerAccount extends Component {
       },
       {
         title: 'Payment Details',
-        titleStyle:titleStyle,
         subtitle:this.state.paymentDetails,
         icon: 'group',
         iconColor:'#c0392b',
@@ -160,7 +155,6 @@ class OwnerAccount extends Component {
       },
       {
         title: 'Payment History',
-        titleStyle:titleStyle,
         subtitle:"View Details",
         icon: 'group',
         iconColor:'#c0392b',
@@ -182,10 +176,11 @@ class OwnerAccount extends Component {
                 list.map((item, i) => (
                   <ListItem
                     key={i}
-                    titleStyle={item.titleStyle}
+                    titleStyle={titleStyle}
                     onPress={item.buttonAction}
                     title={item.title}
                     subtitle={item.subtitle}
+                    subtitleStyle={subtitleStyle}
                     rightIcon={item.righticon}
                     fontFamily="oswald-regular"
                   />
@@ -217,7 +212,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop:Platform.OS === 'ios'? 64 : 54,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#e1e8ef',
   },
   welcome: {
     fontSize: 40,
