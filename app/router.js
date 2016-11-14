@@ -23,6 +23,7 @@ import MenuDetail from './scenes/MenuDetail.js';
 import ReviewFullList from './scenes/ReviewFullList.js';
 import OwnerLogin from './scenes/OwnerLogin.js';
 import OwnerAccount from './scenes/OwnerAccount.js';
+import OwnerPaymentHistory from './scenes/OwnerPaymentHistory.js';
 
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b",borderBottomWidth:4};
@@ -51,6 +52,7 @@ class EatHaysRouter extends Component {
                 <Scene key="DirectoryDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={DirectoryDetail} type="push" title="Directory Detail" />
                 <Scene key="OwnerLogin" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={OwnerLogin} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Owner Login" />
                 <Scene key="OwnerAccount" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={OwnerAccount} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Account" />
+                <Scene key="OwnerPaymentHistory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={OwnerPaymentHistory} type="push" title="Payment History" />
                 <Scene key="About" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={About} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="About" />
                 <Scene key="Contact" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={Contact} type="push" title="Contact" />
               </Scene>

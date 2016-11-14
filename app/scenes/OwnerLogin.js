@@ -32,7 +32,14 @@ class OwnerLogin extends Component {
       password:'',
       loading:false,
     };
+
+    AsyncStorage.getItem("loggedin").then((value) => {
+      this.setState({"loggedin": value});
+    }).done();
+
   }
+
+
 
   componentDidMount(){
 
@@ -40,13 +47,11 @@ class OwnerLogin extends Component {
 
   }
 
-  componentWillMount(){
+  componentWillMount() {
     Actions.refresh({key: 'drawer', open: value => !value});
 
-    AsyncStorage.getItem("loggedin").then((value) => {
-      this.setState({"loggedin": value});
-    }).done();
   }
+
 
   componentWillUnmount() {
     // Remove the alert located on this master page from the manager
@@ -80,7 +85,7 @@ class OwnerLogin extends Component {
 
           //successful login. Go to account page
           AsyncStorage.setItem("loggedin", "true");
-          AsyncStorage.setItem("owneremail", email);
+          AsyncStorage.setItem("owneremail", email.toLowerCase());
           Actions.OwnerAccount();
 
       }, function(error){
@@ -110,8 +115,9 @@ class OwnerLogin extends Component {
   render() {
 
     if(this.state.loggedin == "true"){
-      Actions.OwnerAccount();
-      return(null)
+        Actions.OwnerAccount();
+        return(null)
+
     }else{
 
     return (

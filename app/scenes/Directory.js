@@ -32,7 +32,7 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const today = moment().isoWeekday();
 const todayFormatted = moment().format('dddd');
-const filterIcon = (<Icon name="sliders" size={35} color="#c0392b" />);
+
 
 class Directory extends Component {
 
@@ -82,7 +82,6 @@ class Directory extends Component {
           reviews: child.val().reviews,
           searchable: child.val().searchable,
           title: child.val().title,
-          visits: child.val().visits,
           _key: child.key,
         });
       });
