@@ -107,23 +107,10 @@ class OwnerLogin extends Component {
       }, function(error){
 
           //error login. Show message bar banner
-<<<<<<< HEAD
+
           Alert.alert("Error","Incorrect username or password. Please try again.");
           this.setState({loading:false})
-=======
-          MessageBarManager.showAlert({
-           viewTopOffset : Platform.OS === 'ios'? 64 : 54,
-           duration:4000,
-           title: 'Error',
-           message: 'Incorrect username or password. Please try again',
-           alertType: 'error',
-           animationType:'SlideFromLeft',
-           position: 'top',
-           titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
-           stylesheetError: { backgroundColor: '#e74c3c', strokeColor:'#e74c3c' },
-           onShow:()=>this.setState({loading:false})
-         });
->>>>>>> 387a60b7c8530556fca0bd32a655f36fd51ca0e4
+
 
       }.bind(this));
 
