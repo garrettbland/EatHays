@@ -69,10 +69,10 @@ class OwnerLogin extends Component {
        viewTopOffset : Platform.OS === 'ios'? 64 : 54,
        duration:8000,
        title: 'Uh-oh',
-       message: 'Please make sure both fields are complete',
+       message: 'Please make sure all fields are completed before submitting',
        alertType: 'warning',
        animationType:'SlideFromLeft',
-       position: 'bottom',
+       position: 'top',
        titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
        stylesheetSuccess: { backgroundColor: '#e67e22', strokeColor:'#e67e22' }
      });
@@ -91,20 +91,10 @@ class OwnerLogin extends Component {
       }, function(error){
 
           //error login. Show message bar banner
-          MessageBarManager.showAlert({
-           viewTopOffset : Platform.OS === 'ios'? 64 : 54,
-           duration:4000,
-           onHide:stopLoading,
-           title: 'Error',
-           message: 'Incorrect username or password. Please try again',
-           alertType: 'error',
-           animationType:'SlideFromLeft',
-           position: 'bottom',
-           titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
-           stylesheetError: { backgroundColor: '#e74c3c', strokeColor:'#e74c3c' }
-         });
+          Alert.alert("Error","Incorrect username or password. Please try again.");
+          this.setState({loading:false})
 
-      });
+      }.bind(this));
 
 
 

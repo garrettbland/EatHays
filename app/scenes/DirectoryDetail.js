@@ -6,7 +6,7 @@ import * as ReduxActions from '../actions/';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import {Button} from 'react-native-elements';
+import {Button, List, ListItem, Card} from 'react-native-elements';
 import ImageSlider from 'react-native-image-slider';
 import Communications from 'react-native-communications';
 import firebaseApp from "../components/firebaseconfig.js";
@@ -88,6 +88,34 @@ componentDidMount(){
   this.getDayOfWeek();
 }
 
+_renderItem(item) {
+  if (item.review == "null"){
+    return (
+      <View>
+      <Card
+         >
+         <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+         No Reviews yet, be the first!
+         </Text>
+         <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>No sign up required</Text>
+       </Card>
+      </View>
+    )
+  }else{
+        return (
+          <View >
+            <Card
+               >
+               <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+               {item.review}
+               </Text>
+
+               <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>{item.name} on {item.date}</Text>
+             </Card>
+          </View>
+        );
+      }
+    }
 
 
  recordVisits(currentVisits){
@@ -113,11 +141,7 @@ render() {
          renderBackground={() => <Image source={{ uri: this.props.item.background, width: window.width, height: screenHeight / 2 }}/>}
          contentBackgroundColor="#ffffff"
          parallaxHeaderHeight={screenHeight / 2}
-         renderForeground={() => (
-          <View style={{ height: 300, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-             <Image resizeMode={'contain'} source={{ uri: this.props.item.profile, width: screenWidth, height: 100 }}/>
-           </View>
-         )}>
+  >
          <View style={styles.detailContainer}>
         <View style={{height:10,backgroundColor:'#c0392b',}}></View>
 
@@ -199,23 +223,14 @@ render() {
           />
           </View>
 
-          <View style={{padding:10,}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Reviews</Text>
-            <ListView
-              style={{paddingTop:10}}
-              dataSource={this.state.reviewsDataSource}
-              renderRow={(data) =>
-                <View style={{flexDirection:'row',paddingBottom:10}}>
-                  <View style={{width:screenWidth/10}}>
-                    <Icon name="user" style={{fontSize:20, color:"#c0392b"}}></Icon>
-                  </View>
-
-                  <View style={{width:screenWidth /1.2}}>
-                    <Text style={{fontSize:12,color:'black'}}>{data === 'no reviews yet'? "No reviews quiet yet. Be the first!" : '"'+data+'"'}</Text>
-                  </View>
-                </View>
-              }
-            />
+          <View>
+            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
+              <ListView
+                  dataSource={this.state.reviewsDataSource}
+                  renderRow={this._renderItem.bind(this)}
+                  enableEmptySections={true}
+              />
+              <View style={{marginBottom:10}}></View>
           </View>
 
           <View style={{marginBottom:4}}>

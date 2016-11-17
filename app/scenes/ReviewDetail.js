@@ -77,35 +77,13 @@ class ReviewDetail extends Component {
     var stopLoading = ()=>this.setState({loading:false,firstReview:false});
     var onComplete = function(error) {
        if (error) {
-         MessageBarManager.showAlert({
-          viewTopOffset : Platform.OS === 'ios'? 64 : 54,
-          duration:4000,
-          onHide:stopLoading,
-          title: 'Error',
-          message: 'An error occured. Please try again',
-          alertType: 'error',
-          animationType:'SlideFromLeft',
-          position: 'bottom',
-          titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
-          stylesheetError: { backgroundColor: '#e74c3c', strokeColor:'#e74c3c' }
-        });
+         Alert.alert("Error","Looks like something went wrong, please try again.");
        } else {
-         MessageBarManager.showAlert({
-          viewTopOffset : Platform.OS === 'ios'? 64 : 54,
-          duration:4000,
-          onHide:stopLoading,
-          title: 'Success!',
-          message: 'Your review has been saved, thank you!',
-          alertType: 'success',
-          animationType:'SlideFromLeft',
-          position: 'bottom',
-          titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
-          stylesheetSuccess: { backgroundColor: '#2bc064', strokeColor:'#2bc064' }
-        });
-
+         Alert.alert("Success!","You review has been submitted. Thank you!");
+         this.setState({loading:false});
        }
 
-     };
+     }.bind(this);
 
     if (this.state.name == "" || this.state.restaurant == "" || this.state.review == ""){
       MessageBarManager.showAlert({
@@ -115,7 +93,7 @@ class ReviewDetail extends Component {
        message: 'Please make sure all fields are completed before submitting',
        alertType: 'warning',
        animationType:'SlideFromLeft',
-       position: 'bottom',
+       position: 'top',
        titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
        stylesheetSuccess: { backgroundColor: '#e67e22', strokeColor:'#e67e22' }
      });

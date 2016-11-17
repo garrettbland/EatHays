@@ -251,6 +251,7 @@ class Directory extends Component {
             dataSource={this.state.dataSource}
             renderRow={this._renderItem.bind(this)}
             enableEmptySections={true}
+            scrollRenderAheadDistance={20}
             initialListSize={2}
         />
         </ScrollView>
@@ -272,7 +273,7 @@ class Directory extends Component {
               <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>
                 <View style={{backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                   <View style={{alignItems:'flex-start',flex:3,}}>
-                    <Text style={{fontFamily:'oswald-bold',fontSize:24,color:"#000000"}}>{item.title}</Text>
+                    <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/15,color:"#000000"}}>{item.title}</Text>
                     <Text style={{paddingBottom:4,fontFamily:'oswald-regular',color:'#c0392b'}}>{item.category}</Text>
                     <Text>{newDescriptionString}</Text>
                   </View>
@@ -317,7 +318,7 @@ const styles = StyleSheet.create({
   listContainter: {
     backgroundColor:"#ffffff",
     flex:1,
-    marginTop:2,
+    marginTop:1,
   },
   listImage:{
     width: screenWidth / 3,

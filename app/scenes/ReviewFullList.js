@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import {Button} from 'react-native-elements';
+import {Button, Card} from 'react-native-elements';
 import firebaseApp from "../components/firebaseconfig.js";
 import {
   AppRegistry,
@@ -29,8 +29,10 @@ class ReviewFullList extends Component {
      super(props);
      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
+     var dataSource = this.props.reviews;
+     var dataSourceReversed = dataSource.reverse();
        this.state = {
-         reviewsDataSource: ds.cloneWithRows(this.props.reviews),
+         reviewsDataSource: ds.cloneWithRows(dataSourceReversed),
        };
 
 
@@ -43,6 +45,36 @@ class ReviewFullList extends Component {
      return firebaseApp.database().ref();
    }
 
+   _renderItem(item) {
+     if (item.review == "null"){
+       return (
+         <View>
+         <Card
+            >
+            <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+            No Reviews yet, be the first!
+            </Text>
+            <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>No sign up required</Text>
+          </Card>
+         </View>
+       )
+     }else{
+           return (
+             <View >
+               <Card
+                  >
+                  <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+                  {item.review}
+                  </Text>
+
+                  <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>{item.name} on {item.date}</Text>
+                </Card>
+             </View>
+           );
+         }
+       }
+
+
 
   render() {
     return (
@@ -52,19 +84,9 @@ class ReviewFullList extends Component {
           {this.props.restaurantTitle} Reviews
         </Text>
         <ListView
-          style={{padding:10}}
-          dataSource={this.state.reviewsDataSource}
-          renderRow={(data) =>
-            <View style={{flexDirection:'row',paddingBottom:17}}>
-              <View style={{width:screenWidth/10}}>
-                <Icon name="user" style={{fontSize:20, color:"#c0392b"}}></Icon>
-              </View>
-
-              <View style={{width:screenWidth /1.2,borderBottomColor:'#bdc3c7',borderBottomWidth:1,}}>
-                <Text style={{fontSize:12,color:'black',paddingBottom:2,}}>"{data}"</Text>
-              </View>
-            </View>
-          }
+            dataSource={this.state.reviewsDataSource}
+            renderRow={this._renderItem.bind(this)}
+            enableEmptySections={true}
         />
         </ScrollView>
       </View>
