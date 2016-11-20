@@ -24,6 +24,7 @@ import {
   Dimensions,
   Platform,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 
 
@@ -40,6 +41,7 @@ constructor(props) {
    var reviewsNotSliced = this.props.item.reviews;
    var reviewsSliced = reviewsNotSliced.slice(0,3);
      this.state = {
+       loading:true,
        phoneNumberString:this.props.item.phone.toString(),
        reviewsDataSource: ds.cloneWithRows(reviewsSliced),
        imagesDataSource: ds.cloneWithRows(this.props.item.images),
@@ -138,12 +140,23 @@ render() {
 
     <ParallaxScrollView
          fadeOutForeground={false}
-         renderBackground={() => <Image source={{ uri: this.props.item.background, width: window.width, height: screenHeight / 2 }}/>}
+         renderBackground={() => <Image source={{ uri: this.props.item.background, width: window.width, height: screenHeight / 2 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>}
          contentBackgroundColor="#ffffff"
          parallaxHeaderHeight={screenHeight / 2}
   >
          <View style={styles.detailContainer}>
         <View style={{height:10,backgroundColor:'#c0392b',}}></View>
+
+        {
+          this.state.loading &&
+
+          <ActivityIndicator
+            size="large"
+            color="#3498db"
+            style={styles.activityStyle}
+          />
+
+        }
 
          <Text style={styles.welcomeDay}>
            {this.props.title}
@@ -155,7 +168,7 @@ render() {
           </View>
 
           <View style={{padding:10}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Media</Text>
+            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Images</Text>
             <Text>Swipe for more photos</Text>
           </View>
           <View>
@@ -328,6 +341,9 @@ const styles = StyleSheet.create({
     paddingBottom:15,
     fontFamily:'oswald-bold',
     color:"black",
+  },
+  activityStyle:{
+    marginTop:5,
   },
 });
 

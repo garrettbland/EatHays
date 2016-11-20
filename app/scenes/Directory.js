@@ -66,6 +66,7 @@ class Directory extends Component {
       var items = [];
       snap.forEach((child) => {
         items.push({
+          active: child.val().active,
           address: child.val().address,
           addressURL: child.val().addressURL,
           averagePrice: child.val().averagePrice,
@@ -115,6 +116,7 @@ class Directory extends Component {
         items = [];
         snap.forEach((child) => {
           items.push({
+            active: child.val().active,
             address: child.val().address,
             addressURL: child.val().addressURL,
             background:child.val().background,
@@ -161,6 +163,7 @@ class Directory extends Component {
         items = [];
         snap.forEach((child) => {
           items.push({
+            active: child.val().active,
             address: child.val().address,
             addressURL: child.val().addressURL,
             background:child.val().background,
@@ -261,7 +264,18 @@ class Directory extends Component {
 
   _renderItem(item) {
 
-    var descriptonString = item.description;
+    console.log(item.active);
+
+    if(item.active === false){
+      return (
+        <View></View>
+      )
+    }else{
+      if(item.description == undefined){
+        var descriptonString = "";
+      }else{
+        var descriptonString = item.description;
+      }
     if (descriptonString.length > 85){
       var newDescriptionString = descriptonString.substring(0,83-3)+"..."
     }else{
@@ -292,6 +306,7 @@ class Directory extends Component {
               </TouchableOpacity>
             </View>
           );
+        }
       }
 }
 

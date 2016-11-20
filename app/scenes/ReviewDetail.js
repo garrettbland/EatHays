@@ -10,6 +10,8 @@ import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 var MessageBarAlert = require('react-native-message-bar').MessageBar;
 var MessageBarManager = require('react-native-message-bar').MessageBarManager;
+import ImagePicker from 'react-native-image-picker';
+
 
 import {
   AppRegistry,
@@ -25,6 +27,9 @@ import {
 } from 'react-native';
 
 
+
+
+
 class ReviewDetail extends Component {
 
 
@@ -38,6 +43,7 @@ class ReviewDetail extends Component {
         restaurantTitle:this.props.restaurantTitle,
         specialHashTag:"",
         special:"",
+        phoneNumber:"",
         restaurant:this.props.restaurantTitle,
         fromSpecial:true,
       });
@@ -55,13 +61,14 @@ class ReviewDetail extends Component {
         fromSpecial:false,
         specialHashTag:"",
         special:"",
+        phoneNumber:"",
       });
     }
   }
 
   constructor(props) {
     super(props);
-    this.state = {restaurantTitle:"",name:"",restaurant:"",review:"",loading:false,firsReview:true};
+    this.state = {restaurantTitle:"",name:"",restaurant:"",review:"",phoneNumber:"",loading:false,firsReview:true};
     this.itemsRef = this.getRef().child('reviews');
   }
 
@@ -81,6 +88,7 @@ class ReviewDetail extends Component {
        } else {
          Alert.alert("Success!","You review has been submitted. Thank you!");
          this.setState({loading:false});
+         Actions.pop();
        }
 
      }.bind(this);
@@ -103,6 +111,7 @@ class ReviewDetail extends Component {
           restaurant: this.state.restaurant,
           special: this.state.special,
           review: this.state.review,
+          phoneNumber: this.state.phoneNumber,
           timestamp: dateSubmitted,
         },(onComplete));
 
@@ -113,6 +122,7 @@ class ReviewDetail extends Component {
         review:"",
         restaurantTitle:"",
         specialHashTag:"",
+        phoneNumber:"",
     });
   }
 }
@@ -145,6 +155,12 @@ class ReviewDetail extends Component {
              multiline = {true}
              placeholder="Share your thoughts and opinions"
              onChangeText={(text) => this.setState({review:text})}
+          />
+          <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Phone Number (not required)</FormLabel>
+          <FormInput
+            value={this.state.phoneNumber}
+             placeholder="Enter your number for a chance to win!"
+             onChangeText={(text) => this.setState({phoneNumber:text})}
           />
           </View>
 

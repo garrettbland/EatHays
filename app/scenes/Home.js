@@ -59,6 +59,7 @@ class Home extends Component {
       var items = [];
       snap.forEach((child) => {
         items.push({
+          active: child.val().active,
           title: child.val().title,
           background:child.val()[imageText + today],
           profile:child.val().profile,
@@ -104,6 +105,12 @@ class Home extends Component {
   }
 
   _renderItem(item) {
+
+    if(item.active === false){
+      return (
+        <View></View>
+      );
+    }else {
 
     var descriptonString = item.specialDescription;
     if (descriptonString.length > 93){
@@ -167,6 +174,7 @@ class Home extends Component {
           );
       }
     }
+  }
 }
 
 const styles = StyleSheet.create({
