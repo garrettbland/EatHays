@@ -264,7 +264,6 @@ class Directory extends Component {
 
   _renderItem(item) {
 
-    console.log(item.active);
 
     if(item.active === false){
       return (

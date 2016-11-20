@@ -25,7 +25,7 @@ import {
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-var items = "ass";
+
 
 class SpecialDetail extends Component {
 
@@ -120,7 +120,7 @@ class SpecialDetail extends Component {
            parallaxHeaderHeight={screenHeight / 2}
            renderForeground={() => (
             <View style={{ height: 300, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-               <Image resizeMode={'contain'} source={{ uri: this.props.profile, width: screenWidth, height: 100 }}/>
+               <Image resizeMode={'contain'} source={{ uri: this.props.profile, width: screenWidth /2, height: 100 }}/>
              </View>
            )}>
            <View style={{height:10,backgroundColor:'#c0392b',}}></View>
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   description:{
-    fontSize:screenWidth / 12,
+    fontSize:screenWidth / 15,
     fontFamily:'oswald-regular',
     color:'#c0392b',
     textAlign:'center',

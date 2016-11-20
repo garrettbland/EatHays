@@ -10,7 +10,6 @@ import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 var MessageBarAlert = require('react-native-message-bar').MessageBar;
 var MessageBarManager = require('react-native-message-bar').MessageBarManager;
-import ImagePicker from 'react-native-image-picker';
 
 
 import {
@@ -50,7 +49,7 @@ class ReviewDetail extends Component {
     }else if(this.props.fromSpecial == true){
       this.setState({
         restaurantTitle:this.props.restaurantTitle,
-        specialHashTag:" #"+this.props.specialHashTag,
+        specialHashTag:"",
         special:this.props.specialHashTag,
         restaurant:this.props.restaurantTitle,
         fromSpecial:true,
@@ -159,7 +158,7 @@ class ReviewDetail extends Component {
           <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Phone Number (not required)</FormLabel>
           <FormInput
             value={this.state.phoneNumber}
-             placeholder="Enter your number for a chance to win!"
+             placeholder="Enter your number for a chance to win prizes!"
              onChangeText={(text) => this.setState({phoneNumber:text})}
           />
           </View>
