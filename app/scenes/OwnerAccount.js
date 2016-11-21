@@ -17,19 +17,26 @@ import {
   AsyncStorage,
   Platform,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 
 const goToContact = () => Actions.Contact();
-
-
-
-
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 class OwnerAccount extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { /* initial state */ };
+    this.state = {
+      membershipStarted:'Loading...',
+      monthlyCharge:'Loading...',
+      ownerEmail:'Loading...',
+      ownerRestaurant:'Loading...',
+      paymentDate:'Loading...',
+      paymentDetails: 'Loading...',
+      paymentHistory: 'Loading...',
+     };
 
   }
 
@@ -61,6 +68,7 @@ class OwnerAccount extends Component {
       items = [];
       snap.forEach((child) => {
         items.push({
+          active: child.val().active,
           membershipStarted: child.val().membershipStarted,
           monthlyCharge: child.val().monthlyCharge,
           ownerEmail: child.val().ownerEmail,
@@ -68,12 +76,16 @@ class OwnerAccount extends Component {
           paymentDate: child.val().paymentDate,
           paymentDetails: child.val().paymentDetails,
           paymentHistory: child.val().paymentHistory,
+          supportEmail: child.val().supportEmail,
+          supportRep: child.val().supportRep,
+          supportPhone: child.val().supportPhone,
           _key: child.key,
         });
       });
 
 
       this.setState({
+        active: items[0].active,
         membershipStarted: items[0].membershipStarted,
         monthlyCharge: items[0].monthlyCharge,
         ownerEmail: items[0].ownerEmail,
@@ -81,6 +93,9 @@ class OwnerAccount extends Component {
         paymentDate: items[0].paymentDate,
         paymentDetails: items[0].paymentDetails,
         paymentHistory: items[0].paymentHistory,
+        supportEmail: items[0].supportEmail,
+        supportRep: items[0].supportRep,
+        supportPhone: items[0].supportPhone,
       });
 
     });
@@ -101,6 +116,46 @@ class OwnerAccount extends Component {
   }
 
   render() {
+
+    if(this.state.active === false){
+      return (
+        <View style={styles.container}>
+        <ScrollView>
+            <Text style={styles.welcome}>
+              Your Account
+            </Text>
+            <Text style={{margin:10}}>
+              Your Account has been disabled. Please contact your support representative if this is an error.
+            </Text>
+
+            <View style={{flex:1,flexDirection:'row',marginLeft:10,paddingTop:15}}>
+              <View style={{width:screenWidth/2}}>
+                <Text>Support Representative</Text>
+                <Text>Support Phone</Text>
+                <Text>Support Email</Text>
+              </View>
+              <View style={{width:screenWidth/2}}>
+                <Text style={{fontWeight:'bold'}}>{this.state.supportRep}</Text>
+                <Text style={{fontWeight:'bold'}}>{this.state.supportPhone}</Text>
+                <Text style={{fontWeight:'bold'}}>{this.state.supportEmail}</Text>
+              </View>
+            </View>
+            <View style={{paddingBottom:15,paddingTop:35}}>
+              <Button
+                raised
+                borderRadius={5}
+                icon={{name: 'lock'}}
+                backgroundColor='#2bc064'
+                fontFamily='oswald-regular'
+                title={'Logout'}
+                onPress={() => this.signOut()}
+              />
+            </View>
+          </ScrollView>
+        </View>
+      )
+    }else{
+
     const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
     const subtitleStyle = {color:'#95a5a6', fontFamily:'oswald-regular', fontSize:13};
     const paymentHistory = () => Actions.OwnerPaymentHistory({paymentHistory:this.state.paymentHistory})
@@ -203,6 +258,7 @@ class OwnerAccount extends Component {
         </ScrollView>
       </View>
     );
+  }
   }
 }
 

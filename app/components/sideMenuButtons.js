@@ -41,7 +41,7 @@ import { Actions } from 'react-native-router-flux';
       fontFamily:'Times',
     },
     {
-      title: 'Member Login',
+      title: 'Dashboard',
       titleStyle:titleStyle,
       icon: 'lock',
       iconColor:'#c0392b',
