@@ -159,6 +159,7 @@ class OwnerAccount extends Component {
     const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
     const subtitleStyle = {color:'#95a5a6', fontFamily:'oswald-regular', fontSize:13};
     const paymentHistory = () => Actions.OwnerPaymentHistory({paymentHistory:this.state.paymentHistory})
+    const paymentDetails = () => Actions.OwnerPaymentDetails({monthlyCharge:this.state.monthlyCharge,paymentDate:this.state.paymentDate,paymentDetails:this.state.paymentDetails})
     const list = [
       {
         title: 'Your restaurant',
@@ -185,28 +186,13 @@ class OwnerAccount extends Component {
         righticon:'',
       },
       {
-        title: 'Monthly Payment',
-        subtitle:"$"+this.state.monthlyCharge,
-        icon: 'lock',
-        iconColor:'#c0392b',
-        fontFamily:'Oswald-bold',
-        righticon:'',
-      },
-      {
-        title: 'Monthly Payment Date',
-        subtitle:this.state.paymentDate,
-        icon: 'group',
-        iconColor:'#c0392b',
-        fontFamily:'Oswald-bold',
-        righticon:'',
-      },
-      {
         title: 'Payment Details',
-        subtitle:this.state.paymentDetails,
+        subtitle:"View Details",
         icon: 'group',
         iconColor:'#c0392b',
         fontFamily:'Oswald-bold',
-        righticon:'',
+        righticon:'chevron-right',
+        buttonAction:paymentDetails,
       },
       {
         title: 'Payment History',
