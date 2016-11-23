@@ -10,6 +10,7 @@ import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
 import ModalPicker from 'react-native-modal-picker';
 import Image from 'react-native-image-progress';
+import StarRating from 'react-native-star-rating';
 
 import {
   AppRegistry,
@@ -43,6 +44,7 @@ class Directory extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      starCount:'',
       loading:true,
       visible:false,
       searchText:"",
@@ -80,6 +82,7 @@ class Directory extends Component {
           parking: child.val().parking,
           phone: child.val().phone,
           profile: child.val().profile,
+          rate: child.val().rate,
           reviews: child.val().reviews,
           searchable: child.val().searchable,
           title: child.val().title,
@@ -129,6 +132,7 @@ class Directory extends Component {
             parking: child.val().parking,
             phone: child.val().phone,
             profile: child.val().profile,
+            rate: child.val().rate,
             reviews: child.val().reviews,
             searchable: child.val().searchable,
             title: child.val().title,
@@ -176,6 +180,7 @@ class Directory extends Component {
             parking: child.val().parking,
             phone: child.val().phone,
             profile: child.val().profile,
+            rate: child.val().rate,
             reviews: child.val().reviews,
             searchable: child.val().searchable,
             title: child.val().title,
@@ -287,7 +292,18 @@ class Directory extends Component {
                 <View style={{backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                   <View style={{alignItems:'flex-start',flex:3,}}>
                     <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/15,color:"#000000"}}>{item.title}</Text>
-                    <Text style={{paddingBottom:4,fontFamily:'oswald-regular',color:'#c0392b'}}>{item.category}</Text>
+                      <View style={{flexDirection:'row'}}>
+                        <Text style={{paddingBottom:4,fontFamily:'oswald-regular',color:'#c0392b',paddingRight:10}}>{item.category}</Text>
+                        <StarRating
+                          disabled={true}
+                          maxStars={5}
+                          rating={item.rate}
+                          starColor={'#FFD700'}
+                          emptyStarColor={'#bdc3c7'}
+                          starSize={20}
+                          selectedStar={(rating) => this.onStarRatingPress(rating)}
+                        />
+                      </View>
                     <Text>{newDescriptionString}</Text>
                   </View>
                   <View style={{alignItems:'flex-end',flex:2,paddingRight:5}}>

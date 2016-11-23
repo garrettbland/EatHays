@@ -10,7 +10,7 @@ import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 var MessageBarAlert = require('react-native-message-bar').MessageBar;
 var MessageBarManager = require('react-native-message-bar').MessageBarManager;
-
+import StarRating from 'react-native-star-rating';
 
 import {
   AppRegistry,
@@ -23,10 +23,12 @@ import {
   TextInput,
   ScrollView,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
 
 
-
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 
 class ReviewDetail extends Component {
@@ -67,8 +69,14 @@ class ReviewDetail extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {restaurantTitle:"",name:"",restaurant:"",review:"",phoneNumber:"",loading:false,firsReview:true};
+    this.state = {starCount: 2.5,restaurantTitle:"",name:"",restaurant:"",review:"",phoneNumber:"",loading:false,firsReview:true};
     this.itemsRef = this.getRef().child('reviews');
+  }
+
+  onStarRatingPress(rating) {
+    this.setState({
+      starCount: rating
+    });
   }
 
 
@@ -112,6 +120,7 @@ class ReviewDetail extends Component {
           review: this.state.review,
           phoneNumber: this.state.phoneNumber,
           timestamp: dateSubmitted,
+          rate: this.state.starCount
         },(onComplete));
 
       this.setState({
@@ -136,6 +145,19 @@ class ReviewDetail extends Component {
       <View style={styles.container}>
       <ScrollView>
         <View>
+          <View style={{marginLeft:15,marginRight:15,marginTop:15}}>
+            <View>
+              <StarRating
+                disabled={false}
+                maxStars={5}
+                rating={this.state.starCount}
+                starColor={'#FFD700'}
+                emptyStarColor={'#bdc3c7'}
+                selectedStar={(rating) => this.onStarRatingPress(rating)}
+              />
+            </View>
+          </View>
+
           <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Name</FormLabel>
           <FormInput placeholder="Your name" value={this.state.name} onChangeText={(text) => this.setState({name:text})}/>
 
@@ -144,7 +166,7 @@ class ReviewDetail extends Component {
             <FormInput placeholder="Where did you eat at?" editable={false} value={this.state.restaurantTitle  + this.state.specialHashTag} onChangeText={() => console.log("TEST")}/>
           }
           {!this.state.fromSpecial &&
-            <FormInput placeholder="Where did you eat at? Use # for specific dishes" value={this.state.restaurant} onChangeText={(text) => this.setState({restaurant:text})}/>
+            <FormInput placeholder="Where did you eat at?" value={this.state.restaurant} onChangeText={(text) => this.setState({restaurant:text})}/>
           }
 
           <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Review</FormLabel>
