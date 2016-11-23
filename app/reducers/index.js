@@ -3,7 +3,6 @@ import {
   LOADING_FALSE,
 } from '../actions';
 
-
 export default function loadingReducer(state,action){
   switch (action.type) {
     case LOADING_TRUE:

@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Alert,
-} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from './actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {Actions, Scene, Router, Modal} from 'react-native-router-flux';
-
+import {Actions, Scene, Router} from 'react-native-router-flux';
 import Drawer from './components/drawer.js';
 import Home from './scenes/Home.js';
 import SpecialDetail from './scenes/SpecialDetail.js';
@@ -25,7 +20,6 @@ import OwnerLogin from './scenes/OwnerLogin.js';
 import OwnerAccount from './scenes/OwnerAccount.js';
 import OwnerPaymentHistory from './scenes/OwnerPaymentHistory.js';
 import OwnerPaymentDetails from './scenes/OwnerPaymentDetails.js';
-
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b",borderBottomWidth:4};
 const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular',fontSize:20};
@@ -63,7 +57,6 @@ class EatHaysRouter extends Component {
     );
   }
 }
-
 
 function mapStateToProps(state){
   return {
