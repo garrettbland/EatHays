@@ -237,7 +237,7 @@ render() {
                 <Text >{this.state.sunday}</Text>
               </View>
 
-              <View style={{width:screenWidth / 3}}>
+              <View style={{width:screenWidth / 2}}>
               <Text>{this.state.mondayHours}</Text>
               <Text>{this.state.tuesdayHours}</Text>
               <Text>{this.state.wednesdaHours}</Text>

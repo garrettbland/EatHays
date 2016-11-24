@@ -98,7 +98,7 @@ class Home extends Component {
               initialListSize={5}
           />
 
-
+        <View style={{height:15}}></View>
         </ScrollView>
       </View>
     );
