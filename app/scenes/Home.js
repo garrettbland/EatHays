@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
@@ -9,9 +8,7 @@ import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 import Image from 'react-native-image-progress';
 import { Card, Button } from 'react-native-elements';
-
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -28,7 +25,7 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const today = moment().isoWeekday();
 const todayFormatted = moment().format('dddd');
-const imageText = "image";
+const empytView = <View></View>;
 
 class Home extends Component {
 
@@ -51,10 +48,8 @@ class Home extends Component {
     return firebaseApp.database().ref();
   }
 
-
   listenForItems(itemsRef) {
     itemsRef.on('value', (snap) => {
-
       var items = [];
       snap.forEach((child) => {
         items.push({
@@ -65,12 +60,9 @@ class Home extends Component {
           _key: child.key,
         });
       });
-
-
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items)
       });
-
     });
   }
 
@@ -81,82 +73,68 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <ScrollView>
-        <Text style={styles.welcome}>
-          Deals of the Day
-        </Text>
-
-        <Text style={styles.welcomeDay}>
-          {todayFormatted} Specials
-        </Text>
-
-         <ListView
-              dataSource={this.state.dataSource}
-              renderRow={this._renderItem.bind(this)}
-              enableEmptySections={true}
-              scrollRenderAheadDistance={20}
-              initialListSize={5}
+        <ScrollView>
+          <Text style={styles.welcome}>
+            Deals of the Day
+          </Text>
+          <Text style={styles.welcomeDay}>
+            {todayFormatted} Specials
+          </Text>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderItem.bind(this)}
+            enableEmptySections={true}
+            scrollRenderAheadDistance={20}
+            initialListSize={5}
           />
-
-        <View style={{height:15}}></View>
+          <View style={styles.bumperBottom}></View>
         </ScrollView>
+        <View style={{height:15}}></View>
       </View>
     );
   }
 
   _renderItem(item) {
 
-
     if(item.active === false){
-      return (
-        <View></View>
-      );
+      return (<View></View>);
     }else if(item.today.active === false){
+      return ( <View></View>);
+    }else{
+      var descriptonString = item.today.description;
+      var specialString = item.today.special;
+
+      if (descriptonString.length > 93){
+        var newDescriptionString = descriptonString.substring(0,93-3)+"..."
+      }else{
+        var newDescriptionString = descriptonString;
+      }
+
+      if (specialString.length > 50){
+        var newSpecialString = specialString.substring(0,50-3)+"..."
+      }else{
+        var newSpecialString = specialString;
+      }
+
       return (
-        <View></View>
-      );
-    }else {
-
-    var descriptonString = item.today.description;
-    var specialString = item.today.special;
-
-    if (descriptonString.length > 93){
-      var newDescriptionString = descriptonString.substring(0,93-3)+"..."
-    }else{
-      var newDescriptionString = descriptonString;
-    }
-
-    if (specialString.length > 50){
-      var newSpecialString = specialString.substring(0,50-3)+"..."
-    }else{
-      var newSpecialString = specialString;
-    }
-
-          return (
-            <View style={styles.listContainter}>
-
-            <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.today.image,special:item.today.special,specialDescription:item.today.description,day:todayFormatted})}>
-            <Card
-              image={{uri: item.today.image}}
-            >
-
-            <View style={{flexDirection:'row'}}>
-              <View style={{alignItems:'flex-start', flex:4, justifyContent:'center'}}>
-                <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#000000'}}>{newSpecialString}</Text>
+        <View style={{backgroundColor:'#e1e8ef'}}>
+          <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.today.image,special:item.today.special,specialDescription:item.today.description,day:todayFormatted})}>
+            <Card image={{uri: item.today.image}}>
+              <View style={{flexDirection:'row'}}>
+                <View style={{alignItems:'flex-start', flex:4, justifyContent:'center'}}>
+                  <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#000000'}}>{newSpecialString}</Text>
+                </View>
+                <View style={{alignItems:'flex-end', flex:2}}>
+                <Image
+                  onLoadStart={() => this.setState({loading:true})}
+                  onLoad={() => this.setState({loading:false})}
+                  style={{height:75, width:125}}
+                  source={{uri: item.profile}}
+                  resizeMode={'contain'}
+                  indicator={ActivityIndicator}
+                />
+                </View>
               </View>
-
-              <View style={{alignItems:'flex-end', flex:2}}>
-              <Image
-                onLoadStart={() => this.setState({loading:true})}
-                onLoad={() => this.setState({loading:false})}
-                style={{height:75, width:125}}
-                source={{uri: item.profile}}
-                resizeMode={'contain'}
-                indicator={ActivityIndicator}
-              />
-              </View>
-            </View>
-
               <Text style={{marginBottom: 10,paddingTop:15}}>
                 {newDescriptionString}
               </Text>
@@ -168,13 +146,12 @@ class Home extends Component {
                 fontFamily='oswald-regular'
                 buttonStyle={{marginLeft: 0, marginRight: 0, marginBottom: 0}}
                 title={'VIEW DETAILS'}
-              onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.today.image,special:item.today.special,specialDescription:item.today.description,day:todayFormatted})}
+                onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.today.image,special:item.today.special,specialDescription:item.today.description,day:todayFormatted})}
               />
             </Card>
-            </TouchableOpacity>
-
-            </View>
-          );
+          </TouchableOpacity>
+        </View>
+      );
     }
   }
 }
