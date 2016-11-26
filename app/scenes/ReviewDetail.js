@@ -19,7 +19,6 @@ import {
   TextInput,
   ScrollView,
   ActivityIndicator,
-  Dimensions,
 } from 'react-native';
 
 class ReviewDetail extends Component {
