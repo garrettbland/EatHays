@@ -9,11 +9,9 @@ import moment from 'moment';
 import Image from 'react-native-image-progress';
 import { Card, Button } from 'react-native-elements';
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  Alert,
   ListView,
   ActivityIndicator,
   Dimensions,
@@ -25,7 +23,6 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const today = moment().isoWeekday();
 const todayFormatted = moment().format('dddd');
-const empytView = <View></View>;
 
 class Home extends Component {
 
@@ -72,12 +69,12 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
-          <Text style={styles.welcome}>
+          <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
             Deals of the Day
           </Text>
-          <Text style={styles.welcomeDay}>
+          <Text style={{textAlign: 'center',backgroundColor:"#c0392b",color:'white',fontFamily:'oswald-regular',fontSize:27}}>
             {todayFormatted} Specials
           </Text>
           <ListView
@@ -87,7 +84,6 @@ class Home extends Component {
             scrollRenderAheadDistance={20}
             initialListSize={5}
           />
-          <View style={styles.bumperBottom}></View>
         </ScrollView>
         <View style={{height:15}}></View>
       </View>
@@ -125,14 +121,14 @@ class Home extends Component {
                   <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#000000'}}>{newSpecialString}</Text>
                 </View>
                 <View style={{alignItems:'flex-end', flex:2}}>
-                <Image
-                  onLoadStart={() => this.setState({loading:true})}
-                  onLoad={() => this.setState({loading:false})}
-                  style={{height:75, width:125}}
-                  source={{uri: item.profile}}
-                  resizeMode={'contain'}
-                  indicator={ActivityIndicator}
-                />
+                  <Image
+                    onLoadStart={() => this.setState({loading:true})}
+                    onLoad={() => this.setState({loading:false})}
+                    style={{height:75, width:125}}
+                    source={{uri: item.profile}}
+                    resizeMode={'contain'}
+                    indicator={ActivityIndicator}
+                  />
                 </View>
               </View>
               <Text style={{marginBottom: 10,paddingTop:15}}>
@@ -155,43 +151,6 @@ class Home extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop:Platform.OS === 'ios'? 64 : 54,
-    backgroundColor:'#e1e8ef',
-  },
-  welcome: {
-    fontSize: 40,
-    textAlign: 'center',
-    margin: 10,
-    paddingTop:20,
-    paddingBottom:15,
-    fontFamily:'oswald-bold',
-    color:"black",
-  },
-  welcomeDay: {
-    textAlign: 'center',
-    backgroundColor:"#c0392b",
-    color:'white',
-    fontFamily:'oswald-regular',
-    fontSize:27,
-  },
-  listContainter: {
-    backgroundColor:"#e1e8ef",
-  },
-  listImage:{
-    width: screenWidth,
-    height: 150,
-    marginBottom:0,
-    backgroundColor:'#e1e8ef',
-  },
-  activityStyle:{
-    paddingBottom:5,
-    backgroundColor:'#e1e8ef',
-  },
-});
 
 function mapStateToProps(state){
   return {
