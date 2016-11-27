@@ -77,15 +77,16 @@ class Home extends Component {
           <Text style={{textAlign: 'center',backgroundColor:"#c0392b",color:'white',fontFamily:'oswald-regular',fontSize:27}}>
             {todayFormatted} Specials
           </Text>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderItem.bind(this)}
-            enableEmptySections={true}
-            scrollRenderAheadDistance={20}
-            initialListSize={5}
-          />
+          <View style={{paddingBottom:15}}>
+            <ListView
+              dataSource={this.state.dataSource}
+              renderRow={this._renderItem.bind(this)}
+              enableEmptySections={true}
+              scrollRenderAheadDistance={20}
+              initialListSize={5}
+            />
+          </View>
         </ScrollView>
-        <View style={{height:15}}></View>
       </View>
     );
   }

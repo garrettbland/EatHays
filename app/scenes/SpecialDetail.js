@@ -60,10 +60,13 @@ class SpecialDetail extends Component {
       items = [];
       snap.forEach((child) => {
         items.push({
+          active: child.val().active,
           address: child.val().address,
           addressURL: child.val().addressURL,
+          averagePrice: child.val().averagePrice,
           background:child.val().background,
           category: child.val().category,
+          coupons: child.val().coupons,
           description: child.val().description,
           hours: child.val().hours,
           images: child.val().images,
@@ -72,9 +75,10 @@ class SpecialDetail extends Component {
           parking: child.val().parking,
           phone: child.val().phone,
           profile: child.val().profile,
+          rate: child.val().rate,
           reviews: child.val().reviews,
+          searchable: child.val().searchable,
           title: child.val().title,
-          visits: child.val().visits,
           _key: child.key,
         });
       });
@@ -110,7 +114,7 @@ class SpecialDetail extends Component {
                <View style={{flex: 1, paddingTop:12,alignItems: 'center', justifyContent: 'center' }}>
                   <Image resizeMode={'contain'} source={{ uri: this.props.profile, width: screenWidth /2, height: 100 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})} indicator={ActivityIndicator}/>
                </View>
-               <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+               <Text style={{fontSize: 40,textAlign: 'center',margin:5,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
                   {this.props.title} {this.props.day} Special
                </Text>
                <Text style={{fontSize:screenWidth / 15,fontFamily:'oswald-regular',color:'#c0392b',textAlign:'center',padding:5,paddingBottom:15}}>

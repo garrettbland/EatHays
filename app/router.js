@@ -20,6 +20,7 @@ import OwnerLogin from './scenes/OwnerLogin.js';
 import OwnerAccount from './scenes/OwnerAccount.js';
 import OwnerPaymentHistory from './scenes/OwnerPaymentHistory.js';
 import OwnerPaymentDetails from './scenes/OwnerPaymentDetails.js';
+import CouponDetail from './scenes/CouponDetail.js';
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b",borderBottomWidth:4};
 const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular',fontSize:20};
@@ -41,6 +42,7 @@ class EatHaysRouter extends Component {
                 <Scene key="Directory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Directory} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Directory" />
                 <Scene key="MapDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={MapDetail} type="push" title="Directions" />
                 <Scene key="MenuDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={MenuDetail} type="push" title="Menu" />
+                <Scene key="CouponDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={CouponDetail} type="push" title="Coupons" />
                 <Scene key="Review" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Review} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Write a Review" />
                 <Scene key="ReviewDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={ReviewDetail} type="push" title="Your Thoughts" />
                 <Scene key="ReviewFullList" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={ReviewFullList} type="push" title="All Reviews" />

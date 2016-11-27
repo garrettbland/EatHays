@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
 import { Card } from 'react-native-elements';
 import firebaseApp from "../components/firebaseconfig.js";
+import StarRating from 'react-native-star-rating';
 import {
   Text,
   View,
@@ -37,9 +38,9 @@ class ReviewFullList extends Component {
             {this.props.restaurantTitle} Reviews
           </Text>
           <ListView
-              dataSource={this.state.reviewsDataSource}
-              renderRow={this._renderItem.bind(this)}
-              enableEmptySections={true}
+            dataSource={this.state.reviewsDataSource}
+            renderRow={this._renderItem.bind(this)}
+            enableEmptySections={true}
           />
         </ScrollView>
       </View>
@@ -47,34 +48,56 @@ class ReviewFullList extends Component {
   }
 
   _renderItem(item) {
-     if (item.review == "null"){
-       return (
-         <View>
-           <Card>
-             <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-               No Reviews yet, be the first!
-             </Text>
-             <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
-               No sign up required
-             </Text>
+    if (item.review == "null"){
+      return (
+        <View>
+          <Card>
+            <View style={{width:50}}>
+              <StarRating
+                disabled={true}
+                maxStars={5}
+                rating={item.rate}
+                starColor={'#FFD700'}
+                emptyStarColor={'#bdc3c7'}
+                starSize={20}
+                selectedStar={(rating) => this.onStarRatingPress(rating)}
+              />
+            </View>
+            <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+                No Reviews yet, be the first!
+            </Text>
+            <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
+                No sign up required
+            </Text>
            </Card>
-         </View>
-       );
+        </View>
+      )
     }else{
-       return (
-         <View >
-           <Card>
-             <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-               {item.review}
-             </Text>
-             <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
-               {item.name} on {item.date}
-             </Text>
-           </Card>
-         </View>
-       );
-     }
-   }
+          return (
+            <View>
+              <Card>
+                <View style={{width:50}}>
+                  <StarRating
+                    disabled={true}
+                    maxStars={5}
+                    rating={item.rate}
+                    starColor={'#FFD700'}
+                    emptyStarColor={'#bdc3c7'}
+                    starSize={20}
+                    selectedStar={(rating) => this.onStarRatingPress(rating)}
+                  />
+                </View>
+               <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+                  {item.review}
+               </Text>
+               <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
+                  {item.name} on {item.date}
+               </Text>
+               </Card>
+            </View>
+        );
+    }
+  }
 }
 
 function mapStateToProps(state){

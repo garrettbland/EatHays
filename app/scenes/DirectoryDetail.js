@@ -11,7 +11,7 @@ import ImageSlider from 'react-native-image-slider';
 import Communications from 'react-native-communications';
 import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
-
+import StarRating from 'react-native-star-rating';
 import {
   AppRegistry,
   StyleSheet,
@@ -52,6 +52,7 @@ constructor(props) {
        loading:true,
        phoneNumberString:this.props.item.phone.toString(),
        reviewsDataSource: ds.cloneWithRows(reviewsSliced),
+       reviewsTotal: ds.cloneWithRows(reviewsNotSliced),
        imagesDataSource: ds.cloneWithRows(this.props.item.images),
        monday: <Text>Monday</Text>,
        tuesday: <Text>Tuesday</Text>,
@@ -68,7 +69,6 @@ constructor(props) {
        saturdayHours:<Text>{daySaturday}</Text>,
        sundayHours:<Text>{daySunday}</Text>,
      };
-
 
     this.itemsRef = this.getRef().child("directoryStatistics");
 
@@ -137,8 +137,18 @@ _renderItem(item) {
   if (item.review == "null"){
     return (
       <View>
-      <Card
-         >
+      <Card>
+        <View style={{width:50}}>
+          <StarRating
+            disabled={true}
+            maxStars={5}
+            rating={item.rate}
+            starColor={'#FFD700'}
+            emptyStarColor={'#bdc3c7'}
+            starSize={20}
+            selectedStar={(rating) => this.onStarRatingPress(rating)}
+          />
+        </View>
          <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
          No Reviews yet, be the first!
          </Text>
@@ -149,8 +159,18 @@ _renderItem(item) {
   }else{
         return (
           <View >
-            <Card
-               >
+            <Card>
+            <View style={{width:50}}>
+              <StarRating
+                disabled={true}
+                maxStars={5}
+                rating={item.rate}
+                starColor={'#FFD700'}
+                emptyStarColor={'#bdc3c7'}
+                starSize={20}
+                selectedStar={(rating) => this.onStarRatingPress(rating)}
+              />
+            </View>
                <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
                {item.review}
                </Text>
@@ -173,6 +193,15 @@ _renderItem(item) {
        visited: dateSubmitted,
        timestamp:unixTimeStamp,
      });
+ }
+
+ getReviewsCount(){
+   return(
+     <View style={{flex:1,flexDirection:'row'}}>
+       <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
+       <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#c0392b'}}> ({this.state.reviewsTotal.getRowCount()})</Text>
+     </View>
+   );
  }
 
 
@@ -279,8 +308,23 @@ render() {
           />
           </View>
 
+          <View style={{marginBottom:14}}>
+          <Button
+            raised
+            iconRight
+            borderRadius={5}
+            icon={{name: 'chevron-right'}}
+            fontFamily="oswald-bold"
+            fontSize={18}
+            buttonStyle={{marginBottom:5}}
+            backgroundColor="#34495e"
+            title='Coupons'
+            onPress={() => Actions.CouponDetail({coupons:this.props.item.coupons})}
+          />
+          </View>
+
           <View>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
+            {this.getReviewsCount()}
               <ListView
                   dataSource={this.state.reviewsDataSource}
                   renderRow={this._renderItem.bind(this)}

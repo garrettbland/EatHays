@@ -62,6 +62,7 @@ class Directory extends Component {
           averagePrice: child.val().averagePrice,
           background:child.val().background,
           category: child.val().category,
+          coupons: child.val().coupons,
           description: child.val().description,
           hours: child.val().hours,
           images: child.val().images,
@@ -109,6 +110,7 @@ class Directory extends Component {
             addressURL: child.val().addressURL,
             background:child.val().background,
             category: child.val().category,
+            coupons: child.val().coupons,
             description: child.val().description,
             hours: child.val().hours,
             images: child.val().images,
@@ -153,6 +155,7 @@ class Directory extends Component {
             addressURL: child.val().addressURL,
             background:child.val().background,
             category: child.val().category,
+            coupons: child.val().coupons,
             description: child.val().description,
             hours: child.val().hours,
             images: child.val().images,
@@ -261,7 +264,9 @@ class Directory extends Component {
                 <View style={{alignItems:'flex-start',flex:3,}}>
                   <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/15,color:"#000000"}}>{item.title}</Text>
                     <View style={{flexDirection:'row'}}>
-                      <Text style={{paddingBottom:4,fontFamily:'oswald-regular',color:'#c0392b',paddingRight:10}}>{item.category}</Text>
+                      <Text style={{paddingBottom:2,fontFamily:'oswald-regular',color:'#c0392b',paddingRight:10,fontSize:screenWidth/23}}>
+                        {item.category}
+                      </Text>
                       <StarRating
                         disabled={true}
                         maxStars={5}
