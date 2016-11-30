@@ -53,20 +53,20 @@ constructor(props) {
        reviewsDataSource: ds.cloneWithRows(reviewsSliced),
        reviewsTotal: ds.cloneWithRows(reviewsNotSliced),
        imagesDataSource: ds.cloneWithRows(this.props.item.images),
-       monday: <Text>Monday</Text>,
-       tuesday: <Text>Tuesday</Text>,
-       wednesday: <Text>Wednesday</Text>,
-       thursday: <Text>Thursday</Text>,
-       friday: <Text>Friday</Text>,
-       saturday: <Text>Saturday</Text>,
-       sunday: <Text>Sunday</Text>,
-       mondayHours:<Text>{dayMonday}</Text>,
-       tuesdayHours:<Text>{dayTuesday}</Text>,
-       wednesdaHours:<Text>{dayWednesday}</Text>,
-       thursdayHours:<Text>{dayThursday}</Text>,
-       fridayHours:<Text>{dayFriday}</Text>,
-       saturdayHours:<Text>{daySaturday}</Text>,
-       sundayHours:<Text>{daySunday}</Text>,
+       monday: <Text style={{color:'#7f8c8d'}}>Monday</Text>,
+       tuesday: <Text style={{color:'#7f8c8d'}}>Tuesday</Text>,
+       wednesday: <Text style={{color:'#7f8c8d'}}>Wednesday</Text>,
+       thursday: <Text style={{color:'#7f8c8d'}}>Thursday</Text>,
+       friday: <Text style={{color:'#7f8c8d'}}>Friday</Text>,
+       saturday: <Text style={{color:'#7f8c8d'}}>Saturday</Text>,
+       sunday: <Text style={{color:'#7f8c8d'}}>Sunday</Text>,
+       mondayHours:<Text style={{color:'#7f8c8d'}}>{dayMonday}</Text>,
+       tuesdayHours:<Text style={{color:'#7f8c8d'}}>{dayTuesday}</Text>,
+       wednesdaHours:<Text style={{color:'#7f8c8d'}}>{dayWednesday}</Text>,
+       thursdayHours:<Text style={{color:'#7f8c8d'}}>{dayThursday}</Text>,
+       fridayHours:<Text style={{color:'#7f8c8d'}}>{dayFriday}</Text>,
+       saturdayHours:<Text style={{color:'#7f8c8d'}}>{daySaturday}</Text>,
+       sundayHours:<Text style={{color:'#7f8c8d'}}>{daySunday}</Text>,
      };
 
     this.itemsRef = this.getRef().child("directoryStatistics");
@@ -271,12 +271,12 @@ render() {
 
           <View style={{padding:10,}}>
             <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>Summary</Text>
-            <Text>{this.props.item.description}</Text>
+            <Text style={{color:'#7f8c8d'}}>{this.props.item.description}</Text>
           </View>
 
           <View style={{padding:10}}>
             <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>Images</Text>
-            <Text>Swipe for more photos</Text>
+            <Text style={{color:'#7f8c8d'}}>Swipe for more photos</Text>
           </View>
           <View>
             <ImageSlider
@@ -360,7 +360,7 @@ render() {
 
           <View style={{padding:10,}}>
               <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>Address</Text>
-              <Text style={{paddingLeft:6}}>{this.props.item.address}</Text>
+              <Text style={{paddingLeft:6,color:'#7f8c8d'}}>{this.props.item.address}</Text>
           </View>
 
           <View style={{flex:1,width:screenWidth,height:screenHeight / 2, }}>
