@@ -8,6 +8,7 @@ import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 import Image from 'react-native-image-progress';
 import { Card, Button } from 'react-native-elements';
+import shuffle from 'shuffle-array';
 import {
   Text,
   View,
@@ -57,8 +58,9 @@ class Home extends Component {
           _key: child.key,
         });
       });
+      var shuffleData = shuffle(items);
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(shuffleData)
       });
     });
   }

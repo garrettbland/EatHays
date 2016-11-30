@@ -12,6 +12,7 @@ import {
   Image,
   Dimensions,
   ListView,
+  ScrollView,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -42,14 +43,15 @@ class MenuDetail extends Component {
    }else{
      return (
        <View>
-         <PhotoView
-           source={{uri: item}}
-           minimumZoomScale={0.5}
-           maximumZoomScale={3}
-           onLoad={() => this.setState({loading:false})}
-           onLoadStart={()=>this.setState({loading:true})}
-           style={{width: screenWidth, height: 600}}
-         />
+           <PhotoView
+             source={{uri: item}}
+             minimumZoomScale={0.5}
+             maximumZoomScale={3}
+             onLoad={() => this.setState({loading:false})}
+             onLoadStart={()=>this.setState({loading:true})}
+             style={{width: screenWidth, height:screenHeight/1.5}}
+             resizeMode={'contain'}
+           />
        </View>
      );
    }
@@ -57,20 +59,25 @@ class MenuDetail extends Component {
 
   render() {
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54}}>
-        <ListView
-          style={{}}
-          dataSource={this.state.menuDataSource}
-          enableEmptySections={true}
-          renderRow={this._renderItem.bind(this)}
-        />
+      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         { this.state.loading &&
           <ActivityIndicator
             size="large"
             color="#3498db"
-            style={{paddingTop:4}}
+            style={{paddingTop:4,backgroundColor:'#e1e8ef'}}
           />
         }
+        <ScrollView>
+        <View style={{alignItems:'center',justifyContent:'center',height:25}}>
+          <Text style={{color:'#7f8c8d'}}>Pinch & Zoom for larger view</Text>
+        </View>
+          <ListView
+            dataSource={this.state.menuDataSource}
+            enableEmptySections={true}
+            renderRow={this._renderItem.bind(this)}
+            initialListSize={5}
+          />
+        </ScrollView>
       </View>
     );
   }

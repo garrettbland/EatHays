@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import {Button, List, ListItem, Card} from 'react-native-elements';
+import {Button, List, ListItem, Card, Icon} from 'react-native-elements';
 import ImageSlider from 'react-native-image-slider';
 import Communications from 'react-native-communications';
 import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 import StarRating from 'react-native-star-rating';
+import Image from 'react-native-image-progress';
 import {
   AppRegistry,
   StyleSheet,
@@ -20,7 +20,6 @@ import {
   TouchableOpacity,
   Alert,
   ListView,
-  Image,
   Dimensions,
   Platform,
   ScrollView,
@@ -198,7 +197,7 @@ _renderItem(item) {
  getReviewsCount(){
    return(
      <View style={{flex:1,flexDirection:'row'}}>
-       <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
+       <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
        <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#c0392b'}}> ({this.state.reviewsTotal.getRowCount()})</Text>
      </View>
    );
@@ -234,13 +233,49 @@ render() {
            {this.props.title}
          </Text>
 
+         <View style={{flex:1,flexDirection:'row',marginBottom:14}}>
+          <View style={{width:screenWidth/3,alignItems:'center'}}>
+              <Icon
+              reverse
+              raised
+              name='phone'
+              type='font-awesome'
+              color='#2bc064'
+              onPress={() => Communications.phonecall(this.props.item.phone, true)}
+              />
+              <Text style={{fontFamily:"oswald-bold",color:'#7f8c8d'}}>Call</Text>
+          </View>
+          <View style={{width:screenWidth/3,alignItems:'center'}}>
+              <Icon
+              reverse
+              raised
+              name='map'
+              type='font-awesome'
+              color='#8e44ad'
+              onPress={() => Actions.MenuDetail({menu:this.props.item.menu})}
+              />
+              <Text style={{fontFamily:"oswald-bold",color:'#7f8c8d'}}>Menu</Text>
+          </View>
+          <View style={{width:screenWidth/3,alignItems:'center'}}>
+              <Icon
+              reverse
+              raised
+              name='tags'
+              type='font-awesome'
+              color='#f50'
+              onPress={() => Actions.CouponDetail({coupons:this.props.item.coupons})}
+              />
+              <Text style={{fontFamily:"oswald-bold",color:'#7f8c8d'}}>Coupons</Text>
+          </View>
+         </View>
+
           <View style={{padding:10,}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Summary</Text>
+            <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>Summary</Text>
             <Text>{this.props.item.description}</Text>
           </View>
 
           <View style={{padding:10}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Images</Text>
+            <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>Images</Text>
             <Text>Swipe for more photos</Text>
           </View>
           <View>
@@ -253,7 +288,7 @@ render() {
 
 
           <View style={{padding:10,}}>
-            <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Hours</Text>
+            <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>Hours</Text>
 
             <View style={{flexDirection:'row',paddingLeft:6}}>
               <View style={{width:screenWidth / 3.5}}>
@@ -276,51 +311,6 @@ render() {
               <Text>{this.state.sundayHours}</Text>
               </View>
             </View>
-          </View>
-
-          <View style={{marginBottom:14}}>
-          <Button
-            raised
-            iconRight
-            borderRadius={5}
-            icon={{name: 'phone'}}
-            fontFamily="oswald-bold"
-            fontSize={18}
-            buttonStyle={{marginBottom:5,}}
-            backgroundColor="#2bc064"
-            title={this.state.phoneNumberString}
-            onPress={() => Communications.phonecall(this.props.item.phone, true)}
-          />
-          </View>
-
-          <View style={{marginBottom:14}}>
-          <Button
-            raised
-            iconRight
-            borderRadius={5}
-            icon={{name: 'chevron-right'}}
-            fontFamily="oswald-bold"
-            fontSize={18}
-            buttonStyle={{marginBottom:5,}}
-            backgroundColor="#8e44ad"
-            title='View Menu'
-            onPress={() => Actions.MenuDetail({menu:this.props.item.menu})}
-          />
-          </View>
-
-          <View style={{marginBottom:14}}>
-          <Button
-            raised
-            iconRight
-            borderRadius={5}
-            icon={{name: 'chevron-right'}}
-            fontFamily="oswald-bold"
-            fontSize={18}
-            buttonStyle={{marginBottom:5}}
-            backgroundColor="#34495e"
-            title='Coupons'
-            onPress={() => Actions.CouponDetail({coupons:this.props.item.coupons})}
-          />
           </View>
 
           <View>
@@ -369,7 +359,7 @@ render() {
 
 
           <View style={{padding:10,}}>
-              <Text style={{fontSize:20,fontWeight:'bold',fontFamily:'oswald-bold',color:'#000000'}}>Address</Text>
+              <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>Address</Text>
               <Text style={{paddingLeft:6}}>{this.props.item.address}</Text>
           </View>
 

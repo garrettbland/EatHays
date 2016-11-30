@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from './actions';
+import {Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Actions, Scene, Router} from 'react-native-router-flux';
 import Drawer from './components/drawer.js';
@@ -22,7 +23,7 @@ import OwnerPaymentHistory from './scenes/OwnerPaymentHistory.js';
 import OwnerPaymentDetails from './scenes/OwnerPaymentDetails.js';
 import CouponDetail from './scenes/CouponDetail.js';
 
-const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:"#c0392b",borderBottomWidth:4};
+const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:Platform.OS === 'ios'? "#c0392b" : "#b03427",borderBottomWidth:4,shadowColor: '#000000', shadowOpacity: 0.9, shadowRadius: 10,};
 const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular',fontSize:20};
 
 const toggleDrawer = () => Actions.refresh({key: 'drawer', open: value => !value });
