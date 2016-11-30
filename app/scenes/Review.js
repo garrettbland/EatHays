@@ -35,6 +35,7 @@ class Review extends Component {
           borderRadius={5}
           icon={{name: 'edit'}}
           title='Write Review'
+          fontFamily="oswald-bold"
           backgroundColor="#3498db"
           onPress={() => Actions.ReviewDetail()}
         />

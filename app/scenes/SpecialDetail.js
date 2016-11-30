@@ -136,7 +136,7 @@ class SpecialDetail extends Component {
                   raised
                   iconRight
                   borderRadius={5}
-                  icon={{name: 'chevron-right'}}
+                  icon={{name: 'edit'}}
                   fontFamily="oswald-bold"
                   fontSize={18}
                   buttonStyle={{marginBottom:5}}

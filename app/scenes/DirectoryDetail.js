@@ -243,7 +243,7 @@ render() {
               color='#2bc064'
               onPress={() => Communications.phonecall(this.props.item.phone, true)}
               />
-              <Text style={{fontFamily:"oswald-bold",color:'#7f8c8d'}}>Call</Text>
+              <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>Call</Text>
           </View>
           <View style={{width:screenWidth/3,alignItems:'center'}}>
               <Icon
@@ -254,7 +254,7 @@ render() {
               color='#8e44ad'
               onPress={() => Actions.MenuDetail({menu:this.props.item.menu})}
               />
-              <Text style={{fontFamily:"oswald-bold",color:'#7f8c8d'}}>Menu</Text>
+              <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>Menu</Text>
           </View>
           <View style={{width:screenWidth/3,alignItems:'center'}}>
               <Icon
@@ -265,7 +265,7 @@ render() {
               color='#f50'
               onPress={() => Actions.CouponDetail({coupons:this.props.item.coupons})}
               />
-              <Text style={{fontFamily:"oswald-bold",color:'#7f8c8d'}}>Coupons</Text>
+              <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>Coupons</Text>
           </View>
          </View>
 
@@ -344,7 +344,7 @@ render() {
           raised
           iconRight
           borderRadius={5}
-          icon={{name: 'chevron-right'}}
+          icon={{name: 'edit'}}
           fontFamily="oswald-bold"
           fontSize={18}
           buttonStyle={{marginBottom:5,}}
