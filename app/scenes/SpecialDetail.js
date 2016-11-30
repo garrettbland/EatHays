@@ -10,13 +10,9 @@ import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 import Image from 'react-native-image-progress';
 import {
-  StyleSheet,
   Text,
   View,
-  Alert,
-  ActivityIndicator,
   Dimensions,
-  ScrollView,
   Platform,
   ListView,
 } from 'react-native';
@@ -25,7 +21,6 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 class SpecialDetail extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -82,7 +77,6 @@ class SpecialDetail extends Component {
           _key: child.key,
         });
       });
-
       var stringify = JSON.stringify(items);
       this.setState({
         items:stringify.toString()
@@ -109,41 +103,48 @@ class SpecialDetail extends Component {
              renderBackground={() => <Image source={{ uri: this.props.background, width: window.width, height: screenHeight / 2 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>}
              contentBackgroundColor="#ffffff"
              parallaxHeaderHeight={screenHeight / 2}>
-             <View style={{height:10,backgroundColor:'#c0392b',}}></View>
+             <View style={{height:10,backgroundColor:'#c0392b'}}>
+             </View>
              <View>
                <View style={{flex: 1, paddingTop:12,alignItems: 'center', justifyContent: 'center' }}>
-                  <Image resizeMode={'contain'} source={{ uri: this.props.profile, width: screenWidth /2, height: 100 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})} indicator={ActivityIndicator}/>
+                  <Image resizeMode={'contain'} source={{ uri: this.props.profile, width: screenWidth /2, height: 100 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>
                </View>
-               <Text style={{fontSize: 40,textAlign: 'center',margin:5,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
-                  {this.props.title} {this.props.day} Special
-               </Text>
-               <Text style={{fontSize:screenWidth / 15,fontFamily:'oswald-regular',color:'#c0392b',textAlign:'center',padding:5,paddingBottom:15}}>
-                  {this.props.specialDescription}
-               </Text>
-               <Button
-                  raised
-                  iconRight
-                  borderRadius={5}
-                  icon={{name: 'chevron-right'}}
-                  fontFamily="oswald-bold"
-                  fontSize={18}
-                  buttonStyle={{marginBottom:10}}
-                  backgroundColor="#2bc064"
-                  title='View Restaurant'
-                  onPress={() => Actions.DirectoryDetail({title:this.props.title,item,specialHashTag:this.props.special})}
-                />
-                <Button
-                  raised
-                  iconRight
-                  borderRadius={5}
-                  icon={{name: 'edit'}}
-                  fontFamily="oswald-bold"
-                  fontSize={18}
-                  buttonStyle={{marginBottom:5}}
-                  backgroundColor="#3498db"
-                  title='Review this meal'
-                  onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,specialHashTag:this.props.special,fromSpecial:true})}
-                />
+               <View>
+                 <Text style={{fontSize: 40,textAlign: 'center',margin:5,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+                    {this.props.title} {this.props.day} Special
+                 </Text>
+               </View>
+               <View>
+                 <Text style={{fontSize:screenWidth / 15,fontFamily:'oswald-regular',color:'#c0392b',textAlign:'center',padding:5,paddingBottom:15}}>
+                    {this.props.specialDescription}
+                 </Text>
+               </View>
+               <View>
+                 <Button
+                    raised
+                    iconRight
+                    borderRadius={5}
+                    icon={{name: 'chevron-right'}}
+                    fontFamily="oswald-bold"
+                    fontSize={18}
+                    buttonStyle={{marginBottom:10}}
+                    backgroundColor="#2bc064"
+                    title='View Restaurant'
+                    onPress={() => Actions.DirectoryDetail({title:this.props.title,item,specialHashTag:this.props.special})}
+                  />
+                  <Button
+                    raised
+                    iconRight
+                    borderRadius={5}
+                    icon={{name: 'edit'}}
+                    fontFamily="oswald-bold"
+                    fontSize={18}
+                    buttonStyle={{marginBottom:5}}
+                    backgroundColor="#3498db"
+                    title='Review this meal'
+                    onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,specialHashTag:this.props.special,fromSpecial:true})}
+                  />
+                </View>
              </View>
         </ParallaxScrollView>
       </View>

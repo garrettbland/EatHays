@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 
 class MapDetail extends Component {
-
   constructor(props) {
     super(props);
     this.state = { loading:true };

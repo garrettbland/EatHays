@@ -34,14 +34,18 @@ class ReviewFullList extends Component {
     return (
       <View style={{paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#ffffff',flex:1}}>
         <ScrollView>
-          <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
-            {this.props.restaurantTitle} Reviews
-          </Text>
-          <ListView
-            dataSource={this.state.reviewsDataSource}
-            renderRow={this._renderItem.bind(this)}
-            enableEmptySections={true}
-          />
+          <View>
+            <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+              {this.props.restaurantTitle} Reviews
+            </Text>
+          </View>
+          <View>
+            <ListView
+              dataSource={this.state.reviewsDataSource}
+              renderRow={this._renderItem.bind(this)}
+              enableEmptySections={true}
+            />
+          </View>
         </ScrollView>
       </View>
     );
@@ -63,39 +67,47 @@ class ReviewFullList extends Component {
                 selectedStar={(rating) => this.onStarRatingPress(rating)}
               />
             </View>
-            <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-                No Reviews yet, be the first!
-            </Text>
-            <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
-                No sign up required
-            </Text>
+            <View>
+              <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+                  No Reviews yet, be the first!
+              </Text>
+            </View>
+            <View>
+              <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
+                  No sign up required
+              </Text>
+            </View>
            </Card>
         </View>
-      )
+      );
     }else{
-          return (
-            <View>
-              <Card>
-                <View style={{width:50}}>
-                  <StarRating
-                    disabled={true}
-                    maxStars={5}
-                    rating={item.rate}
-                    starColor={'#FFD700'}
-                    emptyStarColor={'#bdc3c7'}
-                    starSize={20}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                  />
-                </View>
-               <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-                  {item.review}
-               </Text>
-               <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
-                  {item.name} on {item.date}
-               </Text>
-               </Card>
+      return (
+        <View>
+          <Card>
+            <View style={{width:50}}>
+              <StarRating
+                disabled={true}
+                maxStars={5}
+                rating={item.rate}
+                starColor={'#FFD700'}
+                emptyStarColor={'#bdc3c7'}
+                starSize={20}
+                selectedStar={(rating) => this.onStarRatingPress(rating)}
+              />
             </View>
-        );
+            <View>
+              <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+                {item.review}
+              </Text>
+            </View>
+            <View>
+              <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
+                {item.name} on {item.date}
+              </Text>
+            </View>
+          </Card>
+        </View>
+      );
     }
   }
 }

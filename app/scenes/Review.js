@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 
 class Review extends Component {
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,20 +24,26 @@ class Review extends Component {
   render() {
     return (
       <View style={{flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: '#FFFFFF'}}>
-        <Icon name="check-circle" style={{fontSize:50, color:"#c0392b"}}></Icon>
-        <Text style={{fontSize: 12,textAlign: 'center',margin: 10}}>
-          All data and information provided will be reviewed before published. We reserve the right to right to remove any reviews.
-          We encourage you to write a constructive review about the food, service, price, ect. Thank you!
-        </Text>
-        <Button
-          raised
-          borderRadius={5}
-          icon={{name: 'edit'}}
-          title='Write Review'
-          fontFamily="oswald-bold"
-          backgroundColor="#3498db"
-          onPress={() => Actions.ReviewDetail()}
-        />
+        <View>
+          <Icon name="check-circle" style={{fontSize:50, color:"#c0392b"}}/>
+        </View>
+        <View>
+          <Text style={{fontSize: 12,textAlign: 'center',margin: 10}}>
+            All data and information provided will be reviewed before published. We reserve the right to right to remove any reviews.
+            We encourage you to write a constructive review about the food, service, price, ect. Thank you!
+          </Text>
+        </View>
+        <View>
+          <Button
+            raised
+            borderRadius={5}
+            icon={{name: 'edit'}}
+            title='Write Review'
+            fontFamily="oswald-bold"
+            backgroundColor="#3498db"
+            onPress={() => Actions.ReviewDetail()}
+          />
+        </View>
       </View>
     );
   }

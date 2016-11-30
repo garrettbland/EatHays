@@ -23,6 +23,21 @@ import {
 
 class ReviewDetail extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      starCount: 2.5,
+      restaurantTitle:"",
+      name:"",
+      restaurant:"",
+      review:"",
+      phoneNumber:"",
+      loading:false,
+      firsReview:true
+    };
+    this.itemsRef = this.getRef().child('reviews');
+  }
+
   componentDidMount(){
     MessageBarManager.registerMessageBar(this.refs.alert);
 
@@ -52,21 +67,6 @@ class ReviewDetail extends Component {
         phoneNumber:"",
       });
     }
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      starCount: 2.5,
-      restaurantTitle:"",
-      name:"",
-      restaurant:"",
-      review:"",
-      phoneNumber:"",
-      loading:false,
-      firsReview:true
-    };
-    this.itemsRef = this.getRef().child('reviews');
   }
 
   onStarRatingPress(rating) {
@@ -148,47 +148,57 @@ class ReviewDetail extends Component {
                 />
               </View>
             </View>
-            <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Name</FormLabel>
-            <FormInput placeholder="Your name" value={this.state.name} onChangeText={(text) => this.setState({name:text})}/>
+            <View>
+              <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Name</FormLabel>
+              <FormInput placeholder="Your name" value={this.state.name} onChangeText={(text) => this.setState({name:text})}/>
+            </View>
+            <View>
             <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Restaurant</FormLabel>
-            {this.state.fromSpecial &&
-              <FormInput placeholder="Where did you eat at?" editable={false} value={this.state.restaurantTitle  + this.state.specialHashTag} onChangeText={() => console.log("TEST")}/>
-            }
-            {!this.state.fromSpecial &&
-              <FormInput placeholder="Where did you eat at?" value={this.state.restaurant} onChangeText={(text) => this.setState({restaurant:text})}/>
-            }
-            <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Review</FormLabel>
-            <View style={{marginBottom:20}}>
+              {this.state.fromSpecial &&
+                <FormInput placeholder="Where did you eat at?" editable={false} value={this.state.restaurantTitle  + this.state.specialHashTag} onChangeText={() => console.log("TEST")}/>
+              }
+              {!this.state.fromSpecial &&
+                <FormInput placeholder="Where did you eat at?" value={this.state.restaurant} onChangeText={(text) => this.setState({restaurant:text})}/>
+              }
+            </View>
+            <View>
+              <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Review</FormLabel>
               <FormInput
                 value={this.state.review}
-                 multiline = {true}
-                 placeholder="Share your thoughts and opinions"
-                 onChangeText={(text) => this.setState({review:text})}
+                multiline = {true}
+                placeholder="Share your thoughts and opinions"
+                onChangeText={(text) => this.setState({review:text})}
               />
+            </View>
+            <View style={{marginBottom:20}}>
               <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Phone Number (not required)</FormLabel>
               <FormInput
                 value={this.state.phoneNumber}
-                 placeholder="Enter your number for a chance to win prizes!"
-                 onChangeText={(text) => this.setState({phoneNumber:text})}
+                placeholder="Enter your number for a chance to win prizes!"
+                onChangeText={(text) => this.setState({phoneNumber:text})}
               />
             </View>
-            <Button
-              raised
-              borderRadius={5}
-              fontFamily='oswald-bold'
-              icon={{name: 'mail'}}
-              title='Submit Review'
-              backgroundColor="#3498db"
-              onPress={() => this.submitReview()}
-            />
+            <View>
+              <Button
+                raised
+                borderRadius={5}
+                fontFamily='oswald-bold'
+                icon={{name: 'mail'}}
+                title='Submit Review'
+                backgroundColor="#3498db"
+                onPress={() => this.submitReview()}
+              />
+            </View>
           </View>
-          {this.state.loading &&
-            <ActivityIndicator
-              size="large"
-              color="#3498db"
-              style={{marginTop:15}}
-            />
-          }
+          <View>
+            {this.state.loading &&
+              <ActivityIndicator
+                size="large"
+                color="#3498db"
+                style={{marginTop:15}}
+              />
+            }
+          </View>
         </ScrollView>
         <MessageBarAlert ref="alert" />
       </View>

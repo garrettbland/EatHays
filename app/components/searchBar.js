@@ -6,7 +6,6 @@ const SearchBar = (props) => (
     <TextInput
       style={{flex: 1, height: 30, paddingHorizontal: 8, fontSize: 15, backgroundColor:'#FFFFFF', borderRadius:2,}}
       placeholder="Search..."
-      onChangeText={(text) => console.log('searching for ', text)}
     />
   </View>
 );

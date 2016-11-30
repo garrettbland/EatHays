@@ -1,40 +1,22 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Actions } from 'react-native-router-flux';
 import {List, ListItem} from 'react-native-elements';
-import firebaseApp from "../components/firebaseconfig.js";
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  Alert,
   ListView,
-  Dimensions,
   Platform,
   ScrollView,
 } from 'react-native';
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-
 class OwnerPaymentDetails extends Component {
 
   constructor(props) {
-     super(props);
-
-       this.state = {
-
-       };
-
-
-   }
-
+    super(props);
+    this.state = {};
+  }
 
   render() {
     const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
@@ -66,27 +48,29 @@ class OwnerPaymentDetails extends Component {
       },
     ]
     return (
-      <View style={styles.container}>
-      <ScrollView>
-        <Text style={styles.welcomeDay}>
-          Payment Details
-        </Text>
-        <View style={{paddingBottom:15}}>
-          <List>
-            {
-              list.map((item, i) => (
-                <ListItem
-                  key={i}
-                  titleStyle={titleStyle}
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  subtitleStyle={subtitleStyle}
-                  fontFamily="oswald-regular"
-                />
-              ))
-            }
-          </List>
-        </View>
+      <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+        <ScrollView>
+          <View>
+            <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+              Payment Details
+            </Text>
+          </View>
+          <View style={{paddingBottom:15}}>
+            <List>
+              {
+                list.map((item, i) => (
+                  <ListItem
+                    key={i}
+                    titleStyle={titleStyle}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    subtitleStyle={subtitleStyle}
+                    fontFamily="oswald-regular"
+                  />
+                ))
+              }
+            </List>
+          </View>
         </ScrollView>
       </View>
     );
@@ -95,40 +79,19 @@ class OwnerPaymentDetails extends Component {
   _renderItem(item) {
     const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
     const subtitleStyle = {color:'#95a5a6', fontFamily:'oswald-regular', fontSize:13};
-          return (
-            <View>
-                  <ListItem
-                    key={item._key}
-                    titleStyle={titleStyle}
-                    title={item.datePaid}
-                    subtitle={item.amountPaid + " - " + item.description}
-                    subtitleStyle={subtitleStyle}
-                  />
-            </View>
-          );
-      }
-
-
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop:Platform.OS === 'ios'? 64 : 54,
-    backgroundColor:'#e1e8ef',
-    flex:1,
-  },
-  welcomeDay: {
-    fontSize: 40,
-    textAlign: 'center',
-    margin: 10,
-    paddingTop:20,
-    paddingBottom:15,
-    fontFamily:'oswald-bold',
-    color:"black",
+    return (
+      <View>
+        <ListItem
+          key={item._key}
+          titleStyle={titleStyle}
+          title={item.datePaid}
+          subtitle={item.amountPaid + " - " + item.description}
+          subtitleStyle={subtitleStyle}
+        />
+      </View>
+    );
   }
-});
+}
 
 function mapStateToProps(state){
   return {

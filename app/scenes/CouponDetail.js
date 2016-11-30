@@ -17,7 +17,6 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 class Coupons extends Component {
-
   constructor(props) {
      super(props);
      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -26,10 +25,10 @@ class Coupons extends Component {
      };
    }
 
- _renderItem(item) {
-   if(item.active === false){
-     return(
-       <View></View>
+  _renderItem(item) {
+    if(item.active === false){
+      return(
+        <View></View>
      );
    }else if(item.active === true){
      return (

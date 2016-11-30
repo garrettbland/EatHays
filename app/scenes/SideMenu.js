@@ -6,7 +6,6 @@ import SideMenuButtons from '../components/sideMenuButtons.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -18,40 +17,29 @@ const version = "1.6.1";
 class Index extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.centerText}>
-          {cutleryIcon}
-        </Text>
-        <SideMenuButtons/>
-        <Text style={styles.centerText}>
-          Eat Hays
-        </Text>
-        <Text style={{color:'#FFFFFF',fontSize:13,fontFamily:'oswald-regular',textAlign: 'center',}}>
-          {version}
-        </Text>
+      <View style={{flex: 1,backgroundColor: '#c0392b'}}>
+        <View>
+          <Text style={{fontSize: 20,textAlign: 'center',marginTop: 25,color:"#FFFFFF",fontFamily:'oswald-bold'}}>
+            {cutleryIcon}
+          </Text>
+        </View>
+        <View>
+          <SideMenuButtons/>
+        </View>
+        <View>
+          <Text style={{fontSize: 20,textAlign: 'center',marginTop: 25,color:"#FFFFFF",fontFamily:'oswald-bold'}}>
+            Eat Hays
+          </Text>
+        </View>
+        <View>
+          <Text style={{color:'#FFFFFF',fontSize:13,fontFamily:'oswald-regular',textAlign: 'center',}}>
+            {version}
+          </Text>
+        </View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#c0392b',
-  },
-  centerText: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginTop: 25,
-    color:"#FFFFFF",
-    fontFamily:'oswald-bold'
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 function mapStateToProps(state){
   return {

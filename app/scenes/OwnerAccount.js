@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import {Button, List, ListItem} from 'react-native-elements';
 import firebaseApp from "../components/firebaseconfig.js";
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   Alert,
   AsyncStorage,
   Platform,
@@ -20,12 +15,10 @@ import {
   Dimensions,
 } from 'react-native';
 
-const goToContact = () => Actions.Contact();
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 class OwnerAccount extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -36,19 +29,16 @@ class OwnerAccount extends Component {
       paymentDate:'Loading...',
       paymentDetails: 'Loading...',
       paymentHistory: 'Loading...',
-     };
-
+    };
   }
 
   componentWillMount(){
-
     AsyncStorage.getItem("owneremail").then((value) => {
       this.setState({"owneremail": value});
     }).then(res => {
       this.getServerInfo()
-    })
+    });
   }
-
 
   getRef() {
     return firebaseApp.database().ref();
@@ -60,11 +50,9 @@ class OwnerAccount extends Component {
   }
 
   listenForItems(itemsRef) {
-
     var asyncEmail = this.state.owneremail;
 
     itemsRef.orderByChild("ownerEmail").startAt(asyncEmail).endAt(asyncEmail).on('value', (snap) => {
-
       items = [];
       snap.forEach((child) => {
         items.push({
@@ -83,7 +71,6 @@ class OwnerAccount extends Component {
         });
       });
 
-
       this.setState({
         active: items[0].active,
         membershipStarted: items[0].membershipStarted,
@@ -97,12 +84,10 @@ class OwnerAccount extends Component {
         supportRep: items[0].supportRep,
         supportPhone: items[0].supportPhone,
       });
-
     });
   }
 
   signOut(){
-
     AsyncStorage.setItem("loggedin", "false");
     AsyncStorage.setItem("owneremail", "null");
 
@@ -116,18 +101,20 @@ class OwnerAccount extends Component {
   }
 
   render() {
-
     if(this.state.active === false){
       return (
-        <View style={styles.container}>
-        <ScrollView>
-            <Text style={styles.welcome}>
-              Your Account
-            </Text>
-            <Text style={{margin:10}}>
-              Your Account has been disabled. Please contact your support representative if this is an error.
-            </Text>
-
+        <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor: '#e1e8ef'}}>
+          <ScrollView>
+            <View>
+              <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+                Your Account
+              </Text>
+            </View>
+            <View>
+              <Text style={{margin:10}}>
+                Your Account has been disabled. Please contact your support representative if this is an error.
+              </Text>
+            </View>
             <View style={{flex:1,flexDirection:'row',marginLeft:10,paddingTop:15}}>
               <View style={{width:screenWidth/2}}>
                 <Text>Support Representative</Text>
@@ -153,124 +140,99 @@ class OwnerAccount extends Component {
             </View>
           </ScrollView>
         </View>
-      )
+      );
     }else{
-
-    const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
-    const subtitleStyle = {color:'#95a5a6', fontFamily:'oswald-regular', fontSize:13};
-    const paymentHistory = () => Actions.OwnerPaymentHistory({paymentHistory:this.state.paymentHistory})
-    const paymentDetails = () => Actions.OwnerPaymentDetails({monthlyCharge:this.state.monthlyCharge,paymentDate:this.state.paymentDate,paymentDetails:this.state.paymentDetails})
-    const list = [
-      {
-        title: 'Your restaurant',
-        subtitle:this.state.ownerRestaurant,
-        icon: 'thumb-up',
-        iconColor:'#c0392b',
-        fontFamily:"Verdana",
-        righticon:'',
-      },
-      {
-        title: 'Account Email',
-        subtitle:this.state.ownerEmail,
-        icon: 'map',
-        iconColor:'#c0392b',
-        fontFamily:'Times',
-        righticon:'',
-      },
-      {
-        title: 'Member Since',
-        subtitle:this.state.membershipStarted,
-        icon: 'edit',
-        iconColor:'#c0392b',
-        fontFamily:'Times',
-        righticon:'',
-      },
-      {
-        title: 'Payment Details',
-        subtitle:"View Details",
-        icon: 'group',
-        iconColor:'#c0392b',
-        fontFamily:'Oswald-bold',
-        righticon:'chevron-right',
-        buttonAction:paymentDetails,
-      },
-      {
-        title: 'Payment History',
-        subtitle:"View Details",
-        icon: 'group',
-        iconColor:'#c0392b',
-        fontFamily:'Oswald-bold',
-        righticon:'chevron-right',
-        buttonAction:paymentHistory,
-      },
-    ]
-    return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Text style={styles.welcome}>
-            Your Account
-          </Text>
-
-          <View style={{paddingBottom:15}}>
-            <List>
-              {
-                list.map((item, i) => (
-                  <ListItem
-                    key={i}
-                    titleStyle={titleStyle}
-                    onPress={item.buttonAction}
-                    title={item.title}
-                    subtitle={item.subtitle}
-                    subtitleStyle={subtitleStyle}
-                    rightIcon={item.righticon}
-                    fontFamily="oswald-regular"
-                  />
-                ))
-              }
-            </List>
-          </View>
-
-          <View style={{paddingBottom:15,paddingTop:15}}>
-            <Button
-              raised
-              borderRadius={5}
-              icon={{name: 'lock'}}
-              backgroundColor='#2bc064'
-              fontFamily='oswald-regular'
-              title={'Logout'}
-              onPress={() => this.signOut()}
-            />
-          </View>
-        </ScrollView>
-      </View>
-    );
-  }
+      const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
+      const subtitleStyle = {color:'#95a5a6', fontFamily:'oswald-regular', fontSize:13};
+      const paymentHistory = () => Actions.OwnerPaymentHistory({paymentHistory:this.state.paymentHistory})
+      const paymentDetails = () => Actions.OwnerPaymentDetails({monthlyCharge:this.state.monthlyCharge,paymentDate:this.state.paymentDate,paymentDetails:this.state.paymentDetails})
+      const list = [
+        {
+          title: 'Your restaurant',
+          subtitle:this.state.ownerRestaurant,
+          icon: 'thumb-up',
+          iconColor:'#c0392b',
+          fontFamily:"Verdana",
+          righticon:'',
+        },
+        {
+          title: 'Account Email',
+          subtitle:this.state.ownerEmail,
+          icon: 'map',
+          iconColor:'#c0392b',
+          fontFamily:'Times',
+          righticon:'',
+        },
+        {
+          title: 'Member Since',
+          subtitle:this.state.membershipStarted,
+          icon: 'edit',
+          iconColor:'#c0392b',
+          fontFamily:'Times',
+          righticon:'',
+        },
+        {
+          title: 'Payment Details',
+          subtitle:"View Details",
+          icon: 'group',
+          iconColor:'#c0392b',
+          fontFamily:'Oswald-bold',
+          righticon:'chevron-right',
+          buttonAction:paymentDetails,
+        },
+        {
+          title: 'Payment History',
+          subtitle:"View Details",
+          icon: 'group',
+          iconColor:'#c0392b',
+          fontFamily:'Oswald-bold',
+          righticon:'chevron-right',
+          buttonAction:paymentHistory,
+        },
+      ]
+      return (
+        <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor: '#e1e8ef'}}>
+          <ScrollView>
+            <View>
+              <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+                Your Account
+              </Text>
+            </View>
+            <View style={{paddingBottom:15}}>
+              <List>
+                {
+                  list.map((item, i) => (
+                    <ListItem
+                      key={i}
+                      titleStyle={titleStyle}
+                      onPress={item.buttonAction}
+                      title={item.title}
+                      subtitle={item.subtitle}
+                      subtitleStyle={subtitleStyle}
+                      rightIcon={item.righticon}
+                      fontFamily="oswald-regular"
+                    />
+                  ))
+                }
+              </List>
+            </View>
+            <View style={{paddingBottom:15,paddingTop:15}}>
+              <Button
+                raised
+                borderRadius={5}
+                icon={{name: 'lock'}}
+                backgroundColor='#2bc064'
+                fontFamily='oswald-regular'
+                title={'Logout'}
+                onPress={() => this.signOut()}
+              />
+            </View>
+          </ScrollView>
+        </View>
+      );
+    }
   }
 }
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop:Platform.OS === 'ios'? 64 : 54,
-    backgroundColor: '#e1e8ef',
-  },
-  welcome: {
-    fontSize: 40,
-    textAlign: 'center',
-    margin: 10,
-    paddingTop:20,
-    paddingBottom:15,
-    fontFamily:'oswald-bold',
-    color:"black",
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 function mapStateToProps(state){
   return {

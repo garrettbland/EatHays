@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
@@ -14,7 +13,6 @@ import {
   View,
   TouchableOpacity,
   ListView,
-  ActivityIndicator,
   Dimensions,
   ScrollView,
   Platform,
@@ -73,12 +71,16 @@ class Home extends Component {
     return (
       <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
-          <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
-            Deals of the Day
-          </Text>
-          <Text style={{textAlign: 'center',backgroundColor:"#c0392b",color:'white',fontFamily:'oswald-regular',fontSize:27}}>
-            {todayFormatted} Specials
-          </Text>
+          <View>
+            <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+              Deals of the Day
+            </Text>
+          </View>
+          <View>
+            <Text style={{textAlign: 'center',backgroundColor:"#c0392b",color:'white',fontFamily:'oswald-regular',fontSize:27}}>
+              {todayFormatted} Specials
+            </Text>
+          </View>
           <View style={{paddingBottom:15}}>
             <ListView
               dataSource={this.state.dataSource}
@@ -94,11 +96,10 @@ class Home extends Component {
   }
 
   _renderItem(item) {
-
     if(item.active === false){
       return (<View></View>);
     }else if(item.today.active === false){
-      return ( <View></View>);
+      return (<View></View>);
     }else{
       var descriptonString = item.today.description;
       var specialString = item.today.special;
@@ -130,23 +131,26 @@ class Home extends Component {
                     style={{height:75, width:125}}
                     source={{uri: item.profile}}
                     resizeMode={'contain'}
-                    indicator={ActivityIndicator}
                   />
                 </View>
               </View>
-              <Text style={{marginBottom: 10,paddingTop:15}}>
-                {newDescriptionString}
-              </Text>
-              <Button
-                small
-                borderRadius={0}
-                icon={{name: 'star'}}
-                backgroundColor='#2bc064'
-                fontFamily='oswald-regular'
-                buttonStyle={{marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                title={'VIEW DETAILS'}
-                onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.today.image,special:item.today.special,specialDescription:item.today.description,day:todayFormatted})}
-              />
+              <View>
+                <Text style={{marginBottom: 10,paddingTop:15}}>
+                  {newDescriptionString}
+                </Text>
+              </View>
+              <View>
+                <Button
+                  small
+                  borderRadius={0}
+                  icon={{name: 'star'}}
+                  backgroundColor='#2bc064'
+                  fontFamily='oswald-regular'
+                  buttonStyle={{marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                  title={'VIEW DETAILS'}
+                  onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.today.image,special:item.today.special,specialDescription:item.today.description,day:todayFormatted})}
+                />
+              </View>
             </Card>
           </TouchableOpacity>
         </View>
