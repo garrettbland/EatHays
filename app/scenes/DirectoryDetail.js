@@ -177,7 +177,7 @@ class DirectoryDetail extends Component {
                   name='map'
                   type='font-awesome'
                   color='#8e44ad'
-                  onPress={() => Actions.MenuDetail({menu:this.props.item.menu})}
+                  onPress={() => Actions.Tabbar({menu:this.props.item.menu})}
                 />
                 <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
                   Menu
@@ -233,7 +233,7 @@ class DirectoryDetail extends Component {
                   <Text>{this.state.saturday}</Text>
                   <Text >{this.state.sunday}</Text>
                 </View>
-                <View style={{width:screenWidth / 2}}>
+                <View style={{width:screenWidth / 1.6}}>
                   <Text>{this.state.mondayHours}</Text>
                   <Text>{this.state.tuesdayHours}</Text>
                   <Text>{this.state.wednesdaHours}</Text>
@@ -359,7 +359,7 @@ class DirectoryDetail extends Component {
                 selectedStar={(rating) => this.onStarRatingPress(rating)}
               />
             </View>
-            <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
+            <Text style={{color:'#000000',fontSize:15,marginBottom:15}}>
               {item.review}
             </Text>
             <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>

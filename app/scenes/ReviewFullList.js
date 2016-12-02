@@ -23,11 +23,6 @@ class ReviewFullList extends Component {
     this.state = {
      reviewsDataSource: ds.cloneWithRows(dataSourceReversed),
     };
-    this.itemsRef = this.getRef().child("directoryStatistics");
-  }
-
-  getRef() {
-    return firebaseApp.database().ref();
   }
 
   render() {
@@ -39,7 +34,7 @@ class ReviewFullList extends Component {
               {this.props.restaurantTitle} Reviews
             </Text>
           </View>
-          <View>
+          <View style={{paddingBottom:15}}>
             <ListView
               dataSource={this.state.reviewsDataSource}
               renderRow={this._renderItem.bind(this)}
@@ -95,16 +90,12 @@ class ReviewFullList extends Component {
                 selectedStar={(rating) => this.onStarRatingPress(rating)}
               />
             </View>
-            <View>
-              <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-                {item.review}
-              </Text>
-            </View>
-            <View>
-              <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
-                {item.name} on {item.date}
-              </Text>
-            </View>
+            <Text style={{color:'#000000',fontSize:15,marginBottom:15}}>
+              {item.review}
+            </Text>
+            <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
+              {item.name} on {item.date}
+            </Text>
           </Card>
         </View>
       );
