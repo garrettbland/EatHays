@@ -63,7 +63,7 @@ class EatHaysRouter extends Component {
                 <Scene key="OwnerPaymentHistory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={OwnerPaymentHistory} type="push" title="Payment History" />
                 <Scene key="About" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={About} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="About" />
                 <Scene key="Contact" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={Contact} type="push" title="Contact" />
-                    <Scene key="Tabbar" tabs={true}>
+                    <Scene key="Tabbar" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle}  tabs={true}>
                         <Scene key="Appetizers" component={Appetizers} title="Appetizers" icon={TabIcon} navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true}/>
                         <Scene key="Sides" component={Appetizers} title="Sides"  icon={TabIcon} navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true}/>
                         <Scene key="Entrees" component={Appetizers} title="Entrees" icon={TabIcon} navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true}/>

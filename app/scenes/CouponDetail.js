@@ -47,7 +47,7 @@ class Coupons extends Component {
 
   render() {
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54}}>
+      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ListView
           style={{}}
           dataSource={this.state.couponDataSource}
