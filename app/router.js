@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from './actions';
 import {Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Actions, Scene, Router, TabView} from 'react-native-router-flux';
+import {Actions, Scene, Router} from 'react-native-router-flux';
 import Drawer from './components/drawer.js';
 import Home from './scenes/Home.js';
 import SpecialDetail from './scenes/SpecialDetail.js';
@@ -15,7 +15,7 @@ import About from './scenes/About.js';
 import Contact from './scenes/Contact.js';
 import DirectoryDetail from './scenes/DirectoryDetail.js';
 import MapDetail from './scenes/MapDetail.js';
-import Appetizers from './scenes/Menu/MenuDetail.js';
+import MenuIndex from './scenes/Menu/MenuIndex.js';
 import ReviewFullList from './scenes/ReviewFullList.js';
 import OwnerLogin from './scenes/OwnerLogin.js';
 import OwnerAccount from './scenes/OwnerAccount.js';
@@ -25,13 +25,6 @@ import CouponDetail from './scenes/CouponDetail.js';
 import {
   Text,
 } from 'react-native';
-class TabIcon extends React.Component {
-    render(){
-        return (
-            <Text style={{color: this.props.selected ? 'red' :'black'}}>{this.props.title}</Text>
-        );
-    }
-}
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:Platform.OS === 'ios'? "#c0392b" : "#b03427",borderBottomWidth:4,shadowColor: '#000000', shadowOpacity: 0.9, shadowRadius: 10,};
 const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular',fontSize:20};
@@ -63,13 +56,7 @@ class EatHaysRouter extends Component {
                 <Scene key="OwnerPaymentHistory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={OwnerPaymentHistory} type="push" title="Payment History" />
                 <Scene key="About" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={About} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="About" />
                 <Scene key="Contact" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={Contact} type="push" title="Contact" />
-                    <Scene key="Tabbar" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle}  tabs={true}>
-                        <Scene key="Appetizers" component={Appetizers} title="Appetizers" icon={TabIcon} navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true}/>
-                        <Scene key="Sides" component={Appetizers} title="Sides"  icon={TabIcon} navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true}/>
-                        <Scene key="Entrees" component={Appetizers} title="Entrees" icon={TabIcon} navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true}/>
-                        <Scene key="Drinks" component={Appetizers} title="Drinks" icon={TabIcon} navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true}/>
-                        <Scene key="Desserts" component={Appetizers} title="Desserts" icon={TabIcon} navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true}/>
-                    </Scene>
+                <Scene key="MenuIndex" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={MenuIndex} type="push" title="Menu" />
               </Scene>
           </Scene>
       </Router>

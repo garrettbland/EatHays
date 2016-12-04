@@ -16,19 +16,19 @@ import {
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-class Appetizers extends Component {
+class Entrees extends Component {
 
   constructor(props) {
      super(props);
      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-     if(this.props.menu.sides.active === true){
+     if(this.props.menu.entrees.active === true){
        this.state = {
-         appetizerDataSource: ds.cloneWithRows(this.props.menu.appetizers.list),
+         entreesDataSource: ds.cloneWithRows(this.props.menu.entrees.list),
        };
      }
    }
 
- _renderAppetizer(item) {
+ _renderEntree(item) {
       return (
         <View>
           <View style={{flexDirection:'row'}}>
@@ -46,35 +46,34 @@ class Appetizers extends Component {
       );
  }
 
- render() {
-   if(this.props.menu.sides.active === false){
-     return (
-       <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#e1e8ef'}}>
-         <View>
-           <Icon name="meh-o" style={{fontSize:50, color:"#c0392b"}}/>
-         </View>
-         <View>
-           <Text style={{fontFamily:'oswald-bold',color:'#7f8c8d'}}>No active Appetizers</Text>
-         </View>
-       </View>
-     )
-   }else{
-   return (
-     <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
-       <ScrollView>
-         <ListView
-           dataSource={this.state.appetizerDataSource}
-           enableEmptySections={true}
-           renderRow={this._renderAppetizer.bind(this)}
-           initialListSize={5}
-         />
-            <Text>Ative: </Text>
-       </ScrollView>
-     </View>
-   );
- }
- }
+  render() {
+    if(this.props.menu.entrees.active === false){
+      return (
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#e1e8ef'}}>
+          <View>
+            <Icon name="meh-o" style={{fontSize:50, color:"#c0392b"}}/>
+          </View>
+          <View>
+            <Text style={{fontFamily:'oswald-bold',color:'#7f8c8d'}}>No active Entrees</Text>
+          </View>
+        </View>
+      )
+    }else{
+    return (
+      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+        <ScrollView>
+          <ListView
+            dataSource={this.state.entreesDataSource}
+            enableEmptySections={true}
+            renderRow={this._renderEntree.bind(this)}
+            initialListSize={5}
+          />
+        </ScrollView>
+      </View>
+    );
+  }
+  }
 }
 
 
-export default Appetizers;
+export default Entrees;

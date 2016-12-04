@@ -106,7 +106,7 @@ class SpecialDetail extends Component {
              <View style={{height:10,backgroundColor:'#c0392b'}}>
              </View>
              <View>
-               <View style={{flex: 1, paddingTop:12,alignItems: 'center', justifyContent: 'center' }}>
+               <View style={{ paddingTop:12,alignItems: 'center', justifyContent: 'center' }}>
                   <Image resizeMode={'contain'} source={{ uri: this.props.profile, width: screenWidth /2, height: 100 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>
                </View>
                <View>

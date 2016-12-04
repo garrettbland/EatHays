@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Card } from 'react-native-elements';
 import {
   Text,
@@ -16,17 +16,19 @@ import {
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-class MenuDetail extends Component {
+class Sides extends Component {
 
   constructor(props) {
      super(props);
      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-     this.state = {
-       appetizerDataSource: ds.cloneWithRows(this.props.menu.appetizers.list),
-     };
+     if(this.props.menu.sides.active === true){
+       this.state = {
+         sidesDataSource: ds.cloneWithRows(this.props.menu.sides.list),
+       };
+     }
    }
 
- _renderAppetizer(item) {
+ _renderSide(item) {
       return (
         <View>
           <View style={{flexDirection:'row'}}>
@@ -45,21 +47,34 @@ class MenuDetail extends Component {
  }
 
   render() {
+    if(this.props.menu.sides.active === false){
+      return (
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#e1e8ef'}}>
+          <View>
+            <Icon name="meh-o" style={{fontSize:50, color:"#c0392b"}}/>
+          </View>
+          <View>
+            <Text style={{fontFamily:'oswald-bold',color:'#7f8c8d'}}>No active Sides</Text>
+          </View>
+        </View>
+      )
+    }else{
     return (
       <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
-          <Text>Appetizers</Text>
+               <Text>Ative: {this.props.menu.sides.active}</Text>
           <ListView
-            dataSource={this.state.appetizerDataSource}
+            dataSource={this.state.sidesDataSource}
             enableEmptySections={true}
-            renderRow={this._renderAppetizer.bind(this)}
+            renderRow={this._renderSide.bind(this)}
             initialListSize={5}
           />
         </ScrollView>
       </View>
     );
   }
+  }
 }
 
 
-export default MenuDetail;
+export default Sides;

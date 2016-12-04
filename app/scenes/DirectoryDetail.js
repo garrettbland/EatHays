@@ -177,7 +177,7 @@ class DirectoryDetail extends Component {
                   name='map'
                   type='font-awesome'
                   color='#8e44ad'
-                  onPress={() => Actions.Tabbar({menu:this.props.item.menu})}
+                  onPress={() => Actions.MenuIndex({menu:this.props.item.menu})}
                 />
                 <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
                   Menu
