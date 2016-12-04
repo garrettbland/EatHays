@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Card } from 'react-native-elements';
+import shuffle from 'shuffle-array';
 import {
   Text,
   View,
@@ -15,6 +15,7 @@ import {
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
+const funWords = ['Drat','Shucks','Dang','Cripes','Gosh-Darn','Nuts','Kod-Swallop','Nonsense','Tarnation'];
 
 class Sides extends Component {
 
@@ -48,13 +49,14 @@ class Sides extends Component {
 
   render() {
     if(this.props.menu.sides.active === false){
+      var randomWord = shuffle(funWords);
       return (
         <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#e1e8ef'}}>
           <View>
             <Icon name="meh-o" style={{fontSize:50, color:"#c0392b"}}/>
           </View>
           <View>
-            <Text style={{fontFamily:'oswald-bold',color:'#7f8c8d'}}>No active Sides</Text>
+            <Text style={{fontFamily:'oswald-bold',color:'#7f8c8d'}}>{randomWord[0]}. No active Sides</Text>
           </View>
         </View>
       )
