@@ -25,27 +25,35 @@ class Appetizers extends Component {
      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
      if(this.props.menu.sides.active === true){
        this.state = {
-         appetizerDataSource: ds.cloneWithRows(this.props.menu.appetizers.list),
+         appetizerDataSource: ds.cloneWithRows(this.props.menu.appetizers.items),
        };
      }
    }
 
  _renderAppetizer(item) {
-      return (
-        <View>
-          <View style={{flexDirection:'row'}}>
-            <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-              {item.title}
-            </Text>
-            <Text style={{color:'#000000',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-              ........{item.price}
-            </Text>
-          </View>
-            <Text style={{color:'#010101',fontFamily:'oswald-regular',fontSize:10,marginBottom:6}}>
-              {item.description}
-            </Text>
-        </View>
-      );
+   return (
+     <View>
+       <View style={{flex:1,padding:10,flexDirection:'row',justifyContent:'space-around'}}>
+         <View style={{width:screenWidth/1.5,flexDirection:'column'}}>
+           <View>
+             <Text style={{fontFamily:'oswald-regular',fontSize:screenWidth/20,color:'#000000'}}>
+               {item.title}
+             </Text>
+           </View>
+           <View>
+             <Text style={{fontSize:screenWidth/28,color:'#7f8c8d'}}>
+               {item.description}
+             </Text>
+           </View>
+         </View>
+         <View style={{width:screenWidth/4,alignItems:'center',justifyContent:'center'}}>
+           <Text style={{fontFamily:'oswald-regular',fontSize:screenWidth/20,color:'#c0392b'}}>
+             ${item.price}
+           </Text>
+         </View>
+       </View>
+     </View>
+   );
  }
 
  render() {
@@ -63,15 +71,13 @@ class Appetizers extends Component {
      )
    }else{
    return (
-     <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+     <View style={{flex: 1,backgroundColor:'#e1e8ef'}}>
        <ScrollView>
          <ListView
            dataSource={this.state.appetizerDataSource}
            enableEmptySections={true}
            renderRow={this._renderAppetizer.bind(this)}
-           initialListSize={5}
          />
-            <Text>Ative: </Text>
        </ScrollView>
      </View>
    );

@@ -111,20 +111,20 @@ class OwnerAccount extends Component {
               </Text>
             </View>
             <View>
-              <Text style={{margin:10}}>
+              <Text style={{margin:10,}}>
                 Your Account has been disabled. Please contact your support representative if this is an error.
               </Text>
             </View>
             <View style={{flex:1,flexDirection:'row',marginLeft:10,paddingTop:15}}>
               <View style={{width:screenWidth/2}}>
-                <Text>Support Representative</Text>
-                <Text>Support Phone</Text>
-                <Text>Support Email</Text>
+                <Text stlye={{color:'#7f8c8d'}}>Support Representative</Text>
+                <Text stlye={{color:'#7f8c8d'}}>Support Phone & Text</Text>
+                <Text stlye={{color:'#7f8c8d'}}>Support Email</Text>
               </View>
               <View style={{width:screenWidth/2}}>
-                <Text style={{fontWeight:'bold'}}>{this.state.supportRep}</Text>
-                <Text style={{fontWeight:'bold'}}>{this.state.supportPhone}</Text>
-                <Text style={{fontWeight:'bold'}}>{this.state.supportEmail}</Text>
+                <Text style={{fontWeight:'bold',color:'#7f8c8d'}}>{this.state.supportRep}</Text>
+                <Text style={{fontWeight:'bold',color:'#7f8c8d'}}>{this.state.supportPhone}</Text>
+                <Text style={{fontWeight:'bold',color:'#7f8c8d'}}>{this.state.supportEmail}</Text>
               </View>
             </View>
             <View style={{paddingBottom:15,paddingTop:35}}>
@@ -215,6 +215,18 @@ class OwnerAccount extends Component {
                   ))
                 }
               </List>
+            </View>
+            <View style={{flex:1,flexDirection:'row',marginLeft:15,paddingTop:15}}>
+              <View style={{width:screenWidth/2}}>
+                <Text stlye={{color:'#7f8c8d'}}>Support Representative</Text>
+                <Text stlye={{color:'#7f8c8d'}}>Support Phone & Text</Text>
+                <Text stlye={{color:'#7f8c8d'}}>Support Email</Text>
+              </View>
+              <View style={{width:screenWidth/2}}>
+                <Text style={{fontWeight:'bold',color:'#7f8c8d'}}>{this.state.supportRep}</Text>
+                <Text style={{fontWeight:'bold',color:'#7f8c8d'}}>{this.state.supportPhone}</Text>
+                <Text style={{fontWeight:'bold',color:'#7f8c8d'}}>{this.state.supportEmail}</Text>
+              </View>
             </View>
             <View style={{paddingBottom:15,paddingTop:15}}>
               <Button

@@ -24,27 +24,35 @@ class Drinks extends Component {
      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
      if(this.props.menu.drinks.active === true){
        this.state = {
-         drinksDataSource: ds.cloneWithRows(this.props.menu.drinks.list),
+         drinksDataSource: ds.cloneWithRows(this.props.menu.drinks.items),
        };
      }
    }
 
  _renderDrinks(item) {
-      return (
-        <View>
-          <View style={{flexDirection:'row'}}>
-            <Text style={{color:'#c0392b',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-              {item.title}
-            </Text>
-            <Text style={{color:'#000000',fontFamily:'oswald-regular',fontSize:15,marginBottom:6}}>
-              ........{item.price}
-            </Text>
-          </View>
-            <Text style={{color:'#010101',fontFamily:'oswald-regular',fontSize:10,marginBottom:6}}>
-              {item.description}
-            </Text>
-        </View>
-      );
+   return (
+     <View>
+       <View style={{flex:1,padding:10,flexDirection:'row',justifyContent:'space-around'}}>
+         <View style={{width:screenWidth/1.5,flexDirection:'column'}}>
+           <View>
+             <Text style={{fontFamily:'oswald-regular',fontSize:screenWidth/20,color:'#000000'}}>
+               {item.title}
+             </Text>
+           </View>
+           <View>
+             <Text style={{fontSize:screenWidth/28,color:'#7f8c8d'}}>
+               {item.description}
+             </Text>
+           </View>
+         </View>
+         <View style={{width:screenWidth/4,alignItems:'center',justifyContent:'center'}}>
+           <Text style={{fontFamily:'oswald-regular',fontSize:screenWidth/20,color:'#c0392b'}}>
+             ${item.price}
+           </Text>
+         </View>
+       </View>
+     </View>
+   );
  }
 
   render() {
@@ -56,19 +64,18 @@ class Drinks extends Component {
             <Icon name="meh-o" style={{fontSize:50, color:"#c0392b"}}/>
           </View>
           <View>
-            <Text style={{fontFamily:'oswald-bold',color:'#7f8c8d'}}>{randomWord[0]}. No active Drinks</Text>
+            <Text style={{fontFamily:'oswald-bold',color:'#7f8c8d'}}>{randomWord[0]}. Currently no Drinks</Text>
           </View>
         </View>
       )
     }else{
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+      <View style={{flex: 1,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
           <ListView
             dataSource={this.state.drinksDataSource}
             enableEmptySections={true}
             renderRow={this._renderDrinks.bind(this)}
-            initialListSize={5}
           />
         </ScrollView>
       </View>

@@ -29,7 +29,7 @@ class MenuIndex extends Component {
         tabBarActiveTextColor={'black'}
         tabBarInactiveTextColor={'#7f8c8d'}
         tabBarUnderlineStyle={{backgroundColor:'#c0392b'}}
-        initialPage={2}
+        initialPage={Platform.OS === 'ios'? 2 : 0}
         tabBarTextStyle={{fontFamily: 'oswald-regular',fontSize:screenWidth/15}}
       >
       <Appetizers tabLabel="Appetizers" menu={this.props.menu}/>
