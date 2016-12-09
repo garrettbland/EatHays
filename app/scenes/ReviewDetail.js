@@ -10,6 +10,8 @@ import moment from 'moment';
 var MessageBarAlert = require('react-native-message-bar').MessageBar;
 var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 import StarRating from 'react-native-star-rating';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Sae } from 'react-native-textinput-effects';
 import {
   Text,
   View,
@@ -41,32 +43,6 @@ class ReviewDetail extends Component {
   componentDidMount(){
     MessageBarManager.registerMessageBar(this.refs.alert);
 
-    if (this.props.fromDirectory == true){
-      this.setState({
-        restaurantTitle:this.props.restaurantTitle,
-        specialHashTag:"",
-        special:"",
-        phoneNumber:"",
-        restaurant:this.props.restaurantTitle,
-        fromSpecial:true,
-      });
-    }else if(this.props.fromSpecial == true){
-      this.setState({
-        restaurantTitle:this.props.restaurantTitle,
-        specialHashTag:"",
-        special:this.props.specialHashTag,
-        restaurant:this.props.restaurantTitle,
-        fromSpecial:true,
-      });
-    }else{
-      this.setState({
-        restaurantTitle:"",
-        fromSpecial:false,
-        specialHashTag:"",
-        special:"",
-        phoneNumber:"",
-      });
-    }
   }
 
   onStarRatingPress(rating) {
@@ -148,34 +124,67 @@ class ReviewDetail extends Component {
                 />
               </View>
             </View>
-            <View>
-              <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Name</FormLabel>
-              <FormInput placeholder="Your name" value={this.state.name} onChangeText={(text) => this.setState({name:text})}/>
-            </View>
-            <View>
-            <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Restaurant</FormLabel>
-              {this.state.fromSpecial &&
-                <FormInput placeholder="Where did you eat at?" editable={false} value={this.state.restaurantTitle  + this.state.specialHashTag} onChangeText={() => console.log("TEST")}/>
-              }
-              {!this.state.fromSpecial &&
-                <FormInput placeholder="Where did you eat at?" value={this.state.restaurant} onChangeText={(text) => this.setState({restaurant:text})}/>
-              }
-            </View>
-            <View>
-              <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Review</FormLabel>
-              <FormInput
-                value={this.state.review}
-                multiline = {true}
-                placeholder="Share your thoughts and opinions"
-                onChangeText={(text) => this.setState({review:text})}
+            <View style={{marginLeft:15,marginRight:15}}>
+              <Sae
+                label={'YOUR NAME'}
+                labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
+                iconClass={FontAwesomeIcon}
+                iconName={'pencil'}
+                iconColor={'#c0392b'}
+                // TextInput props
+                autoCapitalize={'none'}
+                inputStyle={{color:'#000000'}}
+                autoCorrect={false}
+                onChangeText={(text) => this.setState({name:text})}
+                value={this.state.name}
               />
             </View>
-            <View style={{marginBottom:20}}>
-              <FormLabel labelStyle={{fontFamily:'oswald-bold',color:"#c0392b"}}>Phone Number (not required)</FormLabel>
-              <FormInput
-                value={this.state.phoneNumber}
-                placeholder="Enter your number for a chance to win prizes!"
+            <View style={{marginLeft:15,marginRight:15}}>
+              <Sae
+                label={'RESTAURANT'}
+                labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
+                iconClass={FontAwesomeIcon}
+                iconName={'pencil'}
+                iconColor={'#c0392b'}
+                // TextInput props
+                autoCapitalize={'none'}
+                inputStyle={{color:'#000000'}}
+                autoCorrect={false}
+                onChangeText={(text) => this.setState({restaurant:text})}
+                value={this.state.restaurant}
+              />
+            </View>
+
+            <View style={{marginLeft:15,marginRight:15}}>
+              <Sae
+                label={'YOUR REVIEW'}
+                labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
+                iconClass={FontAwesomeIcon}
+                iconName={'pencil'}
+                iconColor={'#c0392b'}
+                // TextInput props
+                autoCapitalize={'none'}
+                inputStyle={{color:'#000000'}}
+                autoCorrect={false}
+                multiline={true}
+                numberOfLines={4}
+                onChangeText={(text) => this.setState({review:text})}
+                value={this.state.review}
+              />
+            </View>
+            <View style={{marginLeft:15,marginRight:15}}>
+              <Sae
+                label={'PHONE #'}
+                labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
+                iconClass={FontAwesomeIcon}
+                iconName={'pencil'}
+                iconColor={'#c0392b'}
+                // TextInput props
+                autoCapitalize={'none'}
+                inputStyle={{color:'#000000'}}
+                autoCorrect={false}
                 onChangeText={(text) => this.setState({phoneNumber:text})}
+                value={this.state.phoneNumber}
               />
             </View>
             <View>
