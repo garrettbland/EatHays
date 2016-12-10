@@ -144,7 +144,7 @@ class DirectoryDetail extends Component {
 
   render() {
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54}}>
+      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54, backgroundColor:'#FFFFFF'}}>
         <ParallaxScrollView
          fadeOutForeground={false}
          renderBackground={() => <Image source={{ uri: this.props.item.background, width: window.width, height: screenHeight / 2 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>}

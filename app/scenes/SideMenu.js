@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from 'react-native';
 
 const cutleryIcon = (<Icon name="cutlery" size={30} color="#FFFFFF" />);
@@ -20,7 +21,7 @@ class Index extends Component {
       <View style={{flex: 1,backgroundColor: '#c0392b'}}>
         <View>
           <Text style={{fontSize: 20,textAlign: 'center',marginTop: 25,color:"#FFFFFF",fontFamily:'oswald-bold'}}>
-            {cutleryIcon}
+            <Image source={require('../images/EatHaysAppIcon.png')} style={{width: 80, height: 80, borderRadius:50}}/>
           </Text>
         </View>
         <View>

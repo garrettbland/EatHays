@@ -12,6 +12,7 @@ var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 import StarRating from 'react-native-star-rating';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
   Text,
   View,
@@ -84,7 +85,6 @@ class ReviewDetail extends Component {
       this.itemsRef.push({
         name: this.state.name,
         restaurant: this.state.restaurant,
-        special: this.state.special,
         review: this.state.review,
         phoneNumber: this.state.phoneNumber,
         timestamp: dateSubmitted,
@@ -110,9 +110,9 @@ class ReviewDetail extends Component {
   render() {
     return (
       <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54}}>
-        <ScrollView>
+        <KeyboardAwareScrollView>
           <View>
-            <View style={{marginLeft:15,marginRight:15,marginTop:15}}>
+            <View style={{marginLeft:15,marginRight:15,marginTop:15,marginBottom:15}}>
               <View>
                 <StarRating
                   disabled={false}
@@ -166,15 +166,13 @@ class ReviewDetail extends Component {
                 autoCapitalize={'none'}
                 inputStyle={{color:'#000000'}}
                 autoCorrect={false}
-                multiline={true}
-                numberOfLines={4}
                 onChangeText={(text) => this.setState({review:text})}
                 value={this.state.review}
               />
             </View>
-            <View style={{marginLeft:15,marginRight:15}}>
+            <View style={{marginLeft:15,marginRight:15,marginBottom:30}}>
               <Sae
-                label={'PHONE #'}
+                label={'PHONE # (not required)'}
                 labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
                 iconClass={FontAwesomeIcon}
                 iconName={'pencil'}
@@ -208,7 +206,7 @@ class ReviewDetail extends Component {
               />
             }
           </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
         <MessageBarAlert ref="alert" />
       </View>
     );

@@ -13,6 +13,7 @@ import {
   View,
   TouchableOpacity,
   Alert,
+  Image
 } from 'react-native';
 
 const goToContact = () => Actions.Contact();
