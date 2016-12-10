@@ -127,7 +127,7 @@ class ReviewDetail extends Component {
             <View style={{marginLeft:15,marginRight:15}}>
               <Sae
                 label={'YOUR NAME'}
-                labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
+                labelStyle={{color:'#c0392b', fontFamily:'Oswald-bold'}}
                 iconClass={FontAwesomeIcon}
                 iconName={'pencil'}
                 iconColor={'#c0392b'}
@@ -142,7 +142,7 @@ class ReviewDetail extends Component {
             <View style={{marginLeft:15,marginRight:15}}>
               <Sae
                 label={'RESTAURANT'}
-                labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
+                labelStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
                 iconClass={FontAwesomeIcon}
                 iconName={'pencil'}
                 iconColor={'#c0392b'}
@@ -158,7 +158,7 @@ class ReviewDetail extends Component {
             <View style={{marginLeft:15,marginRight:15}}>
               <Sae
                 label={'YOUR REVIEW'}
-                labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
+                labelStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
                 iconClass={FontAwesomeIcon}
                 iconName={'pencil'}
                 iconColor={'#c0392b'}
@@ -173,7 +173,7 @@ class ReviewDetail extends Component {
             <View style={{marginLeft:15,marginRight:15,marginBottom:30}}>
               <Sae
                 label={'PHONE # (not required)'}
-                labelStyle={{color:'#c0392b', fontFamily:'oswald-bold'}}
+                labelStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
                 iconClass={FontAwesomeIcon}
                 iconName={'pencil'}
                 iconColor={'#c0392b'}
