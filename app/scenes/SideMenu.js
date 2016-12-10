@@ -21,7 +21,7 @@ class Index extends Component {
       <View style={{flex: 1,backgroundColor: '#c0392b'}}>
         <View>
           <Text style={{fontSize: 20,textAlign: 'center',marginTop: 25,color:"#FFFFFF",fontFamily:'oswald-bold'}}>
-            <Image source={require('../images/EatHaysAppIconTransparent.png')} style={{width: 80, height: 80, borderRadius:50}}/>
+            <Image source={require('../images/EatHaysAppIconTransparent.png')} style={{width: 100, height: 100, borderRadius:60}}/>
           </Text>
         </View>
         <View>
