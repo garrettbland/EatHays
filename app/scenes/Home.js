@@ -72,9 +72,9 @@ class Home extends Component {
       <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
           <View>
-            <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
-              Deals of the Day
-            </Text>
+            <View style={{margin: 10,marginTop:20,paddingBottom:20}}>
+              <Image source={require('../images/DealsoftheDay.png')} resizeMode='contain' style={{width: screenWidth, height: screenHeight/5}}/>
+            </View>
           </View>
           <View>
             <Text style={{textAlign: 'center',backgroundColor:"#c0392b",color:'white',fontFamily:'oswald-regular',fontSize:27}}>
