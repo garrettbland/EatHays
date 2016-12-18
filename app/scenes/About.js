@@ -52,7 +52,7 @@ class About extends Component {
               the app and I hope it brings usefullness to you.
             </Text>
             <Text style={{padding:10, fontStyle:'italic', color:'#c0392b'}}>
-              -Garrett Bland | Owner & Developer
+              -Garrett Bland | Creator & Developer
             </Text>
           </View>
 

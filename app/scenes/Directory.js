@@ -52,7 +52,7 @@ class Directory extends Component {
   }
 
   listenForItems(itemsRef) {
-    itemsRef.orderByChild("title").on('value', (snap) => {
+    itemsRef.on('value', (snap) => {
       var items = [];
       snap.forEach((child) => {
         items.push({
@@ -78,6 +78,12 @@ class Directory extends Component {
           _key: child.key,
         });
       });
+
+      var alphabetize = items.sort(function(a, b){
+          if(a.searchable < b.searchable) return -1;
+          if(a.searchable > b.searchable) return 1;
+          return 0;
+      })
 
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items)
@@ -128,6 +134,12 @@ class Directory extends Component {
           });
         });
 
+        var alphabetize = items.sort(function(a, b){
+            if(a.searchable < b.searchable) return -1;
+            if(a.searchable > b.searchable) return 1;
+            return 0;
+        })
+
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(items)
         });
@@ -172,6 +184,12 @@ class Directory extends Component {
             _key: child.key,
           });
         });
+
+        var alphabetize = items.sort(function(a, b){
+            if(a.searchable < b.searchable) return -1;
+            if(a.searchable > b.searchable) return 1;
+            return 0;
+        })
 
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(items)
