@@ -52,7 +52,7 @@ class Directory extends Component {
   }
 
   listenForItems(itemsRef) {
-    itemsRef.on('value', (snap) => {
+    itemsRef.orderByChild("title").on('value', (snap) => {
       var items = [];
       snap.forEach((child) => {
         items.push({
