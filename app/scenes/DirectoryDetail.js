@@ -19,6 +19,7 @@ import {
   Dimensions,
   Platform,
   ScrollView,
+  Alert
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -134,12 +135,21 @@ class DirectoryDetail extends Component {
   }
 
   getReviewsCount(){
-    return(
-      <View style={{flex:1,flexDirection:'row'}}>
-        <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
-        <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#c0392b'}}> ({this.state.reviewsTotal.getRowCount()})</Text>
-      </View>
-    );
+    if(this.props.item.reviews[0].active === false){
+      return(
+        <View style={{flex:1,flexDirection:'row'}}>
+          <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
+          <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#c0392b'}}> (0)</Text>
+        </View>
+      );
+    }else{
+      return(
+        <View style={{flex:1,flexDirection:'row'}}>
+          <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
+          <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#c0392b'}}> ({this.state.reviewsTotal.getRowCount()})</Text>
+        </View>
+      );
+    }
   }
 
   render() {
@@ -362,7 +372,7 @@ class DirectoryDetail extends Component {
             <Text style={{color:'#000000',fontSize:15,marginBottom:15}}>
               {item.review}
             </Text>
-            <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
+            <Text style={{fontStyle:'italic',color:'#c0392b',fontSize:13}}>
               {item.name} on {item.date}
             </Text>
           </Card>

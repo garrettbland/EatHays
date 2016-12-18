@@ -144,6 +144,7 @@ class OwnerAccount extends Component {
     }else{
       const titleStyle = {color:"#c0392b", fontFamily:'oswald-regular', fontSize:18};
       const subtitleStyle = {color:'#95a5a6', fontFamily:'oswald-regular', fontSize:13};
+      const stats = () => Actions.OwnerStats({restaurant:this.state.ownerRestaurant})
       const paymentHistory = () => Actions.OwnerPaymentHistory({paymentHistory:this.state.paymentHistory})
       const paymentDetails = () => Actions.OwnerPaymentDetails({monthlyCharge:this.state.monthlyCharge,paymentDate:this.state.paymentDate,paymentDetails:this.state.paymentDetails})
       const list = [

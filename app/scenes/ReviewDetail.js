@@ -172,7 +172,7 @@ class ReviewDetail extends Component {
             </View>
             <View style={{marginLeft:15,marginRight:15,marginBottom:30}}>
               <Sae
-                label={'PHONE # (not required)'}
+                label={'PHONE # (Optional)'}
                 labelStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
                 iconClass={FontAwesomeIcon}
                 iconName={'pencil'}

@@ -27,7 +27,7 @@ class ReviewFullList extends Component {
 
   render() {
     return (
-      <View style={{paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#ffffff',flex:1}}>
+      <View style={{paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef',flex:1}}>
         <ScrollView>
           <View>
             <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
@@ -49,7 +49,7 @@ class ReviewFullList extends Component {
   _renderItem(item) {
     if (item.review == "null"){
       return (
-        <View>
+        <View >
           <Card>
             <View style={{width:50}}>
               <StarRating
@@ -78,7 +78,7 @@ class ReviewFullList extends Component {
     }else{
       return (
         <View>
-          <Card>
+          <Card >
             <View style={{width:50}}>
               <StarRating
                 disabled={true}
@@ -93,7 +93,7 @@ class ReviewFullList extends Component {
             <Text style={{color:'#000000',fontSize:15,marginBottom:15}}>
               {item.review}
             </Text>
-            <Text style={{fontStyle:'italic',color:'#7f8c8d',fontSize:13}}>
+            <Text style={{fontStyle:'italic',color:'#c0392b',fontSize:13}}>
               {item.name} on {item.date}
             </Text>
           </Card>

@@ -31,6 +31,7 @@
 		9811EEE445CE4F0D90C26BF5 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7A6351FE3C4C02B9A97B5C /* Entypo.ttf */; };
 		A4CE7ECA007C467F97EAED40 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6107693294D45768D4140B6 /* Octicons.ttf */; };
 		D0963F166EAF4E9595AF25CF /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1C5F97E26E4B31B0503299 /* Foundation.ttf */; };
+		DE5A0A621E038E2D00837679 /* EatHaysIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5A0A611E038E2D00837679 /* EatHaysIcon.png */; };
 		DEA458641D9B115A00EFAF32 /* libAppHub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA458611D9B10B000EFAF32 /* libAppHub.a */; };
 		DEA458661D9B116500EFAF32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA458651D9B116500EFAF32 /* SystemConfiguration.framework */; };
 		DEA458681D9B117100EFAF32 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA458671D9B117100EFAF32 /* libz.tbd */; };
@@ -223,6 +224,7 @@
 		CF1FB4D6AAED490E93DE1737 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		D2B41369D4D04C32BDB1EA39 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		DD1C5F97E26E4B31B0503299 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		DE5A0A611E038E2D00837679 /* EatHaysIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EatHaysIcon.png; sourceTree = "<group>"; };
 		DEA458591D9B10B000EFAF32 /* AppHub.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppHub.xcodeproj; path = ../node_modules/apphub/AppHub/AppHub.xcodeproj; sourceTree = "<group>"; };
 		DEA458651D9B116500EFAF32 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DEA458671D9B117100EFAF32 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -352,6 +354,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				DE5A0A611E038E2D00837679 /* EatHaysIcon.png */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -748,6 +751,7 @@
 				DEE69C1F1D939D7700A16FE8 /* oswald-regular.ttf in Resources */,
 				9811EEE445CE4F0D90C26BF5 /* Entypo.ttf in Resources */,
 				80D9CC07363D47CCA4B4E5C2 /* EvilIcons.ttf in Resources */,
+				DE5A0A621E038E2D00837679 /* EatHaysIcon.png in Resources */,
 				DEA4586A1D9B16BD00EFAF32 /* Default-568h@2x.png in Resources */,
 				3DF5A4817BDA4F4488B0B91D /* FontAwesome.ttf in Resources */,
 				D0963F166EAF4E9595AF25CF /* Foundation.ttf in Resources */,
