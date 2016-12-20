@@ -36,7 +36,7 @@ class About extends Component {
 
   render() {
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor: '#e1e8ef', paddingBottom:10}}>
+      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor: '#e1e8ef'}}>
         <ScrollView>
           <View>
             <Text style={{fontSize: 30,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
@@ -46,13 +46,13 @@ class About extends Component {
           <View style={{marginTop:10}}>
             <Text style={{padding:10}}>
               Eating out has something I have always enjoyed. I have been a waiter, a cook, a host, and wore many other hats in the restaurant
-              world. Something that had always bugged me, was wanting to see hours of a certain place or what was on the menu. Google and other apps
-              are a phenomenal tool for this, but the data was sometimes incorrect and some local places wouldnt be listed in smaller places like Hays.
+              world. Something that had always bugged me, was wanting to see hours of a certain place or what was on the menu. Other apps
+              are a great tool for this, but the data was sometimes incorrect and local eats wouldnt get the attention they deserved.
               Being a Hays resident, I wanted to create something specific for our growing city. Thus, I created Eat Hays. I really hope you enjoy
               the app and I hope it brings usefullness to you.
             </Text>
-            <Text style={{padding:10, fontStyle:'italic', color:'#c0392b'}}>
-              -Garrett Bland | Creator & Developer
+            <Text style={{padding:10, fontStyle:'italic', color:'#c0392b', fontFamily:'oswald-bold'}}>
+              - Garrett Bland | Owner & Developer
             </Text>
           </View>
 
@@ -97,6 +97,10 @@ class About extends Component {
               />
             </View>
           </View>
+
+          <Text style={{fontSize: 14,textAlign: 'center',paddingBottom:5,paddingTop:15,fontFamily:'oswald-regular',color:"#7f8c8d"}}>
+            EatHays.com | @EatHays 2016
+          </Text>
 
         </ScrollView>
       </View>

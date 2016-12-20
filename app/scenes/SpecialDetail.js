@@ -142,7 +142,7 @@ class SpecialDetail extends Component {
                     buttonStyle={{marginBottom:5}}
                     backgroundColor="#3498db"
                     title='Review this meal'
-                    onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,specialHashTag:this.props.special,fromSpecial:true})}
+                    onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title})}
                   />
                 </View>
              </View>

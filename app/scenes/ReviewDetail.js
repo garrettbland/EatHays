@@ -28,16 +28,23 @@ class ReviewDetail extends Component {
 
   constructor(props) {
     super(props);
+
+    if(!this.props.restaurantTitle == ""){
+      var restaurantTitle = this.props.restaurantTitle;
+    }else{
+      var restaurantTitle = "";
+    }
     this.state = {
       starCount: 2.5,
-      restaurantTitle:"",
       name:"",
-      restaurant:"",
       review:"",
+      restaurant:restaurantTitle,
       phoneNumber:"",
       loading:false,
       firsReview:true
     };
+
+
     this.itemsRef = this.getRef().child('reviews');
   }
 
@@ -111,6 +118,11 @@ class ReviewDetail extends Component {
     return (
       <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54}}>
         <KeyboardAwareScrollView>
+        <View>
+          <Text style={{fontSize: 30,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+            {this.state.restaurant} Review
+          </Text>
+        </View>
           <View>
             <View style={{marginLeft:15,marginRight:15,marginTop:15,marginBottom:15}}>
               <View>
@@ -139,21 +151,23 @@ class ReviewDetail extends Component {
                 value={this.state.name}
               />
             </View>
-            <View style={{marginLeft:15,marginRight:15}}>
-              <Sae
-                label={'RESTAURANT'}
-                labelStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
-                iconClass={FontAwesomeIcon}
-                iconName={'pencil'}
-                iconColor={'#c0392b'}
-                // TextInput props
-                autoCapitalize={'none'}
-                inputStyle={{color:'#000000'}}
-                autoCorrect={false}
-                onChangeText={(text) => this.setState({restaurant:text})}
-                value={this.state.restaurant}
-              />
-            </View>
+            {!this.props.restaurantTitle &&
+              <View style={{marginLeft:15,marginRight:15}}>
+                <Sae
+                  label={'RESTAURANT'}
+                  labelStyle={{color:'#c0392b', fontFamily:'oswald-regular'}}
+                  iconClass={FontAwesomeIcon}
+                  iconName={'pencil'}
+                  iconColor={'#c0392b'}
+                  // TextInput props
+                  autoCapitalize={'none'}
+                  inputStyle={{color:'#000000'}}
+                  autoCorrect={false}
+                  onChangeText={(text) => this.setState({restaurant:text})}
+                  value={this.state.restaurant}
+                />
+              </View>
+            }
 
             <View style={{marginLeft:15,marginRight:15}}>
               <Sae
