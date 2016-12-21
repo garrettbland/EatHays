@@ -7,8 +7,6 @@ import { Actions } from 'react-native-router-flux';
 import { Button, FormLabel, FormInput } from 'react-native-elements'
 import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
-var MessageBarAlert = require('react-native-message-bar').MessageBar;
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 import StarRating from 'react-native-star-rating';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -48,10 +46,6 @@ class ReviewDetail extends Component {
     this.itemsRef = this.getRef().child('reviews');
   }
 
-  componentDidMount(){
-    MessageBarManager.registerMessageBar(this.refs.alert);
-
-  }
 
   onStarRatingPress(rating) {
     this.setState({
@@ -77,17 +71,7 @@ class ReviewDetail extends Component {
      }.bind(this);
 
     if (this.state.name == "" || this.state.restaurant == "" || this.state.review == ""){
-      MessageBarManager.showAlert({
-       viewTopOffset : Platform.OS === 'ios'? 64 : 54,
-       duration:8000,
-       title: 'Uh-oh',
-       message: 'Please make sure all fields are completed before submitting',
-       alertType: 'warning',
-       animationType:'SlideFromLeft',
-       position: 'top',
-       titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
-       stylesheetSuccess: { backgroundColor: '#e67e22', strokeColor:'#e67e22' }
-     });
+      Alert.alert("Uh-oh","Please make sure required fields are complete before submitting.")
     }else{
       this.itemsRef.push({
         name: this.state.name,
@@ -110,9 +94,6 @@ class ReviewDetail extends Component {
     }
   }
 
-  componentWillUnmount() {
-    MessageBarManager.unregisterMessageBar();
-  }
 
   render() {
     return (
@@ -221,7 +202,6 @@ class ReviewDetail extends Component {
             }
           </View>
         </KeyboardAwareScrollView>
-        <MessageBarAlert ref="alert" />
       </View>
     );
   }
