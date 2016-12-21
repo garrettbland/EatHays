@@ -16,6 +16,7 @@ import {
   Dimensions,
   ScrollView,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -81,6 +82,14 @@ class Home extends Component {
               {todayFormatted} Specials
             </Text>
           </View>
+          <View style={{marginTop:7,marginBottom:7}}>
+            {this.state.loading &&
+              <ActivityIndicator
+                size="large"
+                color="#3498db"
+              />
+            }
+          </View>
           <View style={{paddingBottom:15}}>
             <ListView
               dataSource={this.state.dataSource}
@@ -126,7 +135,6 @@ class Home extends Component {
                 </View>
                 <View style={{alignItems:'flex-end', flex:2}}>
                   <Image
-                    onLoadStart={() => this.setState({loading:true})}
                     onLoad={() => this.setState({loading:false})}
                     style={{height:75, width:125}}
                     source={{uri: item.profile}}

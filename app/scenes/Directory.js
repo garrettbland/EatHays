@@ -245,11 +245,19 @@ class Directory extends Component {
               initValue={this.state.filterValue.toString()}
               onChange={(option)=> this.firstFilter(option.label)}
           />
+          <View style={{marginTop:7,marginBottom:7}}>
+            {this.state.loading &&
+              <ActivityIndicator
+                size="large"
+                color="#3498db"
+              />
+            }
+          </View>
           <ListView
               dataSource={this.state.dataSource}
               renderRow={this._renderItem.bind(this)}
               enableEmptySections={true}
-              scrollRenderAheadDistance={20}
+              scrollRenderAheadDistance={10}
               initialListSize={2}
           />
         </ScrollView>
@@ -296,7 +304,6 @@ class Directory extends Component {
                 </View>
                 <View style={{alignItems:'flex-end',flex:2,paddingRight:5}}>
                   <Image
-                    onLoadStart={() => this.setState({loading:true})}
                     onLoad={() => this.setState({loading:false})}
                     style={{width: screenWidth / 3,height: screenWidth / 3}}
                     source={{uri: item.profile}}

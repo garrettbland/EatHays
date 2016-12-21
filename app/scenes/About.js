@@ -99,7 +99,7 @@ class About extends Component {
           </View>
 
           <Text style={{fontSize: 14,textAlign: 'center',paddingBottom:5,paddingTop:15,fontFamily:'oswald-regular',color:"#7f8c8d"}}>
-            EatHays.com | @EatHays 2016
+            EatHays.com
           </Text>
 
         </ScrollView>
