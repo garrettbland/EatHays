@@ -71,7 +71,7 @@ class Appetizers extends Component {
      )
    }else{
    return (
-     <View style={{flex: 1,backgroundColor:'#e1e8ef'}}>
+     <View style={{flex: 1,backgroundColor:'#ffffff'}}>
        <ScrollView>
          <ListView
            dataSource={this.state.appetizerDataSource}

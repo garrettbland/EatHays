@@ -24,11 +24,12 @@ class MenuIndex extends Component {
   render() {
     return (
       <ScrollableTabView
-        style={{backgroundColor:'#e1e8ef',paddingTop:Platform.OS === 'ios'? 64 : 54}}
+        style={{backgroundColor:'#ffffff',paddingTop:Platform.OS === 'ios'? 64 : 54}}
         renderTabBar={() => <CustomTabBar/>}
         tabBarActiveTextColor={'black'}
         tabBarInactiveTextColor={'#7f8c8d'}
         tabBarUnderlineStyle={{backgroundColor:'#c0392b'}}
+        tabBarBackgroundColor={'#e1e8ef'}
         initialPage={Platform.OS === 'ios'? 2 : 0}
         tabBarTextStyle={{fontFamily: 'oswald-regular',fontSize:screenWidth/15}}
       >

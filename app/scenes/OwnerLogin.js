@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
 import { Actions } from 'react-native-router-flux';
 import {FormLabel, FormInput, Button} from 'react-native-elements';
-var MessageBarAlert = require('react-native-message-bar').MessageBar;
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 import firebaseApp from "../components/firebaseconfig.js";
 import {
   Text,
@@ -30,33 +28,15 @@ class OwnerLogin extends Component {
     }).done();
   }
 
-  componentDidMount(){
-    MessageBarManager.registerMessageBar(this.refs.alert);
-  }
-
   componentWillMount() {
     Actions.refresh({key: 'drawer', open: value => !value});
-  }
-
-  componentWillUnmount() {
-    MessageBarManager.unregisterMessageBar();
   }
 
   login(){
     var stopLoading = ()=>this.setState({loading:false});
 
     if (this.state.email == "" || this.state.password == "" ){
-      MessageBarManager.showAlert({
-       viewTopOffset : Platform.OS === 'ios'? 64 : 54,
-       duration:8000,
-       title: 'Uh-oh',
-       message: 'Please make sure all fields are completed before submitting',
-       alertType: 'warning',
-       animationType:'SlideFromLeft',
-       position: 'top',
-       titleStyle: {fontFamily:'oswald-regular',color:'#FFFFFF',fontSize:20},
-       stylesheetSuccess: { backgroundColor: '#e67e22', strokeColor:'#e67e22' }
-     });
+      Alert.alert("Uh-oh","Please make sure all fields are complete before logging in.")
     }else {
       this.setState({loading:true});
       var email = this.state.email;
@@ -111,7 +91,6 @@ class OwnerLogin extends Component {
               />
             }
           </View>
-          <MessageBarAlert ref="alert" />
         </View>
       );
     }

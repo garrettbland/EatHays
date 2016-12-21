@@ -8,6 +8,7 @@ import moment from 'moment';
 import Image from 'react-native-image-progress';
 import { Card, Button } from 'react-native-elements';
 import shuffle from 'shuffle-array';
+import SplashScreen from "rn-splash-screen";
 import {
   Text,
   View,
@@ -28,6 +29,8 @@ class Home extends Component {
 
   componentWillMount(){
     Actions.refresh({key: 'drawer', open: false});
+    // Hide the active splash screen
+    Platform.OS === 'ios'? null : SplashScreen.hide();
   }
 
   constructor(props) {
