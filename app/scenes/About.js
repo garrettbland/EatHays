@@ -45,7 +45,7 @@ class About extends Component {
           </View>
           <View style={{marginTop:10}}>
             <Text style={{padding:10}}>
-              Eating out has something I have always enjoyed. I have been a waiter, a cook, a host, and wore many other hats in the restaurant
+              Eating out has been something I have always enjoyed. I have been a waiter, a cook, a host, and wore many other hats in the restaurant
               world. Something that had always bugged me, was wanting to see hours of a certain place or what was on the menu. Other apps
               are a great tool for this, but the data was sometimes incorrect and local eats wouldnt get the attention they deserved.
               Being a Hays resident, I wanted to create something specific for our growing city. Thus, I created Eat Hays. I really hope you enjoy

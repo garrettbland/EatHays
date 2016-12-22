@@ -173,6 +173,15 @@ class OwnerAccount extends Component {
           righticon:'',
         },
         {
+          title: 'Statistics',
+          subtitle:"View Details",
+          icon: 'group',
+          iconColor:'#c0392b',
+          fontFamily:'Oswald-bold',
+          righticon:'chevron-right',
+          buttonAction:stats,
+        },
+        {
           title: 'Payment Details',
           subtitle:"View Details",
           icon: 'group',
