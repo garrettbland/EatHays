@@ -59,7 +59,7 @@ class Entrees extends Component {
     if(this.props.menu.entrees.active === false){
       var randomWord = shuffle(funWords);
       return (
-        <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#e1e8ef'}}>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#ffffff'}}>
           <View>
             <Icon name="meh-o" style={{fontSize:50, color:"#c0392b"}}/>
           </View>

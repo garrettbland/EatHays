@@ -1,14 +1,8 @@
-export const LOADING_TRUE = 'LOADING_TRUE';
-export const LOADING_FALSE = 'LOADING_FALSE';
+export const SET_FILTER = 'SET_FILTER';
 
-export function isLoading(boolean){
-  if (boolean === true){
+export function setFilterValue(value){
     return {
-      type:LOADING_TRUE
+      type:SET_FILTER,
+      filter:value
     }
-  }else{
-    return {
-      type:LOADING_FALSE
-    }
-  }
 }

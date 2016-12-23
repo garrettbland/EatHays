@@ -7,7 +7,6 @@ import { Actions } from 'react-native-router-flux';
 import firebaseApp from '../components/firebaseconfig.js';
 import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
-import ModalPicker from 'react-native-modal-picker';
 import Image from 'react-native-image-progress';
 import StarRating from 'react-native-star-rating';
 import {
@@ -19,6 +18,7 @@ import {
   Dimensions,
   ScrollView,
   Platform,
+  Alert,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -145,6 +145,15 @@ class Directory extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps){
+  JSON.stringify(this.props.user.filter) !== JSON.stringify(nextProps.user.filter) // Check if it's a new user, you can also use some unique, like the ID
+    {
+         this.firstFilter(nextProps.user.filter);
+    }
+
+
+  }
+
   firstFilter(option) {
     this.setState({filterValue:option,searchText:""});
     this.filterDirectory(this.itemsRef,option);
@@ -196,55 +205,9 @@ class Directory extends Component {
   }
 
   render() {
-    let index = 0;
-    const data = [
-        { key: index++, section: true, label: 'Categories' },
-        { key: index++, label: 'All' },
-        { key: index++, label: 'American' },
-        { key: index++, label: 'Asian' },
-        { key: index++, label: 'Bar & Grill' },
-        { key: index++, label: 'BBQ' },
-        { key: index++, label: 'Breakfast' },
-        { key: index++, label: 'Buffet' },
-        { key: index++, label: 'Cafe' },
-        { key: index++, label: 'Chicken' },
-        { key: index++, label: 'Chinese' },
-        { key: index++, label: 'Coffee Shop' },
-        { key: index++, label: 'Dessert' },
-        { key: index++, label: 'Fast Food' },
-        { key: index++, label: 'Italian' },
-        { key: index++, label: 'Japanese' },
-        { key: index++, label: 'Mexican' },
-        { key: index++, label: 'Night Club' },
-        { key: index++, label: 'Pizza' },
-        { key: index++, label: 'Sushi' },
-        { key: index++, label: 'Vietnamese' },
-    ];
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+      <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
-          <View style={{flexDirection:'row',backgroundColor:'#e1e8ef',}}>
-            <SearchBar
-                returnKeyType='search'
-                lightTheme
-                placeholder='Search...'
-                value={this.state.searchText}
-                onChangeText={(text) => this.setState({searchText:text})}
-                onSubmitEditing={() => this.firstSearch()}
-                containerStyle={{width:screenWidth,borderBottomColor:'#e1e8ef',borderTopColor:'#e1e8ef'}}
-            />
-          </View>
-          <ModalPicker
-              selectStyle={{borderRadius:0,borderRadius:0,borderColor:'transparent'}}
-              selectTextStyle={{fontFamily:'oswald-bold',fontSize:20}}
-              data={data}
-              sectionTextStyle={{color:'#000000', fontFamily:'oswald-bold',fontSize:20}}
-              optionTextStyle={{color:'#c0392b', fontFamily:'oswald-regular',fontSize:20}}
-              cancelTextStyle={{color:'#e74c3c', fontFamily:'oswald-regular',fontSize:20}}
-              cancelStyle={{backgroundColor:'#ffffff'}}
-              initValue={this.state.filterValue.toString()}
-              onChange={(option)=> this.firstFilter(option.label)}
-          />
           <View style={{marginTop:7,marginBottom:7}}>
             {this.state.loading &&
               <ActivityIndicator
@@ -254,11 +217,23 @@ class Directory extends Component {
             }
           </View>
           <ListView
+              renderHeader={() =>
+                <SearchBar
+                  returnKeyType='search'
+                  lightTheme
+                  placeholder='Search...'
+                  value={this.state.searchText}
+                  onChangeText={(text) => this.setState({searchText:text})}
+                  onSubmitEditing={() => this.firstSearch()}
+                  containerStyle={{width:screenWidth,borderBottomColor:'#e1e8ef',borderTopColor:'#e1e8ef'}}
+                />
+              }
               dataSource={this.state.dataSource}
               renderRow={this._renderItem.bind(this)}
               enableEmptySections={true}
               scrollRenderAheadDistance={10}
               initialListSize={2}
+              renderFooter={() => <View style={{alignItems:'center',marginTop:4,marginBottom:4}}><Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6'}}>End of Results</Text></View>}
           />
         </ScrollView>
       </View>

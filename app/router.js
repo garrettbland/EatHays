@@ -4,7 +4,10 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from './actions';
 import {Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Actions, Scene, Router} from 'react-native-router-flux';
+import {Actions, Scene, Router, Modal} from 'react-native-router-flux';
+import {
+  Text
+} from 'react-native';
 import Drawer from './components/drawer.js';
 import Home from './scenes/Home.js';
 import SpecialDetail from './scenes/SpecialDetail.js';
@@ -23,13 +26,16 @@ import OwnerPaymentHistory from './scenes/OwnerPaymentHistory.js';
 import OwnerPaymentDetails from './scenes/OwnerPaymentDetails.js';
 import CouponDetail from './scenes/CouponDetail.js';
 import OwnerStats from './scenes/OwnerStats.js';
+import FilterModal from './scenes/FilterModal.js';
 
 const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:Platform.OS === 'ios'? "#c0392b" : "#b03427",borderBottomWidth:4,shadowColor: '#000000', shadowOpacity: 0.9, shadowRadius: 10,};
 const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular',fontSize:20};
 
 const toggleDrawer = () => Actions.refresh({key: 'drawer', open: value => !value });
+const toggleFilter = () => Actions.FilterModal()
 
 const settingsIcon = (<Icon name="bars" size={30} color="#FFFFFF" />);
+const filterIcon = (<Icon name="sliders" size={30} color="#FFFFFF" />);
 const backButtonIcon = (<Icon name="chevron-left" size={23} color="#FFFFFF" />);
 const searchIcon = (<Icon name="search" size={25} color="#FFFFFF" />);
 
@@ -41,7 +47,7 @@ class EatHaysRouter extends Component {
               <Scene key="root">
                 <Scene key="Home" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Home} type="replace" initial={true} leftTitle={settingsIcon} onLeft={toggleDrawer} title="Eat Hays"/>
                 <Scene key="SpecialDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={SpecialDetail} type="push" title="Deal of the Day" />
-                <Scene key="Directory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Directory} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Directory" />
+                <Scene key="Directory" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Directory} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} rightTitle={filterIcon} onRight={toggleFilter} title="Directory" />
                 <Scene key="MapDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={MapDetail} type="push" title="Directions" />
                 <Scene key="CouponDetail" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={CouponDetail} type="push" title="Coupons" />
                 <Scene key="Review" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} component={Review} type="replace" leftTitle={settingsIcon} onLeft={toggleDrawer} title="Write a Review" />
@@ -58,6 +64,7 @@ class EatHaysRouter extends Component {
                 <Scene key="MenuIndex" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={MenuIndex} type="push" title="Menu" />
               </Scene>
           </Scene>
+          <Scene key="FilterModal" component={FilterModal} direction="vertical" hideNavBar={true}/>
       </Router>
     );
   }

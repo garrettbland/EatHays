@@ -7,8 +7,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import {Button, SocialIcon} from 'react-native-elements';
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,

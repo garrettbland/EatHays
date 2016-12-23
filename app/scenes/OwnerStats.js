@@ -142,7 +142,7 @@ class OwnerStats extends Component {
                   <Text style={{textAlign: 'center',fontFamily:'oswald-regular'}}>
                     Total Restaurant Views
                   </Text>
-                  <Text style={{textAlign:'center',fontSize:24,color:'#c0392b'}}>
+                  <Text style={{textAlign:'center',fontSize:24,color:'#c0392b',fontFamily:'oswald-bold'}}>
                     {this.state.totalDirectoryCount}
                   </Text>
                 </View>
@@ -155,7 +155,7 @@ class OwnerStats extends Component {
                 <Text style={{textAlign: 'center',fontFamily:'oswald-regular'}}>
                   by iOS
                 </Text>
-                <Text style={{textAlign:'center',fontSize:18,color:'#c0392b'}}>
+                <Text style={{textAlign:'center',fontSize:18,color:'#c0392b',fontFamily:'oswald-regular'}}>
                   {this.state.totalIOSDirectoryCount} ({this.state.percentageIOSDirectory}%)
                 </Text>
               </View>
@@ -164,7 +164,7 @@ class OwnerStats extends Component {
                 <Text style={{textAlign: 'center',fontFamily:'oswald-regular'}}>
                   by Android
                 </Text>
-                <Text style={{textAlign:'center',fontSize:18,color:'#c0392b'}}>
+                <Text style={{textAlign:'center',fontSize:18,color:'#c0392b',fontFamily:'oswald-regular'}}>
                   {this.state.totalANDROIDDirectoryCount} ({this.state.percentageANDROIDDirectory}%)
                 </Text>
               </View>
@@ -180,7 +180,7 @@ class OwnerStats extends Component {
                 <Text style={{textAlign: 'center',fontFamily:'oswald-regular'}}>
                   Total Deals of the Day Views
                 </Text>
-                <Text style={{textAlign:'center',fontSize:24,color:'#c0392b'}}>
+                <Text style={{textAlign:'center',fontSize:24,color:'#c0392b',fontFamily:'oswald-bold'}}>
                   {this.state.totalSpecialsCount}
                 </Text>
               </View>
@@ -192,7 +192,7 @@ class OwnerStats extends Component {
                   <Text style={{textAlign: 'center',fontFamily:'oswald-regular'}}>
                     by iOS
                   </Text>
-                  <Text style={{textAlign:'center',fontSize:18,color:'#c0392b'}}>
+                  <Text style={{textAlign:'center',fontSize:18,color:'#c0392b',fontFamily:'oswald-regular'}}>
                     {this.state.totalIOSSpecialsCount} ({this.state.percentageIOSSpecials}%)
                   </Text>
                 </View>
@@ -201,7 +201,7 @@ class OwnerStats extends Component {
                   <Text style={{textAlign: 'center',fontFamily:'oswald-regular'}}>
                     by Android
                   </Text>
-                  <Text style={{textAlign:'center',fontSize:18,color:'#c0392b'}}>
+                  <Text style={{textAlign:'center',fontSize:18,color:'#c0392b',fontFamily:'oswald-regular'}}>
                     {this.state.totalANDROIDSpecialsCount} ({this.state.percentageANDROIDSpecials}%)
                   </Text>
                 </View>

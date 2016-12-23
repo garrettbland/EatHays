@@ -1,17 +1,12 @@
 import {
-  LOADING_TRUE,
-  LOADING_FALSE,
+  SET_FILTER,
 } from '../actions';
 
-export default function loadingReducer(state,action){
+export default function setFilter(state,action){
   switch (action.type) {
-    case LOADING_TRUE:
-      return Object.assign({}, state, {user:{loading:true}});
-
-    case LOADING_FALSE:
-      return Object.assign({}, state, {user:{loading:false}});
-
+    case SET_FILTER:
+      return Object.assign({}, state, {user:{filter:action.filter}});
     default:
-      return Object.assign({}, state, {user:{loading:false}});
+      return Object.assign({}, state, {user:{filter:"All"}});
   }
 }
