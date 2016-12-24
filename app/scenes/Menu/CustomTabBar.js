@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   },
   container: {
     height: 70,
-    borderWidth: 1,
+    borderWidth: 0,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,

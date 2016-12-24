@@ -9,6 +9,7 @@ import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import StarRating from 'react-native-star-rating';
+import SGListView from 'react-native-sglistview';
 import {
   Text,
   View,
@@ -216,7 +217,7 @@ class Directory extends Component {
               />
             }
           </View>
-          <ListView
+          <SGListView
               renderHeader={() =>
                 <SearchBar
                   returnKeyType='search'
@@ -228,13 +229,16 @@ class Directory extends Component {
                   containerStyle={{width:screenWidth,borderBottomColor:'#e1e8ef',borderTopColor:'#e1e8ef'}}
                 />
               }
-              dataSource={this.state.dataSource}
-              renderRow={this._renderItem.bind(this)}
-              enableEmptySections={true}
-              scrollRenderAheadDistance={10}
-              initialListSize={2}
-              renderFooter={() => <View style={{alignItems:'center',marginTop:4,marginBottom:4}}><Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6'}}>End of Results</Text></View>}
-          />
+               dataSource={this.state.dataSource}
+               ref={'listview'}
+               initialListSize={1}
+               stickyHeaderIndices={[]}
+               onEndReachedThreshold={1}
+               scrollRenderAheadDistance={1}
+               pageSize={1}
+               renderRow={this._renderItem.bind(this)}
+               renderFooter={() => <View style={{alignItems:'center',marginTop:4,marginBottom:4}}><Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6'}}>End of Results</Text></View>}
+               />
         </ScrollView>
       </View>
     );
@@ -256,7 +260,7 @@ class Directory extends Component {
         newDescriptionString = descriptonString
       }
         return (
-          <View style={{backgroundColor:"#ffffff",flex:1,marginTop:1}}>
+          <View style={{backgroundColor:"#ffffff",marginTop:1}}>
             <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>
               <View style={{backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                 <View style={{alignItems:'flex-start',flex:3,}}>

@@ -35,7 +35,7 @@ const toggleDrawer = () => Actions.refresh({key: 'drawer', open: value => !value
 const toggleFilter = () => Actions.FilterModal()
 
 const settingsIcon = (<Icon name="bars" size={30} color="#FFFFFF" />);
-const filterIcon = (<Icon name="sliders" size={30} color="#FFFFFF" />);
+const filterIcon = (<Icon name="sort" size={30} color="#FFFFFF" />);
 const backButtonIcon = (<Icon name="chevron-left" size={23} color="#FFFFFF" />);
 const searchIcon = (<Icon name="search" size={25} color="#FFFFFF" />);
 
@@ -64,7 +64,7 @@ class EatHaysRouter extends Component {
                 <Scene key="MenuIndex" navigationBarStyle={styleNavigationBarStyle} titleStyle={styleTitleStyle} backTitle={backButtonIcon} hideBackImage={true} component={MenuIndex} type="push" title="Menu" />
               </Scene>
           </Scene>
-          <Scene key="FilterModal" component={FilterModal} direction="vertical" hideNavBar={true}/>
+          <Scene key="FilterModal" panHandlers={null} component={FilterModal} direction="vertical" hideNavBar={true}/>
       </Router>
     );
   }
