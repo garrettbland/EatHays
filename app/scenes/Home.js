@@ -18,6 +18,7 @@ import {
   ScrollView,
   Platform,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -42,10 +43,16 @@ class Home extends Component {
       })
     };
     this.itemsRef = this.getRef().child('specials');
+    this.systemRef = this.getRef().child('alerts');
   }
 
   getRef() {
     return firebaseApp.database().ref();
+  }
+
+  componentDidMount() {
+    this.listenForItems(this.itemsRef);
+    this.listenForSystem(this.systemRef);
   }
 
   listenForItems(itemsRef) {
@@ -67,8 +74,22 @@ class Home extends Component {
     });
   }
 
-  componentDidMount() {
-    this.listenForItems(this.itemsRef);
+  listenForSystem(systemRef) {
+    systemRef.on('value', (snap) => {
+      var items = [];
+      snap.forEach((child) => {
+        items.push({
+          active:child.val().active,
+          message: child.val().systemMessage,
+        });
+      });
+      var serverMessage = items[0].message;
+      var serverMessageActive = items[0].active;
+      this.setState({
+        systemMessageActive:serverMessageActive,
+        systemMessage:serverMessage,
+      });
+    });
   }
 
   render() {
@@ -76,6 +97,15 @@ class Home extends Component {
       <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
           <View>
+            {this.state.systemMessageActive &&
+              <View style={{padding:5,marginTop:10,marginBottom:10,borderRadius:5,}}>
+                <View style={{borderWidth:1}}>
+                  <Text style={{padding:3}}>
+                    {this.state.systemMessage}
+                  </Text>
+                </View>
+              </View>
+            }
             <View style={{margin: 10,marginTop:20,paddingBottom:20}}>
               <Image source={require('../images/DealsoftheDay.png')} resizeMode='contain' style={{width: screenWidth, height: screenHeight/5}}/>
             </View>
