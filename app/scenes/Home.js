@@ -84,28 +84,32 @@ class Home extends Component {
           message: child.val().systemMessage,
           systemMessageTitle: child.val().systemMessageTitle,
           systemEmoji: child.val().systemEmoji,
+          systemColor: child.val().systemColor,
         });
       });
       var serverMessage = items[0].message;
       var serverMessageActive = items[0].active;
       var serverMessageTitle = items[0].systemMessageTitle;
       var serverEmoji = items[0].systemEmoji;
+      var serverColor = items[0].systemColor;
       this.setState({
         systemMessageActive:serverMessageActive,
         systemMessage:serverMessage,
         systemMessageTitle:serverMessageTitle,
         systemEmoji:serverEmoji,
+        systemColor:serverColor,
       });
     });
   }
 
   render() {
+    var systemColor = this.state.systemColor;
     return (
       <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
           <View>
             {this.state.systemMessageActive &&
-              <Card containerStyle={{borderRadius:10,borderWidth:0,backgroundColor:'#2980b9'}}>
+              <Card containerStyle={{borderRadius:10,borderWidth:0,backgroundColor:systemColor}}>
                 <View>
                   <View style={{alignItems:'flex-start', justifyContent:'center'}}>
                     <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#ffffff'}}>{this.state.systemMessageTitle}<Emoji style={{fontSize:40}} name={this.state.systemEmoji}/></Text>
