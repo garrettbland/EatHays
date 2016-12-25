@@ -9,6 +9,7 @@ import Image from 'react-native-image-progress';
 import { Card, Button } from 'react-native-elements';
 import shuffle from 'shuffle-array';
 import SplashScreen from "rn-splash-screen";
+import Emoji from 'react-native-emoji';
 import {
   Text,
   View,
@@ -81,16 +82,19 @@ class Home extends Component {
         items.push({
           active:child.val().active,
           message: child.val().systemMessage,
-          systemMessageTitle: child.val().systemMessageTitle
+          systemMessageTitle: child.val().systemMessageTitle,
+          systemEmoji: child.val().systemEmoji,
         });
       });
       var serverMessage = items[0].message;
       var serverMessageActive = items[0].active;
       var serverMessageTitle = items[0].systemMessageTitle;
+      var serverEmoji = items[0].systemEmoji;
       this.setState({
         systemMessageActive:serverMessageActive,
         systemMessage:serverMessage,
-        systemMessageTitle:serverMessageTitle
+        systemMessageTitle:serverMessageTitle,
+        systemEmoji:serverEmoji,
       });
     });
   }
@@ -104,7 +108,7 @@ class Home extends Component {
               <Card containerStyle={{borderRadius:10,borderWidth:0,backgroundColor:'#2980b9'}}>
                 <View>
                   <View style={{alignItems:'flex-start', justifyContent:'center'}}>
-                    <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#ffffff'}}>{this.state.systemMessageTitle}</Text>
+                    <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#ffffff'}}>{this.state.systemMessageTitle}<Emoji style={{fontSize:40}} name={this.state.systemEmoji}/></Text>
                   </View>
                   <Text style={{marginBottom: 10,paddingTop:15,color:'#ffffff',fontFamily:'oswald-regular'}}>
                     {this.state.systemMessage}
