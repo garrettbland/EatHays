@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import {Button, SocialIcon} from 'react-native-elements';
+import {Button, SocialIcon, Icon} from 'react-native-elements';
 import {
   Text,
   View,
@@ -91,6 +89,22 @@ class About extends Component {
                 title='Send us a message'
                 onPress={() => Actions.Contact()}
               />
+            </View>
+          </View>
+
+          <View style={{flexDirection:'row',marginBottom:14,marginTop:14,padding:10}}>
+            <View style={{width:screenWidth/3,alignItems:'center'}}>
+              <Icon
+                reverse
+                raised
+                name='wrench'
+                type='font-awesome'
+                color='#e67e22'
+                onPress={() => Actions.IncorrectDataReport()}
+              />
+              <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
+                Report Incorrect Info
+              </Text>
             </View>
           </View>
 

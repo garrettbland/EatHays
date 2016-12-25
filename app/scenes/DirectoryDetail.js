@@ -163,7 +163,10 @@ class DirectoryDetail extends Component {
         <View>
           <View style={{height:10,backgroundColor:'#c0392b'}}>
           </View>
-          <Text style={{fontSize: 40,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+          <Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6',fontSize:12}}>
+            Last update on {this.props.item.lastUpdate}
+          </Text>
+          <Text style={{fontSize: 45,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
             {this.props.title}
           </Text>
             <View style={{flex:1,flexDirection:'row',marginBottom:14}}>
