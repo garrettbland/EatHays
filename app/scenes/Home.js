@@ -81,13 +81,16 @@ class Home extends Component {
         items.push({
           active:child.val().active,
           message: child.val().systemMessage,
+          systemMessageTitle: child.val().systemMessageTitle
         });
       });
       var serverMessage = items[0].message;
       var serverMessageActive = items[0].active;
+      var serverMessageTitle = items[0].systemMessageTitle;
       this.setState({
         systemMessageActive:serverMessageActive,
         systemMessage:serverMessage,
+        systemMessageTitle:serverMessageTitle
       });
     });
   }
@@ -98,13 +101,16 @@ class Home extends Component {
         <ScrollView>
           <View>
             {this.state.systemMessageActive &&
-              <View style={{padding:5,marginTop:10,marginBottom:10,borderRadius:5,}}>
-                <View style={{borderWidth:1}}>
-                  <Text style={{padding:3}}>
+              <Card containerStyle={{borderRadius:10,borderWidth:0,backgroundColor:'#2980b9'}}>
+                <View>
+                  <View style={{alignItems:'flex-start', justifyContent:'center'}}>
+                    <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#ffffff'}}>{this.state.systemMessageTitle}</Text>
+                  </View>
+                  <Text style={{marginBottom: 10,paddingTop:15,color:'#ffffff',fontFamily:'oswald-regular'}}>
                     {this.state.systemMessage}
                   </Text>
                 </View>
-              </View>
+              </Card>
             }
             <View style={{margin: 10,marginTop:20,paddingBottom:20}}>
               <Image source={require('../images/DealsoftheDay.png')} resizeMode='contain' style={{width: screenWidth, height: screenHeight/5}}/>
