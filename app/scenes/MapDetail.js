@@ -22,7 +22,7 @@ class MapDetail extends Component {
 
   render() {
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+      <View style={{flex: 1,backgroundColor:'#e1e8ef'}}>
         {this.state.loading &&
           <View style={{alignItems:'center',justifyContent:'center',height:screenHeight,width:screenWidth}}>
             <ActivityIndicator
@@ -31,10 +31,12 @@ class MapDetail extends Component {
             />
           </View>
         }
-        <WebView
-          onLoad={()=>this.setState({loading:false})}
-          source={{uri: this.props.addressURL}}
-        />
+        <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+          <WebView
+            onLoad={()=>this.setState({loading:false})}
+            source={{uri: this.props.addressURL}}
+          />
+        </View>
       </View>
     );
   }

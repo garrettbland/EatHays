@@ -22,7 +22,7 @@ class Contact extends Component {
 
   render() {
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+      <View style={{flex: 1,backgroundColor:'#e1e8ef'}}>
         {this.state.loading &&
           <View style={{alignItems:'center',justifyContent:'center',height:screenHeight,width:screenWidth}}>
             <ActivityIndicator
@@ -31,11 +31,13 @@ class Contact extends Component {
             />
           </View>
         }
-        <WebView
-          style={{backgroundColor:'#e1e8ef'}}
-          onLoad={()=>this.setState({loading:false})}
-          source={{uri: "http://eathays.com/contact"}}
-        />
+        <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+          <WebView
+            style={{backgroundColor:'#e1e8ef'}}
+            onLoad={()=>this.setState({loading:false})}
+            source={{uri: "http://eathays.com/contact"}}
+          />
+        </View>
       </View>
     );
   }
