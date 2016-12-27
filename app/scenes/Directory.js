@@ -75,6 +75,7 @@ class Directory extends Component {
           rate: child.val().rate,
           reviews: child.val().reviews,
           searchable: child.val().searchable,
+          subCategory: child.val().subCategory,
           title: child.val().title,
           _key: child.key,
         });
@@ -86,8 +87,10 @@ class Directory extends Component {
           return 0;
       })
 
+      var itemsString = JSON.stringify(items);
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(items),
+        itemsString: itemsString,
       });
     });
   }
@@ -108,32 +111,11 @@ class Directory extends Component {
     if (searchText == ""){
       this.listenForItems(itemsRef);
     }else{
-      itemsRef.orderByChild("searchable").startAt(searchText).endAt(searchText).on('value', (snap) => {
-        items = [];
-        snap.forEach((child) => {
-          items.push({
-            active: child.val().active,
-            address: child.val().address,
-            addressURL: child.val().addressURL,
-            background:child.val().background,
-            category: child.val().category,
-            coupons: child.val().coupons,
-            description: child.val().description,
-            hours: child.val().hours,
-            images: child.val().images,
-            lastUpdate: child.val().lastUpdate,
-            mapImage: child.val().mapImage,
-            menu: child.val().menu,
-            phone: child.val().phone,
-            profile: child.val().profile,
-            rate: child.val().rate,
-            reviews: child.val().reviews,
-            searchable: child.val().searchable,
-            title: child.val().title,
-            visits: child.val().visits,
-            _key: child.key,
-          });
-        });
+
+        var itemsString = JSON.parse(this.state.itemsString);
+        var items = itemsString.filter(function(d){
+          return d.searchable == searchText
+        })
 
         var alphabetize = items.sort(function(a, b){
             if(a.searchable < b.searchable) return -1;
@@ -141,10 +123,10 @@ class Directory extends Component {
             return 0;
         })
 
+
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(items)
         });
-      });
     }
   }
 
@@ -167,33 +149,12 @@ class Directory extends Component {
 
     if (filterText == "All"){
       this.listenForItems(itemsRef);
-    }else{
-      itemsRef.orderByChild("category").startAt(filterText).endAt(filterText).on('value', (snap) => {
-        items = [];
-        snap.forEach((child) => {
-          items.push({
-            active: child.val().active,
-            address: child.val().address,
-            addressURL: child.val().addressURL,
-            background:child.val().background,
-            category: child.val().category,
-            coupons: child.val().coupons,
-            description: child.val().description,
-            hours: child.val().hours,
-            images: child.val().images,
-            lastUpdate: child.val().lastUpdate,
-            mapImage: child.val().mapImage,
-            menu: child.val().menu,
-            phone: child.val().phone,
-            profile: child.val().profile,
-            rate: child.val().rate,
-            reviews: child.val().reviews,
-            searchable: child.val().searchable,
-            title: child.val().title,
-            visits: child.val().visits,
-            _key: child.key,
-          });
-        });
+    }else if(filterText == "*Local Eats Only*"){
+
+      var itemsString = JSON.parse(this.state.itemsString);
+      var items = itemsString.filter(function(d){
+        return d.subCategory == "local"
+      })
 
         var alphabetize = items.sort(function(a, b){
             if(a.searchable < b.searchable) return -1;
@@ -204,8 +165,26 @@ class Directory extends Component {
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(items)
         });
-      });
-    }
+
+    }else{
+
+        var itemsString = JSON.parse(this.state.itemsString);
+        var items = itemsString.filter(function(d){
+          return d.category == option
+        })
+
+
+        var alphabetize = items.sort(function(a, b){
+            if(a.searchable < b.searchable) return -1;
+            if(a.searchable > b.searchable) return 1;
+            return 0;
+        })
+
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(items)
+        });
+      }
+
   }
 
   render() {

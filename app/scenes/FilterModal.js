@@ -50,7 +50,7 @@ class FilterModal extends Component {
   render() {
 
     const options = [
-    'All','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
+    'All','*Local Eats Only*','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
     'Chicken' ,'Chinese' ,'Coffee Shop' ,'Dessert' ,'Fast Food' ,'Italian' ,
     'Japanese' ,'Mexican' ,'Night Club' ,'Pizza' ,'Sushi' ,'Vietnamese'
     ]
@@ -78,14 +78,7 @@ class FilterModal extends Component {
     }
 
     return (
-      <View style={{flex: 1,paddingTop:0,backgroundColor: '#e1e8ef'}} >
-        <ScrollView>
-          <Text style={{fontSize: 40,textAlign: 'center',paddingTop:20,fontFamily:'oswald-bold',color:"black"}}>
-            Filter
-          </Text>
-          <Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6'}}>
-            Filter restaurants by category
-          </Text>
+      <View style={{flex: 1,paddingTop:20,backgroundColor: '#e1e8ef'}} >
           <View style={{flexDirection:'row',marginTop:15,marginBottom:15}}>
             <View style={{width:screenWidth/2}}>
               <Button
@@ -118,6 +111,7 @@ class FilterModal extends Component {
               />
             </View>
           </View>
+          <ScrollView>
           <View>
             <RadioButtons
               options={ options }
