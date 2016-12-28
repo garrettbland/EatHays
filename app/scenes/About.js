@@ -42,8 +42,8 @@ class About extends Component {
           <View style={{marginTop:10}}>
             <Text style={{padding:10}}>
               We wanted to build a sweet app that would have it all. Daily deals, phone numbers, images, reviews, hours, and more.
-              Being Hays locals, we wanted to create something special for our awesome home and showcase these local eats. So,
-              we created Eat Hays, a central place for it all! We really hope you enjoy the app and we hope it brings usefullness to you!
+              Being Hays locals, we wanted to create something special for our awesome home and showcase these local places. So,
+              we created Eat Hays, a central place for everything eating in Hays, Kansas. We really hope you enjoy the app and we hope it brings usefullness to you!
             </Text>
             <Text style={{padding:10, fontStyle:'italic', color:'#c0392b', fontFamily:'oswald-bold'}}>
               - Garrett Bland | Owner & Developer
@@ -58,14 +58,24 @@ class About extends Component {
           <View style={{marginTop:10,alignItems:'center'}}>
             <View style={{flexDirection:'row'}}>
               <View style={{margin:5}}>
-                <SocialIcon
-                  type='facebook'
+                <Icon
+                  reverse
+                  raised
+                  name='facebook'
+                  type='font-awesome'
+                  color='#3b5998'
+                  onPress={()=>Actions.SocialWebView({website:"http://facebook.com/EatHays"})}
                 />
                 <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>@EatHays</Text>
               </View>
               <View style={{margin:5}}>
-                <SocialIcon
-                  type='twitter'
+                <Icon
+                  reverse
+                  raised
+                  name='twitter'
+                  type='font-awesome'
+                  color='#00aced'
+                  onPress={()=>Actions.SocialWebView({website:"http://twitter.com/Eat_Hays"})}
                 />
                 <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>@eat_hays</Text>
               </View>
