@@ -218,6 +218,7 @@ class Directory extends Component {
                onEndReachedThreshold={1}
                scrollRenderAheadDistance={1}
                pageSize={1}
+               enableEmptySections={true}
                renderRow={this._renderItem.bind(this)}
                renderFooter={() => <View style={{alignItems:'center',marginTop:4,marginBottom:4}}><Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6'}}>End of Results</Text></View>}
                />

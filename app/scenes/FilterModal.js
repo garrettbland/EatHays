@@ -50,7 +50,7 @@ class FilterModal extends Component {
   render() {
 
     const options = [
-    'All','*Local Eats Only*','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
+    'All','*Local Eats Only*','*Delivery Only*','*Wifi Access*','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
     'Chicken' ,'Chinese' ,'Coffee Shop' ,'Dessert' ,'Fast Food' ,'Italian' ,
     'Japanese' ,'Mexican' ,'Night Club' ,'Pizza' ,'Sushi' ,'Vietnamese'
     ]
@@ -86,13 +86,13 @@ class FilterModal extends Component {
                 small
                 iconRight
                 borderRadius={5}
-                icon={{name: 'check'}}
+                icon={{name: 'cancel'}}
                 fontFamily="oswald-bold"
                 fontSize={14}
                 buttonStyle={{marginBottom:5,}}
-                backgroundColor="#27ae60"
-                title="Accept"
-                onPress={() => this.setFilterValue(this.state.filterValue)}
+                backgroundColor="#c0392b"
+                title="Cancel"
+                onPress={() => Actions.pop()}
               />
             </View>
             <View style={{width:screenWidth/2}}>
@@ -101,13 +101,13 @@ class FilterModal extends Component {
                 small
                 iconRight
                 borderRadius={5}
-                icon={{name: 'cancel'}}
+                icon={{name: 'check'}}
                 fontFamily="oswald-bold"
                 fontSize={14}
                 buttonStyle={{marginBottom:5,}}
-                backgroundColor="#c0392b"
-                title="Cancel"
-                onPress={() => Actions.pop()}
+                backgroundColor="#27ae60"
+                title="Accept"
+                onPress={() => this.setFilterValue(this.state.filterValue)}
               />
             </View>
           </View>
