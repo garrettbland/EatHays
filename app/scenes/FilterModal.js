@@ -76,7 +76,7 @@ class FilterModal extends Component {
                   />
                 </View>
                 <View>
-                  <Text style={style}> {option}</Text>
+                  <Text style={selected ? { fontFamily:'oswald-bold',color: '#000000',fontSize:screenWidth/8} : {fontFamily:'oswald-bold',color: '#7f8c8d',fontSize:screenWidth/8}}> {option}</Text>
                 </View>
               </View>
             </TouchableBounce>
@@ -94,7 +94,7 @@ class FilterModal extends Component {
                   />
                 </View>
                 <View>
-                  <Text style={style}> {option}</Text>
+                  <Text style={selected ? { fontFamily:'oswald-bold',color: '#F9690E',fontSize:screenWidth/8} : {fontFamily:'oswald-bold',color: '#7f8c8d',fontSize:screenWidth/8}}> {option}</Text>
                 </View>
               </View>
             </TouchableBounce>
@@ -112,7 +112,7 @@ class FilterModal extends Component {
                   />
                 </View>
                 <View>
-                  <Text style={style}> {option}</Text>
+                  <Text style={selected ? { fontFamily:'oswald-bold',color: '#3498db',fontSize:screenWidth/8} : {fontFamily:'oswald-bold',color: '#7f8c8d',fontSize:screenWidth/8}}> {option}</Text>
                 </View>
               </View>
             </TouchableBounce>
