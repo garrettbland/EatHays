@@ -64,6 +64,7 @@ class Directory extends Component {
           background:child.val().background,
           category: child.val().category,
           coupons: child.val().coupons,
+          delivery: child.val().delivery,
           description: child.val().description,
           hours: child.val().hours,
           images: child.val().images,
@@ -75,8 +76,9 @@ class Directory extends Component {
           rate: child.val().rate,
           reviews: child.val().reviews,
           searchable: child.val().searchable,
-          subCategory: child.val().subCategory,
+          local: child.val().local,
           title: child.val().title,
+          wifi: child.val().wifi,
           _key: child.key,
         });
       });
@@ -149,11 +151,11 @@ class Directory extends Component {
 
     if (filterText == "All"){
       this.listenForItems(itemsRef);
-    }else if(filterText == "*Local Eats Only*"){
+    }else if(filterText == "Local Eats Only"){
 
       var itemsString = JSON.parse(this.state.itemsString);
       var items = itemsString.filter(function(d){
-        return d.subCategory == "local"
+        return d.local === true
       })
 
         var alphabetize = items.sort(function(a, b){
@@ -166,6 +168,36 @@ class Directory extends Component {
           dataSource: this.state.dataSource.cloneWithRows(items)
         });
 
+    }else if(filterText == "Delivery"){
+      var itemsString = JSON.parse(this.state.itemsString);
+      var items = itemsString.filter(function(d){
+        return d.delivery === true
+      })
+
+        var alphabetize = items.sort(function(a, b){
+            if(a.searchable < b.searchable) return -1;
+            if(a.searchable > b.searchable) return 1;
+            return 0;
+        })
+
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(items)
+        });
+    }else if(filterText == "Wifi Access"){
+      var itemsString = JSON.parse(this.state.itemsString);
+      var items = itemsString.filter(function(d){
+        return d.wifi === true
+      })
+
+        var alphabetize = items.sort(function(a, b){
+            if(a.searchable < b.searchable) return -1;
+            if(a.searchable > b.searchable) return 1;
+            return 0;
+        })
+
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(items)
+        });
     }else{
 
         var itemsString = JSON.parse(this.state.itemsString);

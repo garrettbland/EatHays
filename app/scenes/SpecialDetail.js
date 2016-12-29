@@ -62,6 +62,7 @@ class SpecialDetail extends Component {
           background:child.val().background,
           category: child.val().category,
           coupons: child.val().coupons,
+          delivery: child.val().delivery,
           description: child.val().description,
           hours: child.val().hours,
           images: child.val().images,
@@ -73,7 +74,9 @@ class SpecialDetail extends Component {
           rate: child.val().rate,
           reviews: child.val().reviews,
           searchable: child.val().searchable,
+          subCategory: child.val().subCategory,
           title: child.val().title,
+          wifi: child.val().wifi,
           _key: child.key,
         });
       });

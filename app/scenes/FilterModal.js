@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ReduxActions from '../actions/';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import {Button} from 'react-native-elements';
+import {Button, Icon} from 'react-native-elements';
 import RadioButtons from 'react-native-radio-buttons';
+import Emoji from 'react-native-emoji';
+import TouchableBounce from 'TouchableBounce';
 import {
   Text,
   View,
@@ -16,7 +17,6 @@ import {
   ScrollView,
   Dimensions,
   Alert,
-  TouchableOpacity,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -50,7 +50,7 @@ class FilterModal extends Component {
   render() {
 
     const options = [
-    'All','*Local Eats Only*','*Delivery Only*','*Wifi Access*','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
+    'All','Local Eats Only','Delivery','Wifi Access','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
     'Chicken' ,'Chinese' ,'Coffee Shop' ,'Dessert' ,'Fast Food' ,'Italian' ,
     'Japanese' ,'Mexican' ,'Night Club' ,'Pizza' ,'Sushi' ,'Vietnamese'
     ]
@@ -63,14 +63,69 @@ class FilterModal extends Component {
 
     function renderOption(option, selected, onSelect, index){
       const style = selected ? { fontFamily:'oswald-bold',color: '#c0392b',fontSize:screenWidth/8} : {fontFamily:'oswald-bold',color: '#7f8c8d',fontSize:screenWidth/8};
-
-      return (
-        <TouchableOpacity onPress={onSelect} key={index}>
-          <View style={{alignItems:'center',justifyContent:'center'}}>
-          <Text style={style}>{option}</Text>
-          </View>
-        </TouchableOpacity>
-      );
+      if(option == "Local Eats Only"){
+          return (
+            <TouchableBounce onPress={onSelect} key={index}>
+              <View style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
+                <View>
+                  <Icon
+                    size={40}
+                    name='cutlery'
+                    type='font-awesome'
+                    color='#c0392b'
+                  />
+                </View>
+                <View>
+                  <Text style={style}> {option}</Text>
+                </View>
+              </View>
+            </TouchableBounce>
+          );
+      }else if(option == "Delivery"){
+          return (
+            <TouchableBounce onPress={onSelect} key={index}>
+              <View style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
+                <View>
+                  <Icon
+                    size={40}
+                    name='car'
+                    type='font-awesome'
+                    color='#F9690E'
+                  />
+                </View>
+                <View>
+                  <Text style={style}> {option}</Text>
+                </View>
+              </View>
+            </TouchableBounce>
+          );
+      }else if(option == "Wifi Access"){
+          return (
+            <TouchableBounce onPress={onSelect} key={index}>
+              <View style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
+                <View>
+                  <Icon
+                    size={40}
+                    name='wifi'
+                    type='font-awesome'
+                    color='#3498db'
+                  />
+                </View>
+                <View>
+                  <Text style={style}> {option}</Text>
+                </View>
+              </View>
+            </TouchableBounce>
+          );
+      }else {
+        return (
+          <TouchableBounce onPress={onSelect} key={index}>
+            <View style={{alignItems:'center',justifyContent:'center'}}>
+            <Text style={style}>{option}</Text>
+            </View>
+          </TouchableBounce>
+        );
+      }
     }
 
     function renderContainer(optionNodes){

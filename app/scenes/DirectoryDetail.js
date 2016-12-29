@@ -166,7 +166,32 @@ class DirectoryDetail extends Component {
           <Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6',fontSize:12}}>
             Last update on {this.props.item.lastUpdate}
           </Text>
-          <Text style={{fontSize: 45,textAlign: 'center',margin: 10,paddingTop:20,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+          <View style={{flexDirection:'row',marginTop:10,justifyContent:'center'}}>
+          {this.props.item.local &&
+            <Icon
+              name='cutlery'
+              type='font-awesome'
+              color='#c0392b'
+              iconStyle={{paddingRight:5}}
+            />
+          }
+            {this.props.item.wifi &&
+              <Icon
+                name='wifi'
+                type='font-awesome'
+                color='#3498db'
+                iconStyle={{paddingRight:5}}
+              />
+            }
+            {this.props.item.delivery &&
+              <Icon
+                name='car'
+                type='font-awesome'
+                color='#F9690E'
+              />
+            }
+          </View>
+          <Text style={{fontSize: 45,textAlign: 'center',marginBottom: 10,paddingTop:0,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
             {this.props.title}
           </Text>
             <View style={{flex:1,flexDirection:'row',marginBottom:14}}>
