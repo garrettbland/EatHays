@@ -154,10 +154,10 @@ class DirectoryDetail extends Component {
 
   render() {
     return (
-      <View style={{flex: 1,paddingTop:Platform.OS === 'ios'? 64 : 54, backgroundColor:'#FFFFFF'}}>
+      <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54, backgroundColor:'#FFFFFF'}}>
         <ParallaxScrollView
          fadeOutForeground={false}
-         renderBackground={() => <Image source={{ uri: this.props.item.background, width: window.width, height: screenHeight / 2 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>}
+         renderBackground={() => <Image source={{ uri: this.props.item.background, width: screenWidth, height: screenHeight / 2 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>}
          contentBackgroundColor="#ffffff"
          parallaxHeaderHeight={screenHeight / 2}>
         <View>
@@ -194,7 +194,7 @@ class DirectoryDetail extends Component {
           <Text style={{fontSize: 45,textAlign: 'center',marginBottom: 10,paddingTop:0,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
             {this.props.title}
           </Text>
-            <View style={{flex:1,flexDirection:'row',marginBottom:14}}>
+            <View style={{flexDirection:'row',marginBottom:14}}>
               <View style={{width:screenWidth/3,alignItems:'center'}}>
                 <Icon
                   reverse

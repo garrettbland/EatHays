@@ -223,11 +223,12 @@ class Directory extends Component {
     return (
       <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
         <ScrollView>
-          <View style={{marginTop:7,marginBottom:7}}>
+          <View>
             {this.state.loading &&
               <ActivityIndicator
                 size="large"
                 color="#3498db"
+                style={{paddingTop:7,paddingBottom:7}}
               />
             }
           </View>
@@ -241,6 +242,7 @@ class Directory extends Component {
                   onChangeText={(text) => this.setState({searchText:text})}
                   onSubmitEditing={() => this.firstSearch()}
                   containerStyle={{width:screenWidth,borderBottomColor:'#e1e8ef',borderTopColor:'#e1e8ef'}}
+                  autoCorrect={false}
                 />
               }
                dataSource={this.state.dataSource}

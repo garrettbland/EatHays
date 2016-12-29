@@ -24,7 +24,15 @@ class OwnerStats extends Component {
     super(props);
     this.state = {
       totalDirectoryCount:"Loading...",
-      totalSpecialsCount:"Loading..."
+      totalSpecialsCount:"Loading...",
+      totalIOSDirectoryCount:"Loading...",
+      percentageIOSDirectory:"Loading...",
+      totalANDROIDDirectoryCount:"Loading...",
+      percentageANDROIDDirectory:"Loading...",
+      totalIOSSpecialsCount:"Loading...",
+      percentageIOSSpecials:"Loading...",
+      totalANDROIDSpecialsCount:"Loading...",
+      percentageANDROIDSpecials:"Loading...",
     }
   }
 
