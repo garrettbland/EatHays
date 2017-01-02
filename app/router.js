@@ -30,7 +30,7 @@ import FilterModal from './scenes/FilterModal.js';
 import IncorrectDataReport from './scenes/IncorrectDataReport.js';
 import SocialWebView from './scenes/SocialWebView.js';
 
-const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:Platform.OS === 'ios'? "#c0392b" : "#b03427",borderBottomWidth:6,shadowColor: '#000000', shadowOpacity: 0.9, shadowRadius: 15,};
+const styleNavigationBarStyle = {backgroundColor:"#c0392b",borderBottomColor:Platform.OS === 'ios'? "#c0392b" : "#c0392b",borderBottomWidth:6,shadowColor: '#000000', shadowOpacity: 0.9, shadowRadius: 15,};
 const styleTitleStyle = {color:"#FFFFFF",fontFamily:'oswald-regular',fontSize:20};
 
 const toggleDrawer = () => Actions.refresh({key: 'drawer', open: value => !value });
