@@ -50,7 +50,7 @@ class ReviewFullList extends Component {
     if (item.review == "null"){
       return (
         <View >
-          <Card>
+          <Card containerStyle={{borderWidth:1,borderColor:'#e1e8ef',shadowRadius: 0,shadowColor: '#ffffff'}}>
             <View style={{width:50}}>
               <StarRating
                 disabled={true}
@@ -78,7 +78,7 @@ class ReviewFullList extends Component {
     }else{
       return (
         <View>
-          <Card >
+          <Card containerStyle={{borderWidth:1,borderColor:'#e1e8ef',shadowRadius: 0,shadowColor: '#ffffff'}}>
             <View style={{width:50}}>
               <StarRating
                 disabled={true}

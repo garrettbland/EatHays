@@ -175,7 +175,7 @@ class Home extends Component {
       return (
         <View style={{backgroundColor:'#e1e8ef'}}>
           <TouchableOpacity onPress={() => Actions.SpecialDetail({title:item.title,profile:item.profile,background:item.today.image,special:item.today.special,specialDescription:item.today.description,day:todayFormatted})}>
-            <Card image={{uri: item.today.image}}>
+            <Card image={{uri: item.today.image}} imageStyle={{borderTopLeftRadius:10,borderTopRightRadius:10}} containerStyle={{borderWidth:1,borderColor:'#e1e8ef',shadowRadius: 0,shadowColor: '#ffffff',overflow: 'hidden',borderRadius:10}}>
               <View style={{flexDirection:'row'}}>
                 <View style={{alignItems:'flex-start', flex:4, justifyContent:'center'}}>
                   <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/18,color:'#000000'}}>{newSpecialString}</Text>
@@ -183,7 +183,7 @@ class Home extends Component {
                 <View style={{alignItems:'flex-end', flex:2}}>
                   <Image
                     onLoad={() => this.setState({loading:false})}
-                    style={{height:75, width:125}}
+                    style={{height:75, width:125,}}
                     source={{uri: item.profile}}
                     resizeMode={'contain'}
                   />
@@ -197,7 +197,7 @@ class Home extends Component {
               <View>
                 <Button
                   small
-                  borderRadius={0}
+                  borderRadius={10}
                   icon={{name: 'star'}}
                   backgroundColor='#2bc064'
                   fontFamily='oswald-regular'

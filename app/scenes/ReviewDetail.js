@@ -160,7 +160,7 @@ class ReviewDetail extends Component {
                 // TextInput props
                 autoCapitalize={'none'}
                 inputStyle={{color:'#000000'}}
-                autoCorrect={false}
+                autoCorrect={true}
                 onChangeText={(text) => this.setState({review:text})}
                 value={this.state.review}
               />

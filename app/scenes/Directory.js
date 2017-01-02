@@ -10,6 +10,8 @@ import { SearchBar } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import StarRating from 'react-native-star-rating';
 import SGListView from 'react-native-sglistview';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Sae } from 'react-native-textinput-effects';
 import {
   Text,
   View,
@@ -58,27 +60,15 @@ class Directory extends Component {
       snap.forEach((child) => {
         items.push({
           active: child.val().active,
-          address: child.val().address,
-          addressURL: child.val().addressURL,
-          averagePrice: child.val().averagePrice,
-          background:child.val().background,
           category: child.val().category,
-          coupons: child.val().coupons,
-          delivery: child.val().delivery,
           description: child.val().description,
-          hours: child.val().hours,
-          images: child.val().images,
-          lastUpdate: child.val().lastUpdate,
-          mapImage: child.val().mapImage,
-          menu: child.val().menu,
-          phone: child.val().phone,
           profile: child.val().profile,
           rate: child.val().rate,
-          reviews: child.val().reviews,
           searchable: child.val().searchable,
-          local: child.val().local,
           title: child.val().title,
           wifi: child.val().wifi,
+          local: child.val().local,
+          delivery: child.val().delivery,
           _key: child.key,
         });
       });
@@ -129,6 +119,8 @@ class Directory extends Component {
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(items)
         });
+
+
     }
   }
 
@@ -222,7 +214,6 @@ class Directory extends Component {
   render() {
     return (
       <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
-        <ScrollView>
           <View>
             {this.state.loading &&
               <ActivityIndicator
@@ -234,29 +225,35 @@ class Directory extends Component {
           </View>
           <SGListView
               renderHeader={() =>
-                <SearchBar
-                  returnKeyType='search'
-                  lightTheme
-                  placeholder='Search...'
-                  value={this.state.searchText}
-                  onChangeText={(text) => this.setState({searchText:text})}
-                  onSubmitEditing={() => this.firstSearch()}
-                  containerStyle={{width:screenWidth,borderBottomColor:'#e1e8ef',borderTopColor:'#e1e8ef'}}
-                  autoCorrect={false}
-                />
+                <View style={{marginLeft:10,marginRight:10,marginBottom:10}}>
+                  <Sae
+                    label={'Search'}
+                    labelStyle={{color:'#c0392b', fontFamily:'Oswald-bold',fontSize:40}}
+                    iconClass={FontAwesomeIcon}
+                    iconName={'search'}
+                    iconColor={'#c0392b'}
+                    returnKeyType='search'
+                    // TextInput props
+                    autoCapitalize={'none'}
+                    inputStyle={{color:'#000000',fontFamily:'Oswald-regular'}}
+                    autoCorrect={false}
+                    onChangeText={(text) => this.setState({searchText:text})}
+                    onSubmitEditing={() => this.firstSearch()}
+                    value={this.state.searchText}
+                  />
+                </View>
               }
                dataSource={this.state.dataSource}
                ref={'listview'}
                initialListSize={1}
                stickyHeaderIndices={[]}
                onEndReachedThreshold={1}
-               scrollRenderAheadDistance={1}
-               pageSize={1}
+               scrollRenderAheadDistance={10}
+               pageSize={3}
                enableEmptySections={true}
                renderRow={this._renderItem.bind(this)}
                renderFooter={() => <View style={{alignItems:'center',marginTop:4,marginBottom:4}}><Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6'}}>End of Results</Text></View>}
                />
-        </ScrollView>
       </View>
     );
   }

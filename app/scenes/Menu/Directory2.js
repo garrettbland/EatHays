@@ -11,7 +11,6 @@ import firebaseApp from "../components/firebaseconfig.js";
 import moment from 'moment';
 import StarRating from 'react-native-star-rating';
 import Image from 'react-native-image-progress';
-import Carousel from 'react-native-snap-carousel';
 import {
   StyleSheet,
   Text,
@@ -31,8 +30,22 @@ class DirectoryDetail extends Component {
 
   constructor(props) {
      super(props);
+     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+     var reviewsNotSliced = this.props.item.reviews;
+     var reviewsSliced = reviewsNotSliced.slice(0,3);
+     var dayMonday = this.props.item.hours[1];
+     var dayTuesday = this.props.item.hours[2];
+     var dayWednesday = this.props.item.hours[3];
+     var dayThursday = this.props.item.hours[4];
+     var dayFriday = this.props.item.hours[5];
+     var daySaturday = this.props.item.hours[6];
+     var daySunday = this.props.item.hours[7];
      this.state = {
        loading:true,
+       phoneNumberString:this.props.item.phone.toString(),
+       reviewsDataSource: ds.cloneWithRows(reviewsSliced),
+       reviewsTotal: ds.cloneWithRows(reviewsNotSliced),
+       imagesDataSource: ds.cloneWithRows(this.props.item.images),
        monday: <Text style={{color:'#7f8c8d'}}>Monday</Text>,
        tuesday: <Text style={{color:'#7f8c8d'}}>Tuesday</Text>,
        wednesday: <Text style={{color:'#7f8c8d'}}>Wednesday</Text>,
@@ -40,130 +53,26 @@ class DirectoryDetail extends Component {
        friday: <Text style={{color:'#7f8c8d'}}>Friday</Text>,
        saturday: <Text style={{color:'#7f8c8d'}}>Saturday</Text>,
        sunday: <Text style={{color:'#7f8c8d'}}>Sunday</Text>,
+       mondayHours:<Text style={{color:'#7f8c8d'}}>{dayMonday}</Text>,
+       tuesdayHours:<Text style={{color:'#7f8c8d'}}>{dayTuesday}</Text>,
+       wednesdaHours:<Text style={{color:'#7f8c8d'}}>{dayWednesday}</Text>,
+       thursdayHours:<Text style={{color:'#7f8c8d'}}>{dayThursday}</Text>,
+       fridayHours:<Text style={{color:'#7f8c8d'}}>{dayFriday}</Text>,
+       saturdayHours:<Text style={{color:'#7f8c8d'}}>{daySaturday}</Text>,
+       sundayHours:<Text style={{color:'#7f8c8d'}}>{daySunday}</Text>,
      };
+     this.itemsRef = this.getRef().child("directoryStatistics");
    }
 
-  componentWillMount(){
-    this.getServerInfo()
-  }
-
-  componentDidMount(){
-    this.getDayOfWeek();
-    this.recordVisits();
-  }
-
-  recordVisits(currentVisits){
-    var dateSubmitted = moment().format('LL h:mm A');
-    var unixTimeStamp = moment().unix();
-    var userPlatform = Platform.OS === 'ios'? "ios" : "android";
-    this.statisticsRef.push({
-       restaurant:this.props.title,
-       platform:userPlatform,
-       visited: dateSubmitted,
-       timestamp:unixTimeStamp,
-    });
-  }
-
-  getServerInfo(){
-    this.directoryRef = this.getRef().child('directory');
-    this.statisticsRef = this.getRef().child("directoryStatistics");
-    this.listenForDirectory(this.directoryRef);
-  }
-
-  getRef() {
-    return firebaseApp.database().ref();
-  }
-
-  listenForDirectory(directoryRef) {
-    directoryRef.orderByChild("title").startAt(this.props.title).endAt(this.props.title).on('value', (snap) => {
-      var items = [];
-      snap.forEach((child) => {
-        items.push({
-          address: child.val().address,
-          addressURL: child.val().addressURL,
-          averagePrice: child.val().averagePrice,
-          background:child.val().background,
-          category: child.val().category,
-          coupons: child.val().coupons,
-          delivery: child.val().delivery,
-          description: child.val().description,
-          hours: child.val().hours,
-          images: child.val().images,
-          lastUpdate: child.val().lastUpdate,
-          mapImage: child.val().mapImage,
-          menu: child.val().menu,
-          phone: child.val().phone,
-          profile: child.val().profile,
-          rate: child.val().rate,
-          reviews: child.val().reviews,
-          local: child.val().local,
-          wifi: child.val().wifi,
-          _key: child.key,
-        });
-      });
-
-      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      var background = items[0].background.toString();
-      var lastUpdate = items[0].lastUpdate.toString();
-      var local = items[0].local;
-      var wifi = items[0].wifi;
-      var delivery = items[0].delivery;
-      var phone = items[0].phone;
-      var menu = items[0].menu;
-      var coupons = items[0].coupons;
-      var description = items[0].description;
-      var images = items[0].images;
-      var hours = items[0].hours;
-      var phone = items[0].phone.toString();
-      var reviews = items[0].reviews;
-      var reviewsReversed = reviews.reverse();
-      var reviewsSliced = reviews.slice(0,3);
-      var reviewsSlicedReversed = reviewsSliced.reverse();
-      var address = items[0].address;
-      var mapImage = items[0].mapImage;
-      var addressURL = items[0].addressURL;
-
-      this.setState({
-        background:background,
-        lastUpdate:lastUpdate,
-        local:local,
-        wifi:wifi,
-        delivery:delivery,
-        phone:phone,
-        menu:menu,
-        coupons:coupons,
-        description:description,
-        images:images,
-        hours:hours,
-        phone:phone,
-        reviews:reviews,
-        reviewsDataSource: ds.cloneWithRows(reviewsSlicedReversed),
-        reviewsTotal: ds.cloneWithRows(reviews),
-        address:address,
-        mapImage:mapImage,
-        addressURL:addressURL,
-      });
-    });
-  }
-
   getDayOfWeek(){
-   var dayMonday = this.state.hours[1];
-   var dayTuesday = this.state.hours[2];
-   var dayWednesday = this.state.hours[3];
-   var dayThursday = this.state.hours[4];
-   var dayFriday = this.state.hours[5];
-   var daySaturday = this.state.hours[6];
-   var daySunday = this.state.hours[7];
+   var dayMonday = this.props.item.hours[1];
+   var dayTuesday = this.props.item.hours[2];
+   var dayWednesday = this.props.item.hours[3];
+   var dayThursday = this.props.item.hours[4];
+   var dayFriday = this.props.item.hours[5];
+   var daySaturday = this.props.item.hours[6];
+   var daySunday = this.props.item.hours[7];
    var dayOfTheWeek = moment().format('dddd');
-   this.setState({
-     mondayHours:<Text style={{color:'#7f8c8d'}}>{dayMonday}</Text>,
-     tuesdayHours:<Text style={{color:'#7f8c8d'}}>{dayTuesday}</Text>,
-     wednesdaHours:<Text style={{color:'#7f8c8d'}}>{dayWednesday}</Text>,
-     thursdayHours:<Text style={{color:'#7f8c8d'}}>{dayThursday}</Text>,
-     fridayHours:<Text style={{color:'#7f8c8d'}}>{dayFriday}</Text>,
-     saturdayHours:<Text style={{color:'#7f8c8d'}}>{daySaturday}</Text>,
-     sundayHours:<Text style={{color:'#7f8c8d'}}>{daySunday}</Text>,
-   })
    if (dayOfTheWeek == "Monday"){
      this.setState({
        monday: <Text style={{color:'#c0392b',fontWeight:'bold'}}>Monday</Text>,
@@ -204,8 +113,29 @@ class DirectoryDetail extends Component {
    }
   }
 
+  getRef() {
+   return firebaseApp.database().ref();
+  }
+
+  componentDidMount(){
+    this.recordVisits();
+    this.getDayOfWeek();
+  }
+
+  recordVisits(currentVisits){
+    var dateSubmitted = moment().format('LL h:mm A');
+    var unixTimeStamp = moment().unix();
+    var userPlatform = Platform.OS === 'ios'? "ios" : "android";
+    this.itemsRef.push({
+       restaurant:this.props.title,
+       platform:userPlatform,
+       visited: dateSubmitted,
+       timestamp:unixTimeStamp,
+    });
+  }
+
   getReviewsCount(){
-    if(this.state.reviews[0].active === false){
+    if(this.props.item.reviews[0].active === false){
       return(
         <View style={{flexDirection:'row'}}>
           <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000',paddingLeft:10}}>Reviews</Text>
@@ -222,48 +152,48 @@ class DirectoryDetail extends Component {
     }
   }
 
-  render(){
-    return(
-      <View style={{flex:1,backgroundColor:'#FFFFFF',paddingTop:40}}>
+  render() {
+    return (
+      <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54, backgroundColor:'#FFFFFF'}}>
         <ParallaxScrollView
          fadeOutForeground={false}
-         renderBackground={() => <Image source={{ uri: this.state.background, width: screenWidth, height: screenHeight / 2 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>}
+         renderBackground={() => <Image source={{ uri: this.props.item.background, width: screenWidth, height: screenHeight / 2 }} onLoadStart={() => this.setState({loading:true})} onLoad={() => this.setState({loading:false})}/>}
          contentBackgroundColor="#ffffff"
          parallaxHeaderHeight={screenHeight / 2}>
-          <View>
-            <View style={{height:10,backgroundColor:'#c0392b'}}>
-            </View>
-            <Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6',fontSize:12}}>
-              Last update on {this.state.lastUpdate}
-            </Text>
-            <View style={{flexDirection:'row',marginTop:10,justifyContent:'center'}}>
-            {this.state.local &&
+        <View >
+          <View style={{height:10,backgroundColor:'#c0392b'}}>
+          </View>
+          <Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6',fontSize:12}}>
+            Last update on {this.props.item.lastUpdate}
+          </Text>
+          <View style={{flexDirection:'row',marginTop:10,justifyContent:'center'}}>
+          {this.props.item.local &&
+            <Icon
+              name='cutlery'
+              type='font-awesome'
+              color='#c0392b'
+              iconStyle={{paddingRight:5}}
+            />
+          }
+            {this.props.item.wifi &&
               <Icon
-                name='cutlery'
+                name='wifi'
                 type='font-awesome'
-                color='#c0392b'
+                color='#3498db'
                 iconStyle={{paddingRight:5}}
               />
             }
-              {this.state.wifi &&
-                <Icon
-                  name='wifi'
-                  type='font-awesome'
-                  color='#3498db'
-                  iconStyle={{paddingRight:5}}
-                />
-              }
-              {this.state.delivery &&
-                <Icon
-                  name='car'
-                  type='font-awesome'
-                  color='#F9690E'
-                />
-              }
-            </View>
-            <Text style={{fontSize: 45,textAlign: 'center',marginBottom: 10,paddingTop:0,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
-              {this.props.title}
-            </Text>
+            {this.props.item.delivery &&
+              <Icon
+                name='car'
+                type='font-awesome'
+                color='#F9690E'
+              />
+            }
+          </View>
+          <Text style={{fontSize: 45,textAlign: 'center',marginBottom: 10,paddingTop:0,paddingBottom:15,fontFamily:'oswald-bold',color:"black"}}>
+            {this.props.title}
+          </Text>
             <View style={{flexDirection:'row',marginBottom:14}}>
               <View style={{width:screenWidth/3,alignItems:'center'}}>
                 <Icon
@@ -272,7 +202,7 @@ class DirectoryDetail extends Component {
                   name='phone'
                   type='font-awesome'
                   color='#2bc064'
-                  onPress={() => Communications.phonecall(this.state.phone, true)}
+                  onPress={() => Communications.phonecall(this.props.item.phone, true)}
                 />
                 <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
                   Call
@@ -285,7 +215,7 @@ class DirectoryDetail extends Component {
                   name='map'
                   type='font-awesome'
                   color='#8e44ad'
-                  onPress={() => Actions.MenuIndex({menu:this.state.menu})}
+                  onPress={() => Actions.MenuIndex({menu:this.props.item.menu})}
                 />
                 <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
                   Menu
@@ -298,7 +228,7 @@ class DirectoryDetail extends Component {
                   name='tags'
                   type='font-awesome'
                   color='#f50'
-                  onPress={() => Actions.CouponDetail({coupons:this.state.coupons})}
+                  onPress={() => Actions.CouponDetail({coupons:this.props.item.coupons})}
                 />
                 <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
                   Coupons
@@ -310,7 +240,7 @@ class DirectoryDetail extends Component {
                 Summary
               </Text>
               <Text style={{color:'#7f8c8d'}}>
-                {this.state.description}
+                {this.props.item.description}
               </Text>
             </View>
             <View style={{padding:10}}>
@@ -321,13 +251,12 @@ class DirectoryDetail extends Component {
                 Swipe for more photos
               </Text>
             </View>
-            <Carousel
-             ref={'carousel'}
-             items={this.state.images}
-             renderItem={this._renderImage}
-             sliderWidth={screenWidth}
-             itemWidth={screenWidth - 20}
-            />
+            <View>
+              <ImageSlider
+                images={this.props.item.images}
+                height={screenHeight / 3}
+              />
+            </View>
             <View style={{padding:10}}>
               <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>
                 Hours
@@ -357,45 +286,46 @@ class DirectoryDetail extends Component {
               {this.getReviewsCount()}
               <ListView
                 dataSource={this.state.reviewsDataSource}
-                renderRow={this._renderReview.bind(this)}
+                renderRow={this._renderItem.bind(this)}
                 enableEmptySections={true}
               />
               <View style={{marginBottom:10}}></View>
             </View>
-            <View style={{flexDirection:'row',marginBottom:14}}>
-              <View style={{width:screenWidth/2,alignItems:'center'}}>
-                <Icon
-                  reverse
-                  raised
-                  name='comments-o'
-                  type='font-awesome'
-                  color='#e67e22'
-                  onPress={() => Actions.ReviewFullList({restaurantTitle:this.props.title, reviews:this.state.reviews})}
-                />
-                <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
-                  View All Reviews
-                </Text>
-              </View>
-              <View style={{width:screenWidth/2,alignItems:'center'}}>
-                <Icon
-                  reverse
-                  raised
-                  name='edit'
-                  type='font-awesome'
-                  color='#3498db'
-                  onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,fromDirectory:true})}
-                />
-                <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
-                  Write Review
-                </Text>
-              </View>
+            <View style={{marginBottom:4}}>
+              <Button
+                raised
+                small
+                iconRight
+                borderRadius={5}
+                icon={{name: 'chevron-right'}}
+                fontFamily="oswald-bold"
+                fontSize={14}
+                buttonStyle={{marginBottom:5,}}
+                backgroundColor="#e67e22"
+                title="View All Reviews"
+                onPress={() => Actions.ReviewFullList({restaurantTitle:this.props.title, reviews:this.props.item.reviews})}
+              />
+            </View>
+            <View style={{marginBottom:14}}>
+              <Button
+                raised
+                iconRight
+                borderRadius={5}
+                icon={{name: 'edit'}}
+                fontFamily="oswald-bold"
+                fontSize={18}
+                buttonStyle={{marginBottom:5,}}
+                backgroundColor="#3498db"
+                title='Write Review'
+                onPress={() => Actions.ReviewDetail({restaurantTitle:this.props.title,fromDirectory:true})}
+              />
             </View>
             <View style={{padding:10,}}>
               <Text style={{fontSize:20,fontFamily:'oswald-bold',color:'#000000'}}>
                 Address
               </Text>
               <Text style={{color:'#7f8c8d'}}>
-              {this.state.address}
+              {this.props.item.address}
               </Text>
             </View>
             <View style={{width:screenWidth,height:screenHeight / 2, }}>
@@ -403,7 +333,7 @@ class DirectoryDetail extends Component {
                 onLoadStart={() => this.setState({loading:true})}
                 onLoad={() => this.setState({loading:false})}
                 style={{width:screenWidth,height:screenHeight / 2, }}
-                source={{uri: this.state.mapImage}}
+                source={{uri: this.props.item.mapImage}}
               >
               <View style={{marginTop:screenHeight/10,alignItems:'center'}}>
                 <Button
@@ -416,33 +346,22 @@ class DirectoryDetail extends Component {
                   buttonStyle={{marginBottom:5,}}
                   backgroundColor="#e74c3c"
                   title='Get Directions'
-                  onPress={() => Actions.MapDetail({addressURL:this.state.addressURL})}
+                  onPress={() => Actions.MapDetail({addressURL:this.props.item.addressURL})}
                 />
               </View>
               </Image>
             </View>
-
-
           </View>
         </ParallaxScrollView>
       </View>
-    )
+    );
   }
 
-  _renderImage (data, index){
-    return(
-        <Image
-         style={{width: screenWidth - 20, height: screenHeight/2.5,borderRadius:10}}
-         source={{uri: data}}
-        />
-    )
-  }
-
-  _renderReview(item) {
+  _renderItem(item) {
     if (item.review == "null"){
       return (
         <View>
-          <Card containerStyle={{borderWidth:1,borderColor:'#e1e8ef',shadowRadius: 0,shadowColor: '#ffffff'}}>
+          <Card>
             <View style={{width:50}}>
               <StarRating
                 disabled={true}
@@ -466,7 +385,7 @@ class DirectoryDetail extends Component {
     }else{
       return (
         <View>
-          <Card containerStyle={{borderWidth:1,borderColor:'#e1e8ef',shadowRadius: 0,shadowColor: '#ffffff'}}>
+          <Card>
             <View style={{width:50}}>
               <StarRating
                 disabled={true}

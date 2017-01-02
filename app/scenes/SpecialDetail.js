@@ -56,27 +56,7 @@ class SpecialDetail extends Component {
       snap.forEach((child) => {
         items.push({
           active: child.val().active,
-          address: child.val().address,
-          addressURL: child.val().addressURL,
-          averagePrice: child.val().averagePrice,
-          background:child.val().background,
-          category: child.val().category,
-          coupons: child.val().coupons,
-          delivery: child.val().delivery,
-          description: child.val().description,
-          hours: child.val().hours,
-          images: child.val().images,
-          lastUpdate: child.val().lastUpdate,
-          mapImage: child.val().mapImage,
-          menu: child.val().menu,
-          phone: child.val().phone,
-          profile: child.val().profile,
-          rate: child.val().rate,
-          reviews: child.val().reviews,
-          searchable: child.val().searchable,
-          subCategory: child.val().subCategory,
           title: child.val().title,
-          wifi: child.val().wifi,
           _key: child.key,
         });
       });

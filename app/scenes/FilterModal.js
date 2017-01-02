@@ -22,6 +22,11 @@ import {
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
+const options = [
+'All','Local Eats Only','Delivery','Wifi Access','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
+'Chicken' ,'Chinese' ,'Coffee Shop' ,'Dessert' ,'Fast Food' ,'Italian' ,
+'Japanese' ,'Mexican' ,'Night Club' ,'Pizza' ,'Sushi' ,'Vietnamese'
+]
 
 class FilterModal extends Component {
 
@@ -39,9 +44,7 @@ class FilterModal extends Component {
   setFilterValue(value){
     if(!value){
       Actions.pop()
-    }else if (value == this.state.currentFilter){
-      Actions.pop()
-    }else{
+    }else {
       this.props.setFilterValue(value);
     }
     Actions.pop()
@@ -49,11 +52,6 @@ class FilterModal extends Component {
 
   render() {
 
-    const options = [
-    'All','Local Eats Only','Delivery','Wifi Access','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
-    'Chicken' ,'Chinese' ,'Coffee Shop' ,'Dessert' ,'Fast Food' ,'Italian' ,
-    'Japanese' ,'Mexican' ,'Night Club' ,'Pizza' ,'Sushi' ,'Vietnamese'
-    ]
 
     function setSelectedOption(selectedOption){
       this.setState({
@@ -129,7 +127,11 @@ class FilterModal extends Component {
     }
 
     function renderContainer(optionNodes){
-      return <View>{optionNodes}</View>;
+      return (
+        <View>
+            {optionNodes}
+        </View>
+      )
     }
 
     return (
@@ -167,7 +169,6 @@ class FilterModal extends Component {
             </View>
           </View>
           <ScrollView>
-          <View>
             <RadioButtons
               options={ options }
               onSelection={ setSelectedOption.bind(this) }
@@ -175,7 +176,6 @@ class FilterModal extends Component {
               renderOption={ renderOption }
               renderContainer={ renderContainer }
             />
-          </View>
         </ScrollView>
       </View>
     );
