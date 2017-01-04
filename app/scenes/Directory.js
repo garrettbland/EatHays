@@ -73,7 +73,7 @@ class Directory extends Component {
         });
       });
 
-      var alphabetize = items.sort(function(a, b){
+      var items = items.sort(function(a, b){
           if(a.searchable < b.searchable) return -1;
           if(a.searchable > b.searchable) return 1;
           return 0;
@@ -140,80 +140,83 @@ class Directory extends Component {
 
   filterDirectory(itemsRef,option) {
     var filterText = option.toString();
+    var itemsString = JSON.parse(this.state.itemsString);
+
 
     if (filterText == "All"){
-      this.listenForItems(itemsRef);
+
+
+      var all = itemsString.filter(function(d){
+        return d.active === true
+      })
+
+      let newArray =  new ListView.DataSource({
+              rowHasChanged: (row1, row2) => row1 !== row2,
+            }).cloneWithRows(all)
+
+        this.setState({
+          dataSource: newArray
+        });
+
+
     }else if(filterText == "Local Eats Only"){
 
-      var itemsString = JSON.parse(this.state.itemsString);
-      var items = itemsString.filter(function(d){
+      var local = itemsString.filter(function(d){
         return d.local === true
       })
 
-        var alphabetize = items.sort(function(a, b){
-            if(a.searchable < b.searchable) return -1;
-            if(a.searchable > b.searchable) return 1;
-            return 0;
-        })
+      let newArray =  new ListView.DataSource({
+              rowHasChanged: (row1, row2) => row1 !== row2,
+            }).cloneWithRows(local)
 
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(items)
+          dataSource: newArray
         });
 
     }else if(filterText == "Delivery"){
-      var itemsString = JSON.parse(this.state.itemsString);
-      var items = itemsString.filter(function(d){
+      var delivery = itemsString.filter(function(d){
         return d.delivery === true
       })
 
-        var alphabetize = items.sort(function(a, b){
-            if(a.searchable < b.searchable) return -1;
-            if(a.searchable > b.searchable) return 1;
-            return 0;
-        })
+      let newArray =  new ListView.DataSource({
+              rowHasChanged: (row1, row2) => row1 !== row2,
+            }).cloneWithRows(delivery)
 
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(items)
+          dataSource: newArray
         });
+
     }else if(filterText == "Wifi Access"){
-      var itemsString = JSON.parse(this.state.itemsString);
-      var items = itemsString.filter(function(d){
+      var wifi = itemsString.filter(function(d){
         return d.wifi === true
       })
 
-        var alphabetize = items.sort(function(a, b){
-            if(a.searchable < b.searchable) return -1;
-            if(a.searchable > b.searchable) return 1;
-            return 0;
-        })
+
 
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(items)
+          dataSource: this.state.dataSource.cloneWithRows(wifi)
         });
     }else{
 
-        var itemsString = JSON.parse(this.state.itemsString);
-        var items = itemsString.filter(function(d){
+        var category = itemsString.filter(function(d){
           return d.category == option
         })
 
+        let newArray =  new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+              }).cloneWithRows(category)
 
-        var alphabetize = items.sort(function(a, b){
-            if(a.searchable < b.searchable) return -1;
-            if(a.searchable > b.searchable) return 1;
-            return 0;
-        })
+          this.setState({
+            dataSource: newArray
+          });
 
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(items)
-        });
       }
 
   }
 
   render() {
     return (
-      <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
+      <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef',overflow:'hidden'}}>
           <View>
             {this.state.loading &&
               <ActivityIndicator
@@ -244,12 +247,13 @@ class Directory extends Component {
                 </View>
               }
                dataSource={this.state.dataSource}
+               removeClippedSubviews={true}
                ref={'listview'}
-               initialListSize={1}
+               initialListSize={5}
                stickyHeaderIndices={[]}
                onEndReachedThreshold={1}
-               scrollRenderAheadDistance={10}
-               pageSize={3}
+               scrollRenderAheadDistance={1}
+               pageSize={1}
                enableEmptySections={true}
                renderRow={this._renderItem.bind(this)}
                renderFooter={() => <View style={{alignItems:'center',marginTop:4,marginBottom:4}}><Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6'}}>End of Results</Text></View>}
@@ -274,7 +278,7 @@ class Directory extends Component {
         newDescriptionString = descriptonString
       }
         return (
-          <View style={{backgroundColor:"#ffffff",marginTop:1}}>
+          <View style={{backgroundColor:"#ffffff",marginTop:1,overflow:'hidden'}}>
             <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>
               <View style={{backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                 <View style={{alignItems:'flex-start',flex:3,}}>
@@ -300,8 +304,7 @@ class Directory extends Component {
                     onLoad={() => this.setState({loading:false})}
                     style={{width: screenWidth / 3,height: screenWidth / 3}}
                     source={{uri: item.profile}}
-                    resizeMode={'contain'}
-                    indicator={ActivityIndicator}>
+                    resizeMode={'contain'}>
                   </Image>
                 </View>
               </View>
