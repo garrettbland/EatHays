@@ -79,6 +79,8 @@ class Directory extends Component {
           return 0;
       })
 
+
+
       var itemsString = JSON.stringify(items);
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items),
@@ -146,32 +148,8 @@ class Directory extends Component {
     if (filterText == "All"){
 
 
-      var all = itemsString.filter(function(d){
-        return d.active === true
-      })
+      this.listenForItems(itemsRef)
 
-      let newArray =  new ListView.DataSource({
-              rowHasChanged: (row1, row2) => row1 !== row2,
-            }).cloneWithRows(all)
-
-        this.setState({
-          dataSource: newArray
-        });
-
-
-    }else if(filterText == "Local Eats Only"){
-
-      var local = itemsString.filter(function(d){
-        return d.local === true
-      })
-
-      let newArray =  new ListView.DataSource({
-              rowHasChanged: (row1, row2) => row1 !== row2,
-            }).cloneWithRows(local)
-
-        this.setState({
-          dataSource: newArray
-        });
 
     }else if(filterText == "Delivery"){
       var delivery = itemsString.filter(function(d){

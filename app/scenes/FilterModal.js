@@ -23,7 +23,7 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 const options = [
-'All','Local Eats Only','Delivery','Wifi Access','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
+'All','Delivery','Wifi Access','American' ,'Asian' ,'Bar & Grill' ,'BBQ' ,'Breakfast' ,'Buffet' ,'Cafe' ,
 'Chicken' ,'Chinese' ,'Coffee Shop' ,'Dessert' ,'Fast Food' ,'Italian' ,
 'Japanese' ,'Mexican' ,'Night Club' ,'Pizza' ,'Sushi' ,'Vietnamese'
 ]
@@ -61,25 +61,7 @@ class FilterModal extends Component {
 
     function renderOption(option, selected, onSelect, index){
       const style = selected ? { fontFamily:'oswald-bold',color: '#c0392b',fontSize:screenWidth/8} : {fontFamily:'oswald-bold',color: '#7f8c8d',fontSize:screenWidth/8};
-      if(option == "Local Eats Only"){
-          return (
-            <TouchableBounce onPress={onSelect} key={index}>
-              <View style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
-                <View>
-                  <Icon
-                    size={40}
-                    name='cutlery'
-                    type='font-awesome'
-                    color='#c0392b'
-                  />
-                </View>
-                <View>
-                  <Text style={selected ? { fontFamily:'oswald-bold',color: '#000000',fontSize:screenWidth/8} : {fontFamily:'oswald-bold',color: '#7f8c8d',fontSize:screenWidth/8}}> {option}</Text>
-                </View>
-              </View>
-            </TouchableBounce>
-          );
-      }else if(option == "Delivery"){
+      if(option == "Delivery"){
           return (
             <TouchableBounce onPress={onSelect} key={index}>
               <View style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
