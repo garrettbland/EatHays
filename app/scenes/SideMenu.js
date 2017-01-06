@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 const cutleryIcon = (<Icon name="cutlery" size={30} color="#FFFFFF" />);
-const version = "1.7.4";
+const version = "1.7.5";
 
 class Index extends Component {
   render() {
