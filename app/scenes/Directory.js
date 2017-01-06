@@ -229,8 +229,8 @@ class Directory extends Component {
                ref={'listview'}
                initialListSize={5}
                stickyHeaderIndices={[]}
-               onEndReachedThreshold={1}
-               scrollRenderAheadDistance={1}
+               onEndReachedThreshold={20}
+               scrollRenderAheadDistance={screenHeight/2}
                pageSize={1}
                enableEmptySections={true}
                renderRow={this._renderItem.bind(this)}
@@ -256,8 +256,8 @@ class Directory extends Component {
         newDescriptionString = descriptonString
       }
         return (
-          <View style={{backgroundColor:"#ffffff",marginTop:1,overflow:'hidden'}}>
-            <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title,item})}>
+          <View style={{backgroundColor:"#ffffff",marginTop:1}}>
+            <TouchableOpacity onPress={() => Actions.DirectoryDetail({title:item.title})}>
               <View style={{backgroundColor:'white',flexDirection:'row',paddingLeft:5,}}>
                 <View style={{alignItems:'flex-start',flex:3,}}>
                   <Text style={{fontFamily:'oswald-bold',fontSize:screenWidth/15,color:"#000000"}}>{item.title}</Text>

@@ -12,6 +12,7 @@ import moment from 'moment';
 import StarRating from 'react-native-star-rating';
 import Image from 'react-native-image-progress';
 import Carousel from 'react-native-snap-carousel';
+import shuffle from 'shuffle-array';
 import {
   StyleSheet,
   Text,
@@ -26,6 +27,7 @@ import {
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const today = moment().isoWeekday();
+const funWords = ['Drat','Shucks','Dang','Cripes','Gosh-Darn','Nuts','Kod-Swallop','Nonsense','Tarnation'];
 
 class DirectoryDetail extends Component {
 
@@ -41,6 +43,10 @@ class DirectoryDetail extends Component {
        saturday: <Text style={{color:'#7f8c8d'}}>Saturday</Text>,
        sunday: <Text style={{color:'#7f8c8d'}}>Sunday</Text>,
      };
+   }
+
+   componentWillUnmount(){
+      this.state={}
    }
 
   componentWillMount(){
@@ -98,7 +104,6 @@ class DirectoryDetail extends Component {
           reviews: child.val().reviews,
           local: child.val().local,
           wifi: child.val().wifi,
-          _key: child.key,
         });
       });
 
@@ -430,12 +435,26 @@ class DirectoryDetail extends Component {
   }
 
   _renderImage (data, index){
-    return(
-        <Image
-         style={{width: screenWidth - 20, height: screenHeight/2.5,borderRadius:10}}
-         source={{uri: data}}
+    if(data == "dd"){
+      var randomWord = shuffle(funWords);
+      return(
+        <View style={{alignItems:'center',justifyContent:'center',width:screenWidth,height:screenHeight/2.5}}>
+        <Icon
+          name='meh-o'
+          type='font-awesome'
+          color='#c0392b'
         />
-    )
+          <Text style={{fontFamily:'oswald-bold',color:'#7f8c8d'}}>{randomWord[0]}. Currently no Images</Text>
+        </View>
+      )
+    }else{
+      return(
+          <Image
+           style={{width: screenWidth - 20, height: screenHeight/2.5,borderRadius:10}}
+           source={{uri: data}}
+          />
+      )
+    }
   }
 
   _renderReview(item) {
