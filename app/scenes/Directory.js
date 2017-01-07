@@ -209,7 +209,7 @@ class Directory extends Component {
                 <View style={{marginLeft:10,marginRight:10,marginBottom:10}}>
                   <Sae
                     label={'Search'}
-                    labelStyle={{color:'#c0392b', fontFamily:'Oswald-bold',fontSize:40}}
+                    labelStyle={{color:'#c0392b', fontFamily:'Oswald-regular',fontSize:40}}
                     iconClass={FontAwesomeIcon}
                     iconName={'search'}
                     iconColor={'#c0392b'}
