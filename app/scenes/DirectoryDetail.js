@@ -43,11 +43,9 @@ class DirectoryDetail extends Component {
        saturday: <Text style={{color:'#7f8c8d'}}>Saturday</Text>,
        sunday: <Text style={{color:'#7f8c8d'}}>Sunday</Text>,
      };
+
    }
 
-   componentWillUnmount(){
-      this.state={}
-   }
 
   componentWillMount(){
     this.getServerInfo()
@@ -148,6 +146,8 @@ class DirectoryDetail extends Component {
         mapImage:mapImage,
         addressURL:addressURL,
       });
+
+
     });
   }
 

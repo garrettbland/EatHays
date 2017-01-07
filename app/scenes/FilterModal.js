@@ -117,37 +117,33 @@ class FilterModal extends Component {
     }
 
     return (
-      <View style={{flex: 1,paddingTop:20,backgroundColor: '#e1e8ef'}} >
+      <View style={{flex: 1,paddingTop:15,backgroundColor: '#e1e8ef'}} >
           <View style={{flexDirection:'row',marginTop:15,marginBottom:15}}>
-            <View style={{width:screenWidth/2}}>
-              <Button
+            <View style={{width:screenWidth/2,alignItems:'center'}}>
+              <Icon
+                reverse
                 raised
-                small
-                iconRight
-                borderRadius={5}
-                icon={{name: 'cancel'}}
-                fontFamily="oswald-bold"
-                fontSize={14}
-                buttonStyle={{marginBottom:5,}}
-                backgroundColor="#c0392b"
-                title="Cancel"
+                name='remove'
+                type='font-awesome'
+                color='#c0392b'
                 onPress={() => Actions.pop()}
               />
+              <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
+                Cancel
+              </Text>
             </View>
-            <View style={{width:screenWidth/2}}>
-              <Button
+            <View style={{width:screenWidth/2,alignItems:'center'}}>
+              <Icon
+                reverse
                 raised
-                small
-                iconRight
-                borderRadius={5}
-                icon={{name: 'check'}}
-                fontFamily="oswald-bold"
-                fontSize={14}
-                buttonStyle={{marginBottom:5,}}
-                backgroundColor="#27ae60"
-                title="Accept"
+                name='check'
+                type='font-awesome'
+                color='#27ae60'
                 onPress={() => this.setFilterValue(this.state.filterValue)}
               />
+              <Text style={{fontFamily:"oswald-regular",color:'#7f8c8d'}}>
+                Accept
+              </Text>
             </View>
           </View>
           <ScrollView>

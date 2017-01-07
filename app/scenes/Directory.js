@@ -9,7 +9,7 @@ import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import StarRating from 'react-native-star-rating';
-import SGListView from 'react-native-sglistview';
+//import SGListView from 'react-native-sglistview';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import {
@@ -204,7 +204,7 @@ class Directory extends Component {
               />
             }
           </View>
-          <SGListView
+          <ListView
               renderHeader={() =>
                 <View style={{marginLeft:10,marginRight:10,marginBottom:10}}>
                   <Sae
