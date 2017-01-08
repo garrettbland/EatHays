@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import firebaseApp from '../components/firebaseconfig.js';
 import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
-import Image from 'react-native-image-progress';
+// import Image from 'react-native-image-progress';
 import StarRating from 'react-native-star-rating';
 //import SGListView from 'react-native-sglistview';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -19,9 +19,8 @@ import {
   ListView,
   ActivityIndicator,
   Dimensions,
-  ScrollView,
   Platform,
-  Alert,
+  Image,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -194,7 +193,7 @@ class Directory extends Component {
 
   render() {
     return (
-      <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef',overflow:'hidden'}}>
+      <View style={{flex:1,paddingTop:Platform.OS === 'ios'? 64 : 54,backgroundColor:'#e1e8ef'}}>
           <View>
             {this.state.loading &&
               <ActivityIndicator
@@ -209,14 +208,14 @@ class Directory extends Component {
                 <View style={{marginLeft:10,marginRight:10,marginBottom:10}}>
                   <Sae
                     label={'Search'}
-                    labelStyle={{color:'#c0392b', fontFamily:'Oswald-regular',fontSize:40}}
+                    labelStyle={{color:'#c0392b', fontFamily:'oswald-regular',fontSize:40}}
                     iconClass={FontAwesomeIcon}
                     iconName={'search'}
                     iconColor={'#c0392b'}
                     returnKeyType='search'
                     // TextInput props
                     autoCapitalize={'none'}
-                    inputStyle={{color:'#000000',fontFamily:'Oswald-regular'}}
+                    inputStyle={{color:'#000000',fontFamily:'oswald-regular'}}
                     autoCorrect={false}
                     onChangeText={(text) => this.setState({searchText:text})}
                     onSubmitEditing={() => this.firstSearch()}
@@ -225,13 +224,6 @@ class Directory extends Component {
                 </View>
               }
                dataSource={this.state.dataSource}
-               removeClippedSubviews={true}
-               ref={'listview'}
-               initialListSize={5}
-               stickyHeaderIndices={[]}
-               onEndReachedThreshold={20}
-               scrollRenderAheadDistance={screenHeight/2}
-               pageSize={1}
                enableEmptySections={true}
                renderRow={this._renderItem.bind(this)}
                renderFooter={() => <View style={{alignItems:'center',marginTop:4,marginBottom:4}}><Text style={{textAlign: 'center',fontFamily:'oswald-regular',color:'#95a5a6'}}>End of Results</Text></View>}
